@@ -23,7 +23,7 @@
     @endif
     <section class="app-user-list">
         <div class="row">
-            <div class="col-lg-6 col-sm-6">
+            <div class="col-lg-12 col-sm-6">
                 <div class="card">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
@@ -33,21 +33,6 @@
                         <div class="avatar bg-light-primary p-50">
                             <span class="avatar-content">
                                 <i data-feather="user" class="font-medium-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-                <div class="card">
-                    <div class="card-body d-flex align-items-center justify-content-between">
-                        <div>
-                            <h3 class="fw-bolder mb-75">{{ $data['admin_count'] }}</h3>
-                            <span>Total Admin</span>
-                        </div>
-                        <div class="avatar bg-light-danger p-50">
-                            <span class="avatar-content">
-                                <i data-feather="user-plus" class="font-medium-4"></i>
                             </span>
                         </div>
                     </div>
@@ -98,8 +83,6 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Phone No</th>
-                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -136,26 +119,36 @@
     <script>
         $(document).ready(function() {
             $('#users-table').DataTable({
+                dom: 'lBfrtip',
                 processing: true,
                 serverSide: true,
+                searching: true,
+                buttons: [{
+                    extend: 'excel',
+                    text: '  <i class="ficon" data-feather="file-text"></i> Excel',
+                    title: '',
+                    filename: 'Users List',
+                    action: newexportaction,
+                    className: 'btn btn-info btn-sm',
+                    exportOptions: {
+                        modifier: {
+                            length: -1
+                        },
+                        columns: [0, 1]
+                    }
+                }, ],
                 "lengthMenu": [10, 25, 50, 100, 200],
                 ajax: "{{ route('app-users-get-all') }}",
                 columns: [{
-                        data: 'full_name',
-                        name: 'full_name'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
                         data: 'email',
                         name: 'email'
                     },
-                    {
-                        data: 'phone_no',
-                        name: 'phone_no'
-                    },
-                    {
-                        data: 'role_name',
-                        name: 'role_name'
-                    },
+
+
                     {
                         data: 'actions',
                         name: 'actions',
@@ -165,22 +158,56 @@
                 ],
                 drawCallback: function() {
                     feather.replace();
-                    $('[data-bs-toggle="tooltip"]').tooltip();
-                },
-                dom: '<"export-buttons"B>lfrtip',
-                "paging": true,
-                buttons: [{
-                    extend: 'excel',
-                    className: 'btn btn-primary',
-                    text: '<i data-feather="file-text"></i>Excel',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3]
-                    }
-                }]
+                }
             });
         });
 
-
+        function newexportaction(e, dt, button, config) {
+            var self = this;
+            var oldStart = dt.settings()[0]._iDisplayStart;
+            dt.one('preXhr', function(e, s, data) {
+                // Just this once, load all data from the server...
+                data.start = 0;
+                data.length = 2147483647;
+                dt.one('preDraw', function(e, settings) {
+                    // Call the original action function
+                    if (button[0].className.indexOf('buttons-copy') >= 0) {
+                        $.fn.dataTable.ext.buttons.copyHtml5.action.call(self, e, dt, button,
+                            config);
+                    } else if (button[0].className.indexOf('buttons-excel') >= 0) {
+                        $.fn.dataTable.ext.buttons.excelHtml5.available(dt, config) ?
+                            $.fn.dataTable.ext.buttons.excelHtml5.action.call(self, e, dt,
+                                button, config) :
+                            $.fn.dataTable.ext.buttons.excelFlash.action.call(self, e, dt,
+                                button, config);
+                    } else if (button[0].className.indexOf('buttons-csv') >= 0) {
+                        $.fn.dataTable.ext.buttons.csvHtml5.available(dt, config) ?
+                            $.fn.dataTable.ext.buttons.csvHtml5.action.call(self, e, dt, button,
+                                config) :
+                            $.fn.dataTable.ext.buttons.csvFlash.action.call(self, e, dt, button,
+                                config);
+                    } else if (button[0].className.indexOf('buttons-pdf') >= 0) {
+                        $.fn.dataTable.ext.buttons.pdfHtml5.available(dt, config) ?
+                            $.fn.dataTable.ext.buttons.pdfHtml5.action.call(self, e, dt, button,
+                                config) :
+                            $.fn.dataTable.ext.buttons.pdfFlash.action.call(self, e, dt, button,
+                                config);
+                    } else if (button[0].className.indexOf('buttons-print') >= 0) {
+                        $.fn.dataTable.ext.buttons.print.action(e, dt, button, config);
+                    }
+                    dt.one('preXhr', function(e, s, data) {
+                        settings._iDisplayStart = oldStart;
+                        data.start = oldStart;
+                    });
+                    // Reload the grid with the original page. Otherwise, API functions like table.cell(this) don't work properly.
+                    setTimeout(dt.ajax.reload, 0);
+                    // Prevent rendering of the full data to the DOM
+                    return false;
+                });
+            });
+            // Requery the server with the new one-time export settings
+            dt.ajax.reload();
+        }
 
         $(document).on("click", ".confirm-delete", function(e) {
             e.preventDefault();

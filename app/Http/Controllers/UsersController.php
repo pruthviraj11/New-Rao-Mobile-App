@@ -47,10 +47,15 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $data['total_user'] = User::where('status', true)->count();
-        $data['admin_count'] = User::leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-            ->leftJoin('roles', 'roles.id', '=', 'model_has_roles.role_id')->where('roles.display_name', 'Admin')->count();
+        // $user = User::find(2);
 
+
+        // $role = Role::find(1);
+        // // dd($user, $role);
+
+        // $user->assignRole($role);
+        $data['total_user'] = User::count();
+        // dd($data);
         return view('content.apps.user.list', compact('data'));
     }
 
@@ -58,23 +63,24 @@ class UsersController extends Controller
     public function getAll()
     {
         $users = $this->userService->getAllUser();
-        return DataTables::of($users)->addColumn('full_name', function ($row) {
-            return $row->first_name . ' ' . $row->last_name;
-        })->addColumn('full_name', function ($row) {
-            return $row->first_name . ' ' . $row->last_name;
-        })->addColumn('role_name', function ($row) {
-            return head($row->getRoleNames());
-        })->addColumn('actions', function ($row) {
-            $encryptedId = encrypt($row->id);
-            // Update Button
-            $updateButton = "<a data-bs-toggle='tooltip' title='Edit' data-bs-delay='400' class='btn btn-warning'  href='" . route('app-users-edit', $encryptedId) . "'><i data-feather='edit'></i></a>";
 
-            // Delete Button
-            $deleteButton = "<a data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='.$encryptedId' id='confirm-color  href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></a>";
+        return DataTables::of($users)
 
-            return $updateButton . " " . $deleteButton;
-        })->rawColumns(['actions'])->make(true);
+            ->addColumn('actions', function ($row) {
+                $encryptedId = encrypt($row->id);
+
+                // Update Button
+                $updateButton = "<a data-bs-toggle='tooltip' title='Edit' data-bs-delay='400' class='btn btn-warning' href='" . route('app-users-edit', $encryptedId) . "'><i data-feather='edit'></i></a>";
+
+                // Delete Button
+                $deleteButton = "<a data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='" . $encryptedId . "' id='confirm-color' href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></a>";
+
+                return $updateButton . " " . $deleteButton;
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -186,10 +192,9 @@ class UsersController extends Controller
             // dd($request->all());
             $id = decrypt($encrypted_id);
             // $userData['username'] = $request->get('username');
-            $userData['first_name'] = $request->get('first_name');
-            $userData['last_name'] = $request->get('last_name');
+            $userData['name'] = $request->get('name');
             $userData['email'] = $request->get('email');
-            $userData['phone_no'] = $request->get('phone_no');
+            $userData['phone_number'] = $request->get('phone_number');
             $user = User::where('id', $id)->first();
             $updated = $this->userService->updateUser($id, $userData);
             if (!empty($updated)) {

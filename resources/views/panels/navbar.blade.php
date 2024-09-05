@@ -131,9 +131,9 @@
                 <a class="dropdown-item" href="{{ $route }}">
                     <i class="me-50" data-feather="user"></i> Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                {{-- <a class="dropdown-item" href="#">
                     <i class="me-50" data-feather="settings"></i> Settings
-                </a>
+                </a> --}}
 
                 {{-- @if (Auth::User())
                                     <div class="dropdown-divider"></div>

@@ -60,166 +60,38 @@
                         <!-- form -->
                         <div class="row">
                             <div class="col-12 col-sm-6 mb-1">
-                                <label class="form-label" for="accountFirstName">First Name</label>
-                                <input type="text" class="form-control" id="accountFirstName" name="first_name"
-                                    placeholder="John" value="{{ $data->first_name }}"
-                                    data-msg="Please enter first name" />
+                                <label class="form-label" for="accountFirstName">Name</label>
+                                <input type="text" class="form-control" id="accountFirstName" name="name"
+                                    placeholder="John" value="{{ $data->name }}" data-msg="Please enter name" />
+                                <span class="text-danger">
+                                    @error('name')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
-                            <div class="col-12 col-sm-6 mb-1">
-                                <label class="form-label" for="accountLastName">Last Name</label>
-                                <input type="text" class="form-control" id="accountLastName" name="last_name"
-                                    placeholder="Doe" value="{{ $data->last_name }}" data-msg="Please enter last name" />
-                            </div>
+
                             <div class="col-12 col-sm-6 mb-1">
                                 <label class="form-label" for="accountEmail">Email</label>
                                 <input type="email" class="form-control" id="accountEmail" name="email"
                                     placeholder="Email" value="{{ $data->email }}" />
-                                {{-- {{ dd($data) }} --}}
+                                <span class="text-danger">
+                                    @error('email')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
-                            {{-- <div class="col-12 col-sm-6 mb-1">
-                                <label class="form-label" for="accountOrganization">Organization</label>
-                                <input type="text" class="form-control" id="accountOrganization" name="organization"
-                                    placeholder="Organization name" value="PIXINVENT" />
-                            </div> --}}
+
                             <div class="col-12 col-sm-6 mb-1">
                                 <label class="form-label" for="accountPhoneNumber">Phone Number</label>
                                 <input type="text" class="form-control account-number-mask" id="accountPhoneNumber"
-                                    name="phone_no" placeholder="Phone Number" value="{{ $data->phone_no }}" />
+                                    name="phone_number" placeholder="Phone Number" value="{{ $data->phone_number }}" />
+                                     <span class="text-danger">
+                                    @error('phone_number')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
-                            {{-- <div class="col-12 col-sm-6 mb-1">
-                                <label class="form-label" for="accountAddress">Address</label>
-                                <input type="text" value="{{ $data->address }}" class="form-control" id="accountAddress"
-                                    name="address" placeholder="Your Address" />
-                            </div>
-                            <div class="col-12 col-sm-6 mb-1">
-                                <label class="form-label" for="accountState">State</label>
-                                <input type="text" class="form-control" id="accountState" name="state"
-                                    placeholder="State" />
-                            </div>
-                            <div class="col-12 col-sm-6 mb-1">
-                                <label class="form-label" for="accountZipCode">Zip Code</label>
-                                <input type="text" class="form-control account-zip-code" id="accountZipCode"
-                                    name="zipCode" placeholder="Code" maxlength="6" />
-                            </div> --}}
-                            {{-- <div class="col-12 col-sm-6 mb-1">
-                                <label class="form-label" for="country">Country</label>
-                                <select id="country" class="select2 form-select">
-                                    <option value="">Select Country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Bangladesh">Bangladesh</option>
-                                    <option value="Belarus">Belarus</option>
-                                    <option value="Brazil">Brazil</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="China">China</option>
-                                    <option value="France">France</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="India">India</option>
-                                    <option value="Indonesia">Indonesia</option>
-                                    <option value="Israel">Israel</option>
-                                    <option value="Italy">Italy</option>
-                                    <option value="Japan">Japan</option>
-                                    <option value="Korea">Korea, Republic of</option>
-                                    <option value="Mexico">Mexico</option>
-                                    <option value="Philippines">Philippines</option>
-                                    <option value="Russia">Russian Federation</option>
-                                    <option value="South Africa">South Africa</option>
-                                    <option value="Thailand">Thailand</option>
-                                    <option value="Turkey">Turkey</option>
-                                    <option value="Ukraine">Ukraine</option>
-                                    <option value="United Arab Emirates">United Arab Emirates</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United States">United States</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-sm-6 mb-1">
-                                <label for="language" class="form-label">Language</label>
-                                <select id="language" class="select2 form-select">
-                                    <option value="">Select Language</option>
-                                    <option value="en">English</option>
-                                    <option value="fr">French</option>
-                                    <option value="de">German</option>
-                                    <option value="pt">Portuguese</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-sm-6 mb-1">
-                                <label for="timeZones" class="form-label">Timezone</label>
-                                <select id="timeZones" class="select2 form-select">
-                                    <option value="">Select Time Zone</option>
-                                    <option value="-12">
-                                        (GMT-12:00) International Date Line West
-                                    </option>
-                                    <option value="-11">
-                                        (GMT-11:00) Midway Island, Samoa
-                                    </option>
-                                    <option value="-10">
-                                        (GMT-10:00) Hawaii
-                                    </option>
-                                    <option value="-9">
-                                        (GMT-09:00) Alaska
-                                    </option>
-                                    <option value="-8">
-                                        (GMT-08:00) Pacific Time (US & Canada)
-                                    </option>
-                                    <option value="-8">
-                                        (GMT-08:00) Tijuana, Baja California
-                                    </option>
-                                    <option value="-7">
-                                        (GMT-07:00) Arizona
-                                    </option>
-                                    <option value="-7">
-                                        (GMT-07:00) Chihuahua, La Paz, Mazatlan
-                                    </option>
-                                    <option value="-7">
-                                        (GMT-07:00) Mountain Time (US & Canada)
-                                    </option>
-                                    <option value="-6">
-                                        (GMT-06:00) Central America
-                                    </option>
-                                    <option value="-6">
-                                        (GMT-06:00) Central Time (US & Canada)
-                                    </option>
-                                    <option value="-6">
-                                        (GMT-06:00) Guadalajara, Mexico City, Monterrey
-                                    </option>
-                                    <option value="-6">
-                                        (GMT-06:00) Saskatchewan
-                                    </option>
-                                    <option value="-5">
-                                        (GMT-05:00) Bogota, Lima, Quito, Rio Branco
-                                    </option>
-                                    <option value="-5">
-                                        (GMT-05:00) Eastern Time (US & Canada)
-                                    </option>
-                                    <option value="-5">
-                                        (GMT-05:00) Indiana (East)
-                                    </option>
-                                    <option value="-4">
-                                        (GMT-04:00) Atlantic Time (Canada)
-                                    </option>
-                                    <option value="-4">
-                                        (GMT-04:00) Caracas, La Paz
-                                    </option>
-                                    <option value="-4">
-                                        (GMT-04:00) Manaus
-                                    </option>
-                                    <option value="-4">
-                                        (GMT-04:00) Santiago
-                                    </option>
-                                    <option value="-3.5">
-                                        (GMT-03:30) Newfoundland
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-sm-6 mb-1">
-                                <label for="currency" class="form-label">Currency</label>
-                                <select id="currency" class="select2 form-select">
-                                    <option value="">Select Currency</option>
-                                    <option value="usd">USD</option>
-                                    <option value="euro">Euro</option>
-                                    <option value="pound">Pound</option>
-                                    <option value="bitcoin">Bitcoin</option>
-                                </select>
-                            </div> --}}
+
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary mt-1 me-1">Save changes</button>
                                 <button type="reset" class="btn btn-outline-secondary mt-1">Discard</button>
