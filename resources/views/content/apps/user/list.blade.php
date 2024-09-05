@@ -172,12 +172,14 @@
                 buttons: [{
                     extend: 'excel',
                     className: 'btn btn-primary',
+                    text: '<i data-feather="file-text"></i>Excel',
                     exportOptions: {
                         columns: [0, 1, 2, 3]
                     }
                 }]
             });
         });
+
 
 
         $(document).on("click", ".confirm-delete", function(e) {
