@@ -1,0 +1,24 @@
+{
+    "menu": [
+        {
+            "url": "app/roles/list",
+            "name": "Roles",
+            "icon": "lock",
+            "slug": "app-roles-list",
+            "permission": [
+                "role-list",
+                "role-create"
+            ]
+        },
+        {
+            "url": "app/users/list",
+            "name": "User",
+            "icon": "user",
+            "slug": "app-users-list",
+            "permission": [
+                "user-list",
+                "user-create"
+            ]
+        }
+    ]
+}
