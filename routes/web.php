@@ -138,10 +138,10 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('news/getAll', [NewsController::class, 'getAll'])->name('app-news-get-all');
     Route::post('news/store', [NewsController::class, 'store'])->name('app-news-store');
     Route::get('news/add', [NewsController::class, 'create'])->name('app-news-add');
-    Route::get('news/edit/{id}', [NewsController::class, 'edit'])->name('app-news-edit');
-    Route::put('news/update/{id}', [NewsController::class, 'update'])->name('app-news-update');
-    Route::get('news/destroy/{id}', [NewsController::class, 'destroy'])->name('app-news-delete');
-    Route::get('news/{id}', [NewsController::class, 'destroyimage'])->name('news.destroyimage');
+    Route::get('news/edit/{encrypted_id}', [NewsController::class, 'edit'])->name('app-news-edit');
+    Route::put('news/update/{encrypted_id}', [NewsController::class, 'update'])->name('app-news-update');
+    Route::get('news/destroy/{encrypted_id}', [NewsController::class, 'destroy'])->name('app-news-delete');
+    Route::get('news/{encrypted_id}', [NewsController::class, 'destroyimage'])->name('news.destroyimage');
     //news Type End
 
 });

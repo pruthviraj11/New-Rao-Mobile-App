@@ -14,6 +14,7 @@ return [
     "Product" => "Product",
     "Sales Report" => "Sales Report",
     "Operations" => "Operations",
+    "news" => "News",
     "Operations Report" => "Operations Report",
     "Operational Report" => "Operational Report",
     "Follow Up Action Status" => "Follow Up Action Status",

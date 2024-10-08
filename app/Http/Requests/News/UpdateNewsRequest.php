@@ -24,13 +24,14 @@ class UpdateNewsRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->route('encrypted_id'));
         $decryptedId = decrypt($this->route('encrypted_id'));
-
+        // dd($decryptedId);
         return [
             'title' => [
                 'required',
                 'string',
-                'unique:news_categories,title' . ($decryptedId ? ",$decryptedId" : ''),
+                'unique:news,title' . ($decryptedId ? ",$decryptedId" : ''),
             ],
         ];
 
