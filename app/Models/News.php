@@ -17,6 +17,7 @@ class News extends Model
         'long_description',
         'file',
         'date',
+        'news_button_text',
         'status',
     ];
 }

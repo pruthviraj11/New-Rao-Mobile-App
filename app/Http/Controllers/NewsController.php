@@ -39,16 +39,14 @@ class NewsController extends Controller
         $news = "";
         $page_data['page_title'] = "news Add";
         $page_data['form_title'] = "Add New news";
-        $ClientType = ClientType::where('status', '1')->get();
-        return view('/content/apps/News/create-edit', compact('page_data', 'news', 'ClientType'));
+        $NewsCategories = NewsCategory::where('status', '1')->get();
+        return view('/content/apps/News/create-edit', compact('page_data', 'news', 'NewsCategories'));
     }
     public function getAll()
     {
         $news = $this->newsService->getAllNews();
         return DataTables::of($news)
-            ->addColumn('client_type', function ($row) {
-                return $row->clientType ? $row->clientType->displayname : 'N/A';
-            })
+           
             ->addColumn('actions', function ($row) {
                 $encryptedId = encrypt($row->id);
                 // Update Button
@@ -74,6 +72,7 @@ class NewsController extends Controller
             $newsData['title'] = $request->get('title');
             $newsData['long_description'] = $request->get('long_description');
             $newsData['date'] = $request->get('date');
+            $newsData['news_button_text'] = $request->get('news_button_text');
             $newsData['category_id'] = $request->get('category_id');
             $newsData['status'] = $request->get('status') === 'on' ? 1 : 0;
             if ($request->hasFile('file')) {
@@ -105,11 +104,12 @@ class NewsController extends Controller
 
         try {
             $id = decrypt($encrypted_id);
+            // dd($id);
             $news = $this->newsService->getNews($id);
             $page_data['page_title'] = "news Edit";
             $page_data['form_title'] = "Edit news";
-            $ClientType = ClientType::where('status', '1')->get();
-            return view('content/apps/News/create-edit', compact('page_data', 'news', 'ClientType'));
+            $NewsCategories = NewsCategory::where('status', '1')->get();
+            return view('content/apps/News/create-edit', compact('page_data', 'news', 'NewsCategories'));
         } catch (\Exception $error) {
             return redirect()->route("app/News/list")->with('error', 'Error while editing News');
         }
@@ -125,11 +125,12 @@ class NewsController extends Controller
     {
         try {
             $id = decrypt($encrypted_id);
-
+          
             $news = $this->newsService->getNews($id);
             $newsData['title'] = $request->get('title');
             $newsData['long_description'] = $request->get('long_description');
             $newsData['date'] = $request->get('date');
+            $newsData['news_button_text'] = $request->get('news_button_text');
             $newsData['category_id'] = $request->get('category_id');
             $newsData['status'] = $request->get('status') === 'on' ? 1 : 0;
             if ($request->hasFile('file')) {

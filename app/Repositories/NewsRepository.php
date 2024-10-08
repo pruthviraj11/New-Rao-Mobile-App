@@ -1,31 +1,31 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\NewsCategory;
+use App\Models\News;
 
 class NewsRepository
 {
     public function find($id)
     {
-        return NewsCategory::find($id);
+        return News::find($id);
     }
 
     public function create(array $data)
     {
-        return NewsCategory::create($data);
+        return News::create($data);
     }
 
     public function update($id, array $data)
     {
-        return NewsCategory::where('id', $id)->update($data);
+        return News::where('id', $id)->update($data);
     }
 
     public function delete($id)
     {
-        return NewsCategory::where('id', $id)->delete();
+        return News::where('id', $id)->delete();
     }
     public function getAll()
     {
-        return NewsCategory::all();
+        return News::all();
     }
 }
