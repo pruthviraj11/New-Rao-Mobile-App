@@ -405,19 +405,22 @@ $(function () {
     }
     if ($this.attr('data-image') !== undefined) {
       $this.html(
-        renderHeader($this.attr('data-badge'), $this.attr('data-badge-text')) +
-          "<img class='img-fluid rounded mb-50' src='" +
-          assetPath +
-          'images/slider/' +
-          $this.attr('data-image') +
-          "' height='32'/>" +
-          $text +
-          renderFooter(
-            $this.attr('data-due-date'),
-            $this.attr('data-comments'),
-            $this.attr('data-assigned'),
-            $this.attr('data-members')
-          )
+          renderHeader(
+              $this.attr("data-badge"),
+              $this.attr("data-badge-text")
+          ) +
+              "<img class='img-fluid rounded mb-50' src='" +
+              assetPath +
+              "images/sliders/" +
+              $this.attr("data-image") +
+              "' height='32'/>" +
+              $text +
+              renderFooter(
+                  $this.attr("data-due-date"),
+                  $this.attr("data-comments"),
+                  $this.attr("data-assigned"),
+                  $this.attr("data-members")
+              )
       );
     }
     $this.on('mouseenter', function () {

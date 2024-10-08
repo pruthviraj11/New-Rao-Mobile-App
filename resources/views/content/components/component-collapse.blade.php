@@ -39,7 +39,7 @@
           </p>
           <div class="collapse" id="collapseExample">
             <div class="d-flex p-1 border">
-              <img src="{{asset('images/slider/04.jpg')}}" alt="collapse-image" height="125" class="me-2" />
+              <img src="{{asset('images/sliders/04.jpg')}}" alt="collapse-image" height="125" class="me-2" />
               <span>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
@@ -105,7 +105,7 @@
             <div class="col-lg">
               <div class="collapse multi-collapse" id="multiCollapseExample1">
                 <div class="d-flex p-1 border">
-                  <img src="{{asset('images/slider/06.jpg')}}" alt="collapse-image" height="125" class="me-2" />
+                  <img src="{{asset('images/sliders/06.jpg')}}" alt="collapse-image" height="125" class="me-2" />
                   <span>
                     All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making
                     this the first true generator on the Internet. It uses a dictionary of over 200 Latin words,
@@ -118,7 +118,7 @@
             <div class="col-lg">
               <div class="collapse multi-collapse mt-lg-0 mt-1" id="multiCollapseExample2">
                 <div class="d-flex p-1 border">
-                  <img src="{{asset('images/slider/08.jpg')}}" alt="collapse-image" height="125" class="me-2" />
+                  <img src="{{asset('images/sliders/08.jpg')}}" alt="collapse-image" height="125" class="me-2" />
                   <span>
                     There are many variations of passages of Lorem Ipsum available, but the majority have suffered
                     alteration in some form, by injected humour, or randomised words which don't look even slightly
@@ -164,7 +164,7 @@
             <div class="collapse collapse-horizontal show" id="collapseWidthExample">
               <div class="d-flex width-300 border p-1">
                 <img
-                  src="{{asset('images/slider/08.jpg')}}"
+                  src="{{asset('images/sliders/08.jpg')}}"
                   alt="collapse-image"
                   width="100"
                   height="100"

@@ -19,7 +19,7 @@
     <div class="col-md-6 col-12">
       <div class="card">
         <a href="{{ asset('page/blog/detail') }}">
-          <img class="card-img-top img-fluid" src="{{asset('images/slider/02.jpg')}}" alt="Blog Post pic" />
+          <img class="card-img-top img-fluid" src="{{asset('images/sliders/02.jpg')}}" alt="Blog Post pic" />
         </a>
         <div class="card-body">
           <h4 class="card-title">
@@ -66,7 +66,7 @@
     <div class="col-md-6 col-12">
       <div class="card">
         <a href="{{ asset('page/blog/detail') }}">
-          <img class="card-img-top img-fluid" src="{{asset('images/slider/06.jpg')}}" alt="Blog Post pic" />
+          <img class="card-img-top img-fluid" src="{{asset('images/sliders/06.jpg')}}" alt="Blog Post pic" />
         </a>
         <div class="card-body">
           <h4 class="card-title">
@@ -113,7 +113,7 @@
     <div class="col-md-6 col-12">
       <div class="card">
         <a href="{{ asset('page/blog/detail') }}">
-          <img class="card-img-top img-fluid" src="{{asset('images/slider/04.jpg')}}" alt="Blog Post pic" />
+          <img class="card-img-top img-fluid" src="{{asset('images/sliders/04.jpg')}}" alt="Blog Post pic" />
         </a>
         <div class="card-body">
           <h4 class="card-title">
@@ -160,7 +160,7 @@
     <div class="col-md-6 col-12">
       <div class="card">
         <a href="{{ asset('page/blog/detail') }}">
-          <img class="card-img-top img-fluid" src="{{asset('images/slider/03.jpg')}}" alt="Blog Post pic" />
+          <img class="card-img-top img-fluid" src="{{asset('images/sliders/03.jpg')}}" alt="Blog Post pic" />
         </a>
         <div class="card-body">
           <h4 class="card-title">
@@ -209,7 +209,7 @@
     <div class="col-md-6 col-12">
       <div class="card">
         <a href="{{ asset('page/blog/detail') }}">
-          <img class="card-img-top img-fluid" src="{{asset('images/slider/09.jpg')}}" alt="Blog Post pic" />
+          <img class="card-img-top img-fluid" src="{{asset('images/sliders/09.jpg')}}" alt="Blog Post pic" />
         </a>
         <div class="card-body">
           <h4 class="card-title">
@@ -261,7 +261,7 @@
     <div class="col-md-6 col-12">
       <div class="card">
         <a href="{{ asset('page/blog/detail') }}">
-          <img class="card-img-top img-fluid" src="{{asset('images/slider/10.jpg')}}" alt="Blog Post pic" />
+          <img class="card-img-top img-fluid" src="{{asset('images/sliders/10.jpg')}}" alt="Blog Post pic" />
         </a>
         <div class="card-body">
           <h4 class="card-title">

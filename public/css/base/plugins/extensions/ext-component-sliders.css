@@ -94,7 +94,7 @@
 }
 
 _:-ms-lang(x),
-.slider-select {
+.sliders-select {
   flex: 0 0 10%;
   max-width: 10%;
 }

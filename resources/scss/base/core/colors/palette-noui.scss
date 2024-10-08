@@ -13,7 +13,7 @@
 @each $color_name, $color in $colors {
   @each $color_type, $color_value in $color {
     @if $color_type == 'base' {
-      .slider-#{$color_name} {
+      .sliders-#{$color_name} {
         background-color: rgba($color_value, 0.12);
         .noUi-connect {
           background: $color_value !important;

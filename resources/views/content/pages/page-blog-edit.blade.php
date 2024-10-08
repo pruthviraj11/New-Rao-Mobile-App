@@ -107,7 +107,7 @@
                   <h4 class="mb-1">Featured Image</h4>
                   <div class="d-flex flex-column flex-md-row">
                     <img
-                      src="{{asset('images/slider/03.jpg')}}"
+                      src="{{asset('images/sliders/03.jpg')}}"
                       id="blog-feature-image"
                       class="rounded me-2 mb-1 mb-md-0"
                       width="170"

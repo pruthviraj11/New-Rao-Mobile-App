@@ -8,7 +8,10 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
-
+use App\Http\Controllers\ClientTypeController;
+use App\Http\Controllers\SlideController;
+use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +98,51 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('users/destroy/{encrypted_id}', [UsersController::class, 'destroy'])->name('app-users-destroy');
     Route::get('users/getAll', [UsersController::class, 'getAll'])->name('app-users-get-all');
     //User End
+
+
+    //Sliders Start
+    Route::get('sliders/list', [SlideController::class, 'index'])->name('app-sliders-list');
+    Route::get('sliders/getAll', [SlideController::class, 'getAll'])->name('app-sliders-get-all');
+    Route::post('sliders/store', [SlideController::class, 'store'])->name('app-sliders-store');
+    Route::get('sliders/add', [SlideController::class, 'create'])->name('app-sliders-add');
+    Route::get('sliders/edit/{encrypted_id}', [SlideController::class, 'edit'])->name('app-sliders-edit');
+    Route::put('sliders/update/{encrypted_id}', [SlideController::class, 'update'])->name('app-sliders-update');
+    Route::get('sliders/destroy/{encrypted_id}', [SlideController::class, 'destroy'])->name('app-sliders-delete');
+    Route::get('sliders/{id}', [SlideController::class, 'destroyimage'])->name('sliders.destroyimage');
+    //Slider End
+
+
+    //Client Type Start
+    Route::get('client-types/list', [ClientTypeController::class, 'index'])->name('app-client-types-list');
+    Route::get('client-types/getAll', [ClientTypeController::class, 'getAll'])->name('app-client-types-get-all');
+    Route::post('client-types/store', [ClientTypeController::class, 'store'])->name('app-client-types-store');
+    Route::get('client-types/add', [ClientTypeController::class, 'create'])->name('app-client-types-add');
+    Route::get('client-types/edit/{encrypted_id}', [ClientTypeController::class, 'edit'])->name('app-client-types-edit');
+    Route::put('client-types/update/{encrypted_id}', [ClientTypeController::class, 'update'])->name('app-client-types-update');
+    Route::get('client-types/destroy/{encrypted_id}', [ClientTypeController::class, 'destroy'])->name('app-client-types-delete');
+    //Client Type End
+
+    //news-categories Type End
+    Route::get('news-categories/list', [NewsCategoryController::class, 'index'])->name('app-news-categories-list');
+    Route::get('news-categories/getAll', [NewsCategoryController::class, 'getAll'])->name('app-news-categories-get-all');
+    Route::post('news-categories/store', [NewsCategoryController::class, 'store'])->name('app-news-categories-store');
+    Route::get('news-categories/add', [NewsCategoryController::class, 'create'])->name('app-news-categories-add');
+    Route::get('news-categories/edit/{id}', [NewsCategoryController::class, 'edit'])->name('app-news-categories-edit');
+    Route::put('news-categories/update/{id}', [NewsCategoryController::class, 'update'])->name('app-news-categories-update');
+    Route::get('news-categories/destroy/{id}', [NewsCategoryController::class, 'destroy'])->name('app-news-categories-delete');
+    //news-categories Type End
+
+
+    //news Type End
+    Route::get('news/list', [NewsController::class, 'index'])->name('app-news-list');
+    Route::get('news/getAll', [NewsController::class, 'getAll'])->name('app-news-get-all');
+    Route::post('news/store', [NewsController::class, 'store'])->name('app-news-store');
+    Route::get('news/add', [NewsController::class, 'create'])->name('app-news-add');
+    Route::get('news/edit/{id}', [NewsController::class, 'edit'])->name('app-news-edit');
+    Route::put('news/update/{id}', [NewsController::class, 'update'])->name('app-news-update');
+    Route::get('news/destroy/{id}', [NewsController::class, 'destroy'])->name('app-news-delete');
+    Route::get('news/{id}', [NewsController::class, 'destroyimage'])->name('news.destroyimage');
+    //news Type End
 
 });
 /* Route Apps */

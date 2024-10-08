@@ -47,13 +47,13 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{{asset('images/slider/02.jpg')}}" class="d-block w-100" alt="First slide" />
+                <img src="{{asset('images/sliders/02.jpg')}}" class="d-block w-100" alt="First slide" />
               </div>
               <div class="carousel-item">
-                <img src="{{asset('images/slider/03.jpg')}}" class="d-block w-100" alt="Second slide" />
+                <img src="{{asset('images/sliders/03.jpg')}}" class="d-block w-100" alt="Second slide" />
               </div>
               <div class="carousel-item">
-                <img src="{{asset('images/slider/01.jpg')}}" class="d-block w-100" alt="Third slide" />
+                <img src="{{asset('images/sliders/01.jpg')}}" class="d-block w-100" alt="Third slide" />
               </div>
             </div>
             <button
@@ -92,7 +92,7 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="img-fluid" src="{{asset('images/slider/09.jpg')}}" alt="First slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/09.jpg')}}" alt="First slide" />
                 <div class="carousel-caption d-none d-md-block">
                   <h3 class="text-white">First Slide Label</h3>
                   <p class="text-white">
@@ -102,7 +102,7 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/08.jpg')}}" alt="Second slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/08.jpg')}}" alt="Second slide" />
                 <div class="carousel-caption d-none d-md-block">
                   <h3 class="text-white">Second Slide Label</h3>
                   <p class="text-white">
@@ -112,7 +112,7 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/10.jpg')}}" alt="Third slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/10.jpg')}}" alt="Third slide" />
                 <div class="carousel-caption d-none d-md-block">
                   <h3 class="text-white">Third Slide Label</h3>
                   <p class="text-white">
@@ -171,13 +171,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-                <img class="img-fluid" src="{{asset('images/slider/01.jpg')}}" alt="First slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/01.jpg')}}" alt="First slide" />
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/03.jpg')}}" alt="Second slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/03.jpg')}}" alt="Second slide" />
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/02.jpg')}}" alt="Third slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/02.jpg')}}" alt="Third slide" />
               </div>
             </div>
             <a class="carousel-control-prev" data-bs-target="#carousel-interval" role="button" data-bs-slide="prev">
@@ -214,13 +214,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-                <img class="img-fluid" src="{{asset('images/slider/06.jpg')}}" alt="First slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/06.jpg')}}" alt="First slide" />
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/04.jpg')}}" alt="Second slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/04.jpg')}}" alt="Second slide" />
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/05.jpg')}}" alt="Third slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/05.jpg')}}" alt="Third slide" />
               </div>
             </div>
             <a class="carousel-control-prev" href="#carousel-pause" role="button" data-bs-slide="prev">
@@ -254,13 +254,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-                <img class="img-fluid" src="{{asset('images/slider/02.jpg')}}" alt="First slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/02.jpg')}}" alt="First slide" />
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/04.jpg')}}" alt="Second slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/04.jpg')}}" alt="Second slide" />
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/01.jpg')}}" alt="Third slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/01.jpg')}}" alt="Third slide" />
               </div>
             </div>
             <a class="carousel-control-prev" data-bs-target="#carousel-wrap" role="button" data-bs-slide="prev">
@@ -293,13 +293,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-                <img class="img-fluid" src="{{asset('images/slider/03.jpg')}}" alt="First slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/03.jpg')}}" alt="First slide" />
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/06.jpg')}}" alt="Second slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/06.jpg')}}" alt="Second slide" />
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="{{asset('images/slider/01.jpg')}}" alt="Third slide" />
+                <img class="img-fluid" src="{{asset('images/sliders/01.jpg')}}" alt="Third slide" />
               </div>
             </div>
             <a class="carousel-control-prev" href="#carousel-keyboard" role="button" data-bs-slide="prev">
@@ -335,13 +335,13 @@
           <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{{asset('images/slider/06.jpg')}}" class="img-fluid d-block w-100" alt="cf-img-1" />
+                <img src="{{asset('images/sliders/06.jpg')}}" class="img-fluid d-block w-100" alt="cf-img-1" />
               </div>
               <div class="carousel-item">
-                <img src="{{asset('images/slider/02.jpg')}}" class="img-fluid d-block w-100" alt="cf-img-2" />
+                <img src="{{asset('images/sliders/02.jpg')}}" class="img-fluid d-block w-100" alt="cf-img-2" />
               </div>
               <div class="carousel-item">
-                <img src="{{asset('images/slider/05.jpg')}}" class="img-fluid d-block w-100" alt="cf-img-3" />
+                <img src="{{asset('images/sliders/05.jpg')}}" class="img-fluid d-block w-100" alt="cf-img-3" />
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-bs-slide="prev">
@@ -390,21 +390,21 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active" data-bs-interval="10000">
-                <img src="{{asset('images/slider/04.jpg')}}" class="d-block w-100" alt="image1" />
+                <img src="{{asset('images/sliders/04.jpg')}}" class="d-block w-100" alt="image1" />
                 <div class="carousel-caption d-none d-md-block">
                   <h5>First slide label</h5>
                   <p>Some representative placeholder content for the first slide.</p>
                 </div>
               </div>
               <div class="carousel-item" data-bs-interval="2000">
-                <img src="{{asset('images/slider/06.jpg')}}" class="d-block w-100" alt="image2" />
+                <img src="{{asset('images/sliders/06.jpg')}}" class="d-block w-100" alt="image2" />
                 <div class="carousel-caption d-none d-md-block">
                   <h5>Second slide label</h5>
                   <p>Some representative placeholder content for the second slide.</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="{{asset('images/slider/08.jpg')}}" class="d-block w-100" alt="image3" />
+                <img src="{{asset('images/sliders/08.jpg')}}" class="d-block w-100" alt="image3" />
                 <div class="carousel-caption d-none d-md-block">
                   <h5>Third slide label</h5>
                   <p>Some representative placeholder content for the third slide.</p>

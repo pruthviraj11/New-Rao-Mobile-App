@@ -8,7 +8,7 @@
   <div class="row match-height">
     <div class="col-md-6 col-lg-4">
       <div class="card">
-        <img class="card-img-top" src="{{asset('images/slider/04.jpg')}}" alt="Card image cap" />
+        <img class="card-img-top" src="{{asset('images/sliders/04.jpg')}}" alt="Card image cap" />
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
           <p class="card-text">
@@ -24,7 +24,7 @@
           <h4 class="card-title">Card title</h4>
           <h6 class="card-subtitle text-muted">Support card subtitle</h6>
         </div>
-        <img class="img-fluid" src="{{asset("images/slider/03.jpg")}}" alt="Card image cap" />
+        <img class="img-fluid" src="{{asset("images/sliders/03.jpg")}}" alt="Card image cap" />
         <div class="card-body">
           <p class="card-text">Bear claw sesame snaps gummies chocolate.</p>
           <a href="#" class="card-link">Card link</a>
@@ -37,7 +37,7 @@
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
           <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-          <img class="img-fluid my-2" src="{{asset('images/slider/06.jpg')}}" alt="Card image cap" />
+          <img class="img-fluid my-2" src="{{asset('images/sliders/06.jpg')}}" alt="Card image cap" />
           <p class="card-text">Bear claw sesame snaps gummies chocolate.</p>
           <a href="#" class="card-link">Card link</a>
           <a href="#" class="card-link">Another link</a>
@@ -87,7 +87,7 @@
     <div class="col-md-6 col-lg-4">
       <h6 class="my-2 text-muted">Images</h6>
       <div class="card mb-4">
-        <img class="card-img-top" src="{{asset('images/slider/01.jpg')}}" alt="Card image cap" />
+        <img class="card-img-top" src="{{asset('images/sliders/01.jpg')}}" alt="Card image cap" />
         <div class="card-body">
           <p class="card-text">
             Some quick example text to build on the card title and make up the bulk of the card's content.
@@ -102,7 +102,7 @@
     <div class="col-md-6 col-lg-4">
       <h6 class="my-2 text-muted">Kitchen Sink</h6>
       <div class="card">
-        <img class="card-img-top" src="{{asset('images/slider/02.jpg')}}" alt="Card image cap" />
+        <img class="card-img-top" src="{{asset('images/sliders/02.jpg')}}" alt="Card image cap" />
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
           <p class="card-text">Some quick example text to build on the card title.</p>
@@ -312,7 +312,7 @@
   <div class="row">
     <div class="col-md-6 col-xl-4">
       <div class="card mb-3">
-        <img class="card-img-top" src="{{asset('images/slider/06.jpg')}}" alt="Card image cap" />
+        <img class="card-img-top" src="{{asset('images/sliders/06.jpg')}}" alt="Card image cap" />
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
           <p class="card-text">
@@ -337,12 +337,12 @@
             <small class="text-muted">Last updated 3 mins ago</small>
           </p>
         </div>
-        <img class="card-img-bottom" src="{{asset('images/slider/09.jpg')}}" alt="Card image cap" />
+        <img class="card-img-bottom" src="{{asset('images/sliders/09.jpg')}}" alt="Card image cap" />
       </div>
     </div>
     <div class="col-md-6 col-xl-4">
       <div class="card border-0 text-white">
-        <img class="card-img" src="{{asset('images/slider/10.jpg')}}" alt="Card image" />
+        <img class="card-img" src="{{asset('images/sliders/10.jpg')}}" alt="Card image" />
         <div class="card-img-overlay bg-overlay">
           <h4 class="card-title text-white">Card title</h4>
           <p class="card-text">
@@ -475,7 +475,7 @@
   <h6 class="my-3 text-muted">Card Groups</h6>
   <div class="card-group">
     <div class="card">
-      <img class="card-img-top" src="{{asset('images/slider/01.jpg')}}" alt="Card image cap" />
+      <img class="card-img-top" src="{{asset('images/sliders/01.jpg')}}" alt="Card image cap" />
       <div class="card-body">
         <h4 class="card-title">Card title</h4>
         <p class="card-text">
@@ -488,7 +488,7 @@
       </div>
     </div>
     <div class="card">
-      <img class="card-img-top" src="{{asset('images/slider/05.jpg')}}" alt="Card image cap" />
+      <img class="card-img-top" src="{{asset('images/sliders/05.jpg')}}" alt="Card image cap" />
       <div class="card-body">
         <h4 class="card-title">Card title</h4>
         <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -498,7 +498,7 @@
       </div>
     </div>
     <div class="card">
-      <img class="card-img-top" src="{{asset('images/slider/03.jpg')}}" alt="Card image cap" />
+      <img class="card-img-top" src="{{asset('images/sliders/03.jpg')}}" alt="Card image cap" />
       <div class="card-body">
         <h4 class="card-title">Card title</h4>
         <p class="card-text">
@@ -517,7 +517,7 @@
   <div class="row row-cols-1 row-cols-md-3 mb-2">
     <div class="col">
       <div class="card h-100">
-        <img class="card-img-top" src="{{asset('images/slider/03.jpg')}}" alt="Card image cap" />
+        <img class="card-img-top" src="{{asset('images/sliders/03.jpg')}}" alt="Card image cap" />
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
           <p class="card-text">
@@ -532,7 +532,7 @@
     </div>
     <div class="col">
       <div class="card h-100">
-        <img class="card-img-top" src="{{asset('images/slider/02.jpg')}}" alt="Card image cap" />
+        <img class="card-img-top" src="{{asset('images/sliders/02.jpg')}}" alt="Card image cap" />
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
           <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -544,7 +544,7 @@
     </div>
     <div class="col">
       <div class="card h-100">
-        <img class="card-img-top" src="{{asset('images/slider/01.jpg')}}" alt="Card image cap" />
+        <img class="card-img-top" src="{{asset('images/sliders/01.jpg')}}" alt="Card image cap" />
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
           <p class="card-text">

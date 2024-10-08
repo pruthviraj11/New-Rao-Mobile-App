@@ -38,7 +38,7 @@
 <!-- NoUI Horizontal Sliders -->
 
 <!-- Slider values section -->
-<section id="slider-values">
+<section id="sliders-values">
   <div class="row match-height">
     <div class="col-sm-12">
       <div class="card">
@@ -47,9 +47,9 @@
         </div>
         <div class="card-body">
           <h5 class="mb-2">Handles</h5>
-          <div id="slider-handles" class="my-1"></div>
+          <div id="sliders-handles" class="my-1"></div>
           <h5 class="my-2">Snapping between steps</h5>
-          <div id="slider-snap" class="my-1"></div>
+          <div id="sliders-snap" class="my-1"></div>
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@
 <!--/ Slider values section -->
 
 <!-- Slider behavior section -->
-<section id="slider-behavior">
+<section id="sliders-behavior">
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
@@ -89,7 +89,7 @@
 <!--/ Slider behavior section -->
 
 <!-- Slider Scales / Pips and Steps section -->
-<section id="slider-scales-pips">
+<section id="sliders-scales-pips">
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
@@ -106,7 +106,7 @@
 <!--/ Slider Scales / Pips and Steps section -->
 
 <!-- Slider Colors - Handles section -->
-<section id="slider-colors-handles">
+<section id="sliders-colors-handles">
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
@@ -118,19 +118,19 @@
           <div id="default-color-slider" class="mt-md-1 mt-3 mb-4"></div>
 
           <h5 class="my-2">Success Color Slider</h5>
-          <div id="success-color-slider" class="circle-filled slider-success mt-md-1 mt-3 mb-4"></div>
+          <div id="success-color-slider" class="circle-filled sliders-success mt-md-1 mt-3 mb-4"></div>
 
           <h5 class="my-2">Secondary Color Slider</h5>
-          <div id="secondary-color-slider" class="circle-filled slider-secondary mt-md-1 mt-3 mb-4"></div>
+          <div id="secondary-color-slider" class="circle-filled sliders-secondary mt-md-1 mt-3 mb-4"></div>
 
           <h5 class="my-2">Warning Color Slider</h5>
-          <div id="warning-color-slider" class="slider-warning mt-md-1 mt-3 mb-4"></div>
+          <div id="warning-color-slider" class="sliders-warning mt-md-1 mt-3 mb-4"></div>
 
           <h5 class="my-2">Danger Color Slider</h5>
-          <div id="danger-color-slider" class="circle-filled slider-danger mt-md-1 mt-3 mb-4"></div>
+          <div id="danger-color-slider" class="circle-filled sliders-danger mt-md-1 mt-3 mb-4"></div>
 
           <h5 class="my-2">Info Color Slider</h5>
-          <div id="info-color-slider" class="square slider-info mt-md-1 mt-3 mb-4"></div>
+          <div id="info-color-slider" class="square sliders-info mt-md-1 mt-3 mb-4"></div>
         </div>
       </div>
     </div>
@@ -139,7 +139,7 @@
 <!--/ Slider Colors - Handles section -->
 
 <!-- Slider With Input Starts-->
-<section id="slider-input">
+<section id="sliders-input">
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
@@ -147,10 +147,10 @@
           <h4 class="card-title">Slider With Input</h4>
         </div>
         <div class="card-body">
-          <div class="my-1" id="slider-with-input"></div>
+          <div class="my-1" id="sliders-with-input"></div>
           <div class="row">
-            <div class="col-lg-3 col-sm-6 col-12 slider-select d-sm-flex d-block">
-              <select class="form-select me-1 mt-2 d-inline-block" id="slider-select">
+            <div class="col-lg-3 col-sm-6 col-12 sliders-select d-sm-flex d-block">
+              <select class="form-select me-1 mt-2 d-inline-block" id="sliders-select">
                 <option value="-20">-20</option>
                 <option value="-19">-19</option>
                 <option value="-18">-18</option>
@@ -219,7 +219,7 @@
                 min="-20"
                 max="40"
                 step="1"
-                id="slider-input-number"
+                id="sliders-input-number"
               />
             </div>
           </div>
@@ -240,7 +240,7 @@
           <h4 class="card-title">Vertical Default</h4>
         </div>
         <div class="card-body text-center">
-          <div id="slider-vertical"></div>
+          <div id="sliders-vertical"></div>
         </div>
       </div>
     </div>
@@ -265,7 +265,7 @@
           <h4 class="card-title">Tooltips</h4>
         </div>
         <div class="card-body text-center">
-          <div id="slider-tooltips" class="me-2"></div>
+          <div id="sliders-tooltips" class="me-2"></div>
         </div>
       </div>
     </div>

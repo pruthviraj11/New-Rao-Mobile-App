@@ -19,6 +19,36 @@
                 "user-list",
                 "user-create"
             ]
+        },
+        {
+            "url": "app/sliders/list",
+            "name": "Slider",
+            "icon": "columns",
+            "slug": "app-sliders-list",
+            "permission": [
+                "sliders-list",
+                "sliders-create"
+            ]
+        },
+        {
+            "url": "app/client-types/list",
+            "name": "client-types",
+            "icon": "users",
+            "slug": "app-client-types-list",
+            "permission": [
+                "client-types-list",
+                "client-types-create"
+            ]
+        },
+        {
+            "url": "app/news-categories/list",
+            "name": "news-categories",
+            "icon": "book-open",
+            "slug": "app-news-categories-list",
+            "permission": [
+                "news-categories-list",
+                "news-categories-create"
+            ]
         }
     ]
 }
