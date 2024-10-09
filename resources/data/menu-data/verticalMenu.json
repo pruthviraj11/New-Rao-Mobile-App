@@ -136,6 +136,16 @@
             ]
         },
         {
+            "url": "app/draws/list",
+            "name": "Draws",
+            "icon": "pen-tool",
+            "slug": "app-draws-list",
+            "permission": [
+                "events-list",
+                "events-create"
+            ]
+        },
+        {
             "url": "app/internal-program-statuses/list",
             "name": "internal Program Status",
             "icon": "send",

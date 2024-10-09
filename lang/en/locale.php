@@ -43,6 +43,7 @@ return [
     "Application Statuses" => "Application Statuses",
     "Branches"=>"Branches",
     "Events" => "Events",
+    "Draws" =>"Draws",
     "Visa type" => "Visa type",
     "Success Stories" => "Success Stories",
     "Inquiry Visible Status" => "Inquiry Visible Status",
