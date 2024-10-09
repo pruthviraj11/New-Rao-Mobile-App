@@ -41,13 +41,35 @@
             ]
         },
         {
-            "url": "app/news-categories/list",
-            "name": "news-categories",
-            "icon": "book-open",
-            "slug": "app-news-categories-list",
+            "url": "",
+            "name": "Artical",
+            "icon": "folder",
+            "slug": "",
             "permission": [
                 "news-categories-list",
                 "news-categories-create"
+            ],
+            "submenu": [
+                {
+                    "url": "app/news-categories/list",
+                    "name": "news-categories",
+                    "icon": "book-open",
+                    "slug": "app-news-categories-list",
+                    "permission": [
+                        "news-categories-list",
+                        "news-categories-create"
+                    ]
+                },
+                {
+                    "url": "app/news/list",
+                    "name": "news",
+                    "icon": "book",
+                    "slug": "app-news-list",
+                    "permission": [
+                        "news-list",
+                        "news-create"
+                    ]
+                }
             ]
         },
         {
@@ -59,16 +81,7 @@
                 "success-stories-list",
                 "success-stories-create"
             ]
-        },
-        {
-            "url": "app/news/list",
-            "name": "news",
-            "icon": "book",
-            "slug": "app-news-list",
-            "permission": [
-                "news-list",
-                "news-create"
-            ]
         }
+       
     ]
 }
