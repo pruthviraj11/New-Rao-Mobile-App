@@ -13,6 +13,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ClientTypeController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\InternalProgramStatusController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\FaqController;
@@ -189,6 +190,17 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('faq/destroy/{encrypted_id}', [FaqController::class, 'destroy'])->name('app-faq-delete');
     Route::get('faq/{encrypted_id}', [FaqController::class, 'destroyimage'])->name('faq.destroyimage');
     //faq Type End
+
+
+    //internal-program-statuses Type End
+    Route::get('internal-program-statuses/list', [InternalProgramStatusController::class, 'index'])->name('app-internal-program-statuses-list');
+    Route::get('internal-program-statuses/getAll', [InternalProgramStatusController::class, 'getAll'])->name('app-internal-program-statuses-get-all');
+    Route::post('internal-program-statuses/store', [InternalProgramStatusController::class, 'store'])->name('app-internal-program-statuses-store');
+    Route::get('internal-program-statuses/add', [InternalProgramStatusController::class, 'create'])->name('app-internal-program-statuses-add');
+    Route::get('internal-program-statuses/edit/{encrypted_id}', [InternalProgramStatusController::class, 'edit'])->name('app-internal-program-statuses-edit');
+    Route::put('internal-program-statuses/update/{encrypted_id}', [InternalProgramStatusController::class, 'update'])->name('app-internal-program-statuses-update');
+    Route::get('internal-program-statuses/destroy/{encrypted_id}', [InternalProgramStatusController::class, 'destroy'])->name('app-internal-program-statuses-delete');
+    //internal-program-statuses Type End
 
 });
 /* Route Apps */

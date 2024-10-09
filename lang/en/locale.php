@@ -13,6 +13,7 @@ return [
     "news-categories" => "News Categories",
     "faq-categories" => "Faq Categories",
     "faq" => "Faq",
+    "internal Program Status" => "internal Program Status",
     "Product" => "Product",
     "Sales Report" => "Sales Report",
     "Operations" => "Operations",

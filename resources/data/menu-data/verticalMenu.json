@@ -124,6 +124,16 @@
                 "events-list",
                 "events-create"
             ]
+        },
+        {
+            "url": "app/internal-program-statuses/list",
+            "name": "internal Program Status",
+            "icon": "send",
+            "slug": "app-internal-program-statuses-list",
+            "permission": [
+                "internal-program-statuses-list",
+                "internal-program-statuses-create"
+            ]
         }
     ]
 }
