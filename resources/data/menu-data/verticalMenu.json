@@ -82,7 +82,39 @@
                 "success-stories-create"
             ]
         },
-
+        {
+            "url": "",
+            "name": "Faqs",
+            "icon": "help-circle",
+            "slug": "",
+            "permission": [
+                "faq-categories-list",
+                "faq-categories-create"
+            ],
+            "submenu": [
+                {
+                    "url": "app/faq-categories/list",
+                    "name": "faq-categories",
+                    "icon": "clipboard",
+                    "slug": "app-faq-categories-list",
+                    "permission": [
+                        "faq-categories-list",
+                        "faq-categories-create"
+                    ]
+                },
+                {
+                    "url": "app/faq/list",
+                    "name": "faq",
+                    "icon": "tag",
+                    "slug": "app-faq-list",
+                    "permission": [
+                        "faq-list",
+                        "faq-create"
+                    ]
+                }
+                
+            ]
+        },
         {
             "url": "app/events/list",
             "name": "Events",
@@ -93,6 +125,5 @@
                 "events-create"
             ]
         }
-
     ]
 }

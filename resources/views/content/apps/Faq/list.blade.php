@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'News')
+@section('title', 'Faq')
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -27,19 +27,17 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">News List</h4>
-                <a href="{{ route('app-news-add') }}" class="col-md-2 btn btn-primary">Add News</a>
+                <h4 class="card-title">Faq List</h4>
+                <a href="{{ route('app-faq-add') }}" class="col-md-2 btn btn-primary">Add Faq</a>
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="news-table">
+                    <table class="user-list-table table dt-responsive" id="faq-table">
                         <thead>
                             <tr>
                                 <th>Actions</th>
                                 <th>Title</th>
-                                <th>News Photo</th>
-                                <th>Categories</th>
-                                <th>Date</th>
+                                <th>Faq Category</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -61,10 +59,10 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
-            $('#news-table').DataTable({
+            $('#faq-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('app-news-get-all') }}",
+                ajax: "{{ route('app-faq-get-all') }}",
                 columns: [{
                         data: 'actions',
                         name: 'actions',
@@ -81,36 +79,15 @@
                         }
                     },
                     {
-                        data: 'file',
-                        name: 'file',
-                        className: 'text-left',
-                        render: function(data) {
-                            // Construct the image source path
-                            const imgSrc = data ? '{{ asset('storage/') }}/' + data :
-                                '{{ asset('default/default.jpg') }}';
-
-                            // Create an image element with an onerror handler to fall back to the default image
-                            return '<img src="' + imgSrc +
-                                '" alt="Slider Image" style="width: auto; height: 75px;" onerror="this.onerror=null; this.src=\'{{ asset('default/default.jpg') }}\';">';
-                        }
-                    },
-
-                    {
-                        data: 'categories_name',
-                        name: 'categories_name',
+                        data: 'faq_categories',
+                        name: 'faq_categories',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
-                    {
-                        data: 'date',
-                        name: 'date',
-                        className: 'text-left',
-                        render: function(data) {
-                            return data ? data : '-';
-                        }
-                    },
+
+                   
                     {
                         data: 'status',
                         name: 'status',
@@ -150,7 +127,7 @@
                 buttonsStyling: false
             }).then(function(result) {
                 if (result.value) {
-                    window.location.href = '/app/news-categories/destroy/' + id;
+                    window.location.href = '/app/faq/destroy/' + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Deleted!',

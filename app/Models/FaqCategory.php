@@ -16,4 +16,10 @@ class FaqCategory extends Model
         'status',
         'category_id',
     ];
+
+    public function clientType()
+    {
+        return $this->belongsTo(ClientType::class, 'category_id'); // Use 'category_id' instead of 'client_type'
+    }
+
 }

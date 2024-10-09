@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Slider')
+@section('title', 'News Categories')
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -27,7 +27,7 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Slider List</h4>
+                <h4 class="card-title">News Categories List</h4>
                 <a href="{{ route('app-news-categories-add') }}" class="col-md-2 btn btn-primary">Add News Categories</a>
             </div>
             <div class="card-body border-bottom">

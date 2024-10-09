@@ -15,6 +15,7 @@ use App\Http\Controllers\SlideController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqCategoryController;
+use App\Http\Controllers\FaqController;
 
 /*
 |--------------------------------------------------------------------------
@@ -167,15 +168,27 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     //news Type End
 
     //faq-category Type End
-    Route::get('faq-category/list', [FaqCategoryController::class, 'index'])->name('app-faq-category-list');
-    Route::get('faq-category/getAll', [FaqCategoryController::class, 'getAll'])->name('app-faq-category-get-all');
-    Route::post('faq-category/store', [FaqCategoryController::class, 'store'])->name('app-faq-category-store');
-    Route::get('faq-category/add', [FaqCategoryController::class, 'create'])->name('app-faq-category-add');
-    Route::get('faq-category/edit/{encrypted_id}', [FaqCategoryController::class, 'edit'])->name('app-faq-category-edit');
-    Route::put('faq-category/update/{encrypted_id}', [FaqCategoryController::class, 'update'])->name('app-faq-category-update');
-    Route::get('faq-category/destroy/{encrypted_id}', [FaqCategoryController::class, 'destroy'])->name('app-faq-category-delete');
-    Route::get('faq-category/{encrypted_id}', [FaqCategoryController::class, 'destroyimage'])->name('faq-category.destroyimage');
+    Route::get('faq-categories/list', [FaqCategoryController::class, 'index'])->name('app-faq-categories-list');
+    Route::get('faq-categories/getAll', [FaqCategoryController::class, 'getAll'])->name('app-faq-categories-get-all');
+    Route::post('faq-categories/store', [FaqCategoryController::class, 'store'])->name('app-faq-categories-store');
+    Route::get('faq-categories/add', [FaqCategoryController::class, 'create'])->name('app-faq-categories-add');
+    Route::get('faq-categories/edit/{encrypted_id}', [FaqCategoryController::class, 'edit'])->name('app-faq-categories-edit');
+    Route::put('faq-categories/update/{encrypted_id}', [FaqCategoryController::class, 'update'])->name('app-faq-categories-update');
+    Route::get('faq-categories/destroy/{encrypted_id}', [FaqCategoryController::class, 'destroy'])->name('app-faq-categories-delete');
+    Route::get('faq-categories/{encrypted_id}', [FaqCategoryController::class, 'destroyimage'])->name('faq-categories.destroyimage');
     //faq-category Type End
+
+
+    //faq Type End
+    Route::get('faq/list', [FaqController::class, 'index'])->name('app-faq-list');
+    Route::get('faq/getAll', [FaqController::class, 'getAll'])->name('app-faq-get-all');
+    Route::post('faq/store', [FaqController::class, 'store'])->name('app-faq-store');
+    Route::get('faq/add', [FaqController::class, 'create'])->name('app-faq-add');
+    Route::get('faq/edit/{encrypted_id}', [FaqController::class, 'edit'])->name('app-faq-edit');
+    Route::put('faq/update/{encrypted_id}', [FaqController::class, 'update'])->name('app-faq-update');
+    Route::get('faq/destroy/{encrypted_id}', [FaqController::class, 'destroy'])->name('app-faq-delete');
+    Route::get('faq/{encrypted_id}', [FaqController::class, 'destroyimage'])->name('faq.destroyimage');
+    //faq Type End
 
 });
 /* Route Apps */
