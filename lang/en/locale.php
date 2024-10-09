@@ -40,6 +40,7 @@ return [
     "Follow Up List"=>"Follow Up List",
     "Follow Up Type"=>"Follow Up Type",
     "Follow Up Status"=>"Follow Up Status",
+    "Application Statuses" => "Application Statuses",
     "Branches"=>"Branches",
     "Events" => "Events",
     "Visa type" => "Visa type",
