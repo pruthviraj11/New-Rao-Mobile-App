@@ -171,4 +171,6 @@ class NewsCategoryController extends Controller
             return redirect()->route("app-news-categories-list")->with('error', 'Error while editing NewsCategories');
         }
     }
+
+    
 }

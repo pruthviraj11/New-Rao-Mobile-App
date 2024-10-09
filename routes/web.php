@@ -138,9 +138,9 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
      Route::get('success-stories/getAll', [SuccessStoriesController::class, 'getAll'])->name('app-success-stories-get-all');
      Route::post('success-stories/store', [SuccessStoriesController::class, 'store'])->name('app-success-stories-store');
      Route::get('success-stories/add', [SuccessStoriesController::class, 'create'])->name('app-success-stories-add');
-     Route::get('success-stories/edit/{id}', [SuccessStoriesController::class, 'edit'])->name('app-success-stories-edit');
-     Route::put('success-stories/update/{id}', [SuccessStoriesController::class, 'update'])->name('app-success-stories-update');
-     Route::get('success-stories/destroy/{id}', [SuccessStoriesController::class, 'destroy'])->name('app-success-stories-delete');
+     Route::get('success-stories/edit/{encrypted_id}', [SuccessStoriesController::class, 'edit'])->name('app-success-stories-edit');
+     Route::put('success-stories/update/{encrypted_id}', [SuccessStoriesController::class, 'update'])->name('app-success-stories-update');
+     Route::get('success-stories/destroy/{encrypted_id}', [SuccessStoriesController::class, 'destroy'])->name('app-success-stories-delete');
      //success-stories Type End
 
     //news Type End

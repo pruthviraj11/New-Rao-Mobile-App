@@ -67,26 +67,109 @@ class SuccessStoriesController extends Controller
     public function store(CreateSuccessStoriesRequest $request)
     {
         try {
-            dd($request->all());
-            $newsCategoriesData['title'] = $request->get('title');
-            $newsCategoriesData['client_type'] = $request->get('client_type');
-            $newsCategoriesData['status'] = $request->get('status') === 'on' ? 1 : 0;
-            if ($request->hasFile('image')) {
-                $originalName = $request->file('image')->getClientOriginalName();
+            $successStoriesData['title'] = $request->get('title');
+            $successStoriesData['short_description'] = $request->get('short_description');
+            $successStoriesData['long_description'] = $request->get('long_description');
+            $successStoriesData['date'] = $request->get('date');
+            $successStoriesData['candidate_name'] = $request->get('candidate_name');
+
+            if ($request->hasFile('file')) {
+                $originalName = $request->file('file')->getClientOriginalName();
                 $filename = str_replace(' ', '_', $originalName);
-                $imagePath = $request->file('image')->storeAs('sliders', $filename, 'public');
-                $newsCategoriesData['image'] = $imagePath;
+                $imagePath = $request->file('file')->storeAs('successStories', $filename, 'public');
+                $successStoriesData['file'] = $imagePath;
             }
-            $newsCategories = $this->newsCategoriesService->create($newsCategoriesData);
-            if (!empty($newsCategories)) {
-                return redirect()->route('app-news-categories-list')->with('success', 'NewsCategorie Added Successfully');
+            $successStoriesData['candidate_image'] = $request->get('candidate_image');
+            $successStoriesData['candidate_type'] = $request->get('candidate_type');
+            $successStoriesData['for_home'] = $request->get('for_home');
+            $successStoriesData['ratings'] = $request->get('ratings');
+            $successStoriesData['video_thumbnail'] = $request->get('video_thumbnail');
+            $successStoriesData['status'] = $request->get('status') === 'on' ? 1 : 0;
+
+            $successStories = $this->successStoriesService->create($successStoriesData);
+            if (!empty($successStories)) {
+                return redirect()->route('app-success-stories-list')->with('success', 'Success Stories Added Successfully');
             } else {
-                return redirect()->back()->with('error', 'Error while Adding NewsCategorie');
+                return redirect()->back()->with('error', 'Error while Adding Success Stories');
             }
         } catch (\Exception $error) {
             dd($error->getMessage());
-            return redirect()->route('app-news-categories-list')->with('error', 'Error while editing NewsCategorie');
+            return redirect()->route('app-success-stories-list')->with('error', 'Error while editing Success Stories');
         }
 
+    }
+
+    public function edit($encrypted_id)
+    {
+        try {
+
+            $id = decrypt($encrypted_id);
+            $successStories = $this->successStoriesService->getSuccessStory($id);
+            $page_data['page_title'] = "success stories Edit";
+            $page_data['form_title'] = "Edit success stories";
+            $ClientType = ClientType::where('status', '1')->get();
+            return view('content/apps/SuccessStories/create-edit', compact('page_data', 'successStories', 'ClientType'));
+        } catch (\Exception $error) {
+            return redirect()->route("app/SuccessStories/list")->with('error', 'Error while editing Success Stories');
+        }
+    }
+
+    public function update(UpdateSuccessStoriesRequest $request, $encrypted_id)
+    {
+        try {
+            $id = decrypt($encrypted_id);
+
+            $successStories = $this->successStoriesService->getSuccessStory($id);
+            $successStoriesData['title'] = $request->get('title');
+            $successStoriesData['short_description'] = $request->get('short_description');
+
+            $successStoriesData['long_description'] = $request->get('long_description');
+            $successStoriesData['date'] = $request->get('date');
+            $successStoriesData['candidate_name'] = $request->get('candidate_name');
+            if ($request->hasFile('file')) {
+                if ($successStories->file) {
+                    Storage::disk('public')->delete($successStories->file);
+                }
+
+                $originalName = $request->file('file')->getClientOriginalName();
+                $filename = str_replace(' ', '_', $originalName);
+                $imagePath = $request->file('file')->storeAs('successStories', $filename, 'public');
+
+                $successStoriesData['file'] = $imagePath;
+            }
+            $successStoriesData['candidate_image'] = $request->get('candidate_image');
+            $successStoriesData['candidate_type'] = $request->get('candidate_type');
+            $successStoriesData['for_home'] = $request->get('for_home');
+            $successStoriesData['ratings'] = $request->get('ratings');
+            $successStoriesData['video_thumbnail'] = $request->get('video_thumbnail');
+
+            $successStoriesData['status'] = $request->get('status') === 'on' ? 1 : 0;
+
+
+            $updated = $this->successStoriesService->updateSuccessStory($id, $successStoriesData);
+            if (!empty($updated)) {
+                return redirect()->route("app-success-stories-list")->with('success', 'Success Stories Updated Successfully');
+            } else {
+                return redirect()->back()->with('error', 'Error while Updating Success Stories');
+            }
+        } catch (\Exception $error) {
+            return redirect()->route("app-success-stories-list")->with('error', 'Error while editing Success Stories');
+        }
+    }
+
+    public function destroy($encrypted_id = '')
+    {
+
+        try {
+            $id = decrypt($encrypted_id);
+            $deleted = $this->successStoriesService->deleteSuccessStory($id);
+            if (!empty($deleted)) {
+                return redirect()->route("app-success-stories-list")->with('success', 'Success Stories Deleted Successfully');
+            } else {
+                return redirect()->back()->with('error', 'Error while Deleting Success Stories');
+            }
+        } catch (\Exception $error) {
+            return redirect()->route("app-success-stories-list")->with('error', 'Error while editing Success Stories');
+        }
     }
 }

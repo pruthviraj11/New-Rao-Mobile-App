@@ -37,7 +37,7 @@
                             <tr>
                                 <th>Actions</th>
                                 <th>Title</th>
-                                <th>Client Type</th>
+                                <th>Candidate Name</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -79,8 +79,8 @@
                         }
                     },
                     {
-                        data: 'client_type',
-                        name: 'client_type',
+                        data: 'candidate_name',
+                        name: 'candidate_name',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';

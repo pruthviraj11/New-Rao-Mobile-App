@@ -25,6 +25,7 @@ class CreateSuccessStoriesRequest extends FormRequest
     {
         return [
             'title' => 'required:string|unique:success_stories,title',
+            'date' => 'required'
 
         ];
 

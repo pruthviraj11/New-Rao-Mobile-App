@@ -32,6 +32,7 @@ class UpdateSuccessStoriesRequest extends FormRequest
                 'string',
                 'unique:success_stories,title' . ($decryptedId ? ",$decryptedId" : ''),
             ],
+            'date' => 'required'
 
         ];
 
