@@ -37,6 +37,7 @@ return [
     "Follow Up Status"=>"Follow Up Status",
     "Branches"=>"Branches",
     "Visa type" => "Visa type",
+    "Success Stories" => "Success Stories",
     "Inquiry Visible Status" => "Inquiry Visible Status",
     "Inquiry Status" => "Inquiry Status",
     "Apps" => "Apps",

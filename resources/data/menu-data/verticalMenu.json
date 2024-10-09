@@ -51,6 +51,16 @@
             ]
         },
         {
+            "url": "app/success-stories/list",
+            "name": "Success Stories",
+            "icon": "book-open",
+            "slug": "app-success-stories-list",
+            "permission": [
+                "success-stories-list",
+                "success-stories-create"
+            ]
+        },
+        {
             "url": "app/news/list",
             "name": "news",
             "icon": "book",

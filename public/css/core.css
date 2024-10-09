@@ -2721,7 +2721,7 @@ textarea.form-control-lg {
 .form-range:focus {
   outline: 0;
 }
-.form-range:focus::-webkit-sliders-thumb {
+.form-range:focus::-webkit-slider-thumb {
   box-shadow: 0 0 0 1px #f8f8f8, 0 3px 10px 0 rgba(34, 41, 47, 0.1);
 }
 .form-range:focus::-moz-range-thumb {
@@ -2730,7 +2730,7 @@ textarea.form-control-lg {
 .form-range::-moz-focus-outer {
   border: 0;
 }
-.form-range::-webkit-sliders-thumb {
+.form-range::-webkit-slider-thumb {
   width: 1rem;
   height: 1rem;
   margin-top: -0.25rem;
@@ -2743,15 +2743,15 @@ textarea.form-control-lg {
           appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .form-range::-webkit-sliders-thumb {
+  .form-range::-webkit-slider-thumb {
     -webkit-transition: none;
     transition: none;
   }
 }
-.form-range::-webkit-sliders-thumb:active {
+.form-range::-webkit-slider-thumb:active {
   background-color: #c0c5ce;
 }
-.form-range::-webkit-sliders-runnable-track {
+.form-range::-webkit-slider-runnable-track {
   width: 100%;
   height: 0.5rem;
   color: transparent;
@@ -2792,7 +2792,7 @@ textarea.form-control-lg {
 .form-range:disabled {
   pointer-events: none;
 }
-.form-range:disabled::-webkit-sliders-thumb {
+.form-range:disabled::-webkit-slider-thumb {
   background-color: #adb5bd;
 }
 .form-range:disabled::-moz-range-thumb {
