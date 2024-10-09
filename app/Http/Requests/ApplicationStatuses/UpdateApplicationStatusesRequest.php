@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Events;
+namespace App\Http\Requests\ApplicationStatuses;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateEventsRequest extends FormRequest
+class UpdateApplicationStatusesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +27,10 @@ class UpdateEventsRequest extends FormRequest
         $decryptedId = decrypt($this->route('encrypted_id'));
 
         return [
-            'title' => [
+            'name' => [
                 'required',
                 'string',
-                'unique:events,title' . ($decryptedId ? ",$decryptedId" : ''),
+                'unique:application_statuses,name' . ($decryptedId ? ",$decryptedId" : ''),
             ],
 
         ];

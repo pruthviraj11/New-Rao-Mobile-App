@@ -112,7 +112,7 @@
                         "faq-create"
                     ]
                 }
-                
+
             ]
         },
         {
@@ -123,6 +123,16 @@
             "permission": [
                 "events-list",
                 "events-create"
+            ]
+        },
+        {
+            "url": "app/application-statuses/list",
+            "name": "Application Statuses",
+            "icon": "send",
+            "slug": "app-application-statuses-list",
+            "permission": [
+                "application-statuses-list",
+                "application-statuses-create"
             ]
         }
     ]

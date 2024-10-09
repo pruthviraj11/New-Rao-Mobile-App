@@ -24,7 +24,7 @@ class CreateEventsRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required:string|unique:news_categories,title',
+            'title' => 'required:string|unique:events,title',
 
         ];
 

@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Events')
+@section('title', 'Application Statuses')
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -27,18 +27,17 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Events List</h4>
-                <a href="{{ route('app-events-add') }}" class="col-md-2 btn btn-primary">Add Events</a>
+                <h4 class="card-title">Application Statuses List</h4>
+                <a href="{{ route('app-application-statuses-add') }}" class="col-md-2 btn btn-primary">Add Application Statuses</a>
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="events-table">
+                    <table class="user-list-table table dt-responsive" id="application-statuses-table">
                         <thead>
                             <tr>
                                 <th>Actions</th>
-                                <th>Title</th>
-                                <th>Image</th>
-                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Description</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -60,10 +59,10 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
-            $('#events-table').DataTable({
+            $('#application-statuses-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('app-events-get-all') }}",
+                ajax: "{{ route('app-application-statuses-get-all') }}",
                 columns: [{
                         data: 'actions',
                         name: 'actions',
@@ -72,35 +71,22 @@
                         className: 'text-left',
                     },
                     {
-                        data: 'title',
-                        name: 'title',
+                        data: 'name',
+                        name: 'name',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
                     {
-                        data: 'image',
-                        name: 'image',
+                        data: 'description',
+                        name: 'description',
                         className: 'text-left',
                         render: function(data) {
-                            // Construct the image source path
-                            const imgSrc = data ? '{{ asset('storage/') }}/' + data :
-                                '{{ asset('default/default.jpg') }}';
+                            return data ? data : '-';
+                        }
+                    },
 
-                            // Create an image element with an onerror handler to fall back to the default image
-                            return '<img src="' + imgSrc +
-                                '" alt="Slider Image" style="width: auto; height: 75px;" onerror="this.onerror=null; this.src=\'{{ asset('default/default.jpg') }}\';">';
-                        }
-                    },
-                    {
-                        data: 'date',
-                        name: 'date',
-                        className: 'text-left',
-                        render: function(data) {
-                            return data ? data : '-';
-                        }
-                    },
                     {
                         data: 'status',
                         name: 'status',
@@ -140,7 +126,7 @@
                 buttonsStyling: false
             }).then(function(result) {
                 if (result.value) {
-                    window.location.href = '/app/events/destroy/' + id;
+                    window.location.href = '/app/application-statuses/destroy/' + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Deleted!',
