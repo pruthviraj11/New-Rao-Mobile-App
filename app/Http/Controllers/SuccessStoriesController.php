@@ -81,7 +81,7 @@ class SuccessStoriesController extends Controller
             }
             $successStoriesData['candidate_image'] = $request->get('candidate_image');
             $successStoriesData['candidate_type'] = $request->get('candidate_type');
-            $successStoriesData['for_home'] = $request->get('for_home');
+            $successStoriesData['for_home'] = $request->get('for_home') === 'on' ? 1 : 0;
             $successStoriesData['ratings'] = $request->get('ratings');
             $successStoriesData['video_thumbnail'] = $request->get('video_thumbnail');
             $successStoriesData['status'] = $request->get('status') === 'on' ? 1 : 0;
@@ -139,7 +139,7 @@ class SuccessStoriesController extends Controller
             }
             $successStoriesData['candidate_image'] = $request->get('candidate_image');
             $successStoriesData['candidate_type'] = $request->get('candidate_type');
-            $successStoriesData['for_home'] = $request->get('for_home');
+            $successStoriesData['for_home'] = $request->get('for_home') === 'on' ? 1 : 0;
             $successStoriesData['ratings'] = $request->get('ratings');
             $successStoriesData['video_thumbnail'] = $request->get('video_thumbnail');
 

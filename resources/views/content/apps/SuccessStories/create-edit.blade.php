@@ -157,16 +157,19 @@
                             <!-- For Home Field -->
                             <div class="col-md-6 col-sm-12 mb-1">
                                 <label class="form-label" for="for_home">For Home</label>
-                                <select id="for_home" class="form-control" name="for_home">
-                                    <option value="0" {{ (old('for_home') ?? ($successStories ? $successStories->for_home : '')) == '0' ? 'selected' : '' }}>No</option>
-                                    <option value="1" {{ (old('for_home') ?? ($successStories ? $successStories->for_home : '')) == '1' ? 'selected' : '' }}>Yes</option>
-                                </select>
+                                <div class="form-check form-check-success form-switch">
+                                    <input type="checkbox" name="for_home"
+                                        {{ $successStories != '' && $successStories->for_home ? 'checked' : '' }}
+                                        class="form-check-input" id="customSwitchForHome"
+                                        @if (empty($successStories)) checked @endif />
+                                </div>
                                 <span class="text-danger">
                                     @error('for_home')
                                         {{ $message }}
                                     @enderror
                                 </span>
                             </div>
+
 
                             <!-- Ratings Field -->
                             <div class="col-md-6 col-sm-12 mb-1">
