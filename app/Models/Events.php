@@ -12,6 +12,8 @@ class Events extends Model
     protected $table = 'events';
     protected $fillable = [
         'title',
+        'image',
+        'date',
         'status',
     ];
     public function clientType()
