@@ -38,6 +38,7 @@
                                 <th>Actions</th>
                                 <th>Title</th>
                                 <th>News Photo</th>
+                                <th>Categories</th>
                                 <th>Date</th>
                                 <th>Status</th>
                             </tr>
@@ -91,6 +92,15 @@
                             // Create an image element with an onerror handler to fall back to the default image
                             return '<img src="' + imgSrc +
                                 '" alt="Slider Image" style="width: auto; height: 75px;" onerror="this.onerror=null; this.src=\'{{ asset('default/default.jpg') }}\';">';
+                        }
+                    },
+
+                    {
+                        data: 'categories_name',
+                        name: 'categories_name',
+                        className: 'text-left',
+                        render: function(data) {
+                            return data ? data : '-';
                         }
                     },
                     {

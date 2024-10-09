@@ -20,4 +20,10 @@ class News extends Model
         'news_button_text',
         'status',
     ];
+
+
+    public function category()
+    {
+        return $this->belongsTo(NewsCategory::class, 'category_id');
+    }
 }

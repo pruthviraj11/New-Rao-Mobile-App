@@ -46,7 +46,10 @@ class NewsController extends Controller
     {
         $news = $this->newsService->getAllNews();
         return DataTables::of($news)
-           
+            ->addColumn('categories_name', function ($row) {
+                return $row->category ? $row->category->title : 'N/A';
+            })
+
             ->addColumn('actions', function ($row) {
                 $encryptedId = encrypt($row->id);
                 // Update Button
@@ -125,7 +128,7 @@ class NewsController extends Controller
     {
         try {
             $id = decrypt($encrypted_id);
-          
+
             $news = $this->newsService->getNews($id);
             $newsData['title'] = $request->get('title');
             $newsData['long_description'] = $request->get('long_description');

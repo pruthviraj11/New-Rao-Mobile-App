@@ -53,7 +53,7 @@
         {
             "url": "app/news/list",
             "name": "news",
-            "icon": "book-open",
+            "icon": "book",
             "slug": "app-news-list",
             "permission": [
                 "news-list",
