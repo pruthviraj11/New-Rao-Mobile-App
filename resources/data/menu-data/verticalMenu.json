@@ -118,7 +118,7 @@
         {
             "url": "app/events/list",
             "name": "Events",
-            "icon": "flag",
+            "icon": "star",
             "slug": "app-events-list",
             "permission": [
                 "events-list",
