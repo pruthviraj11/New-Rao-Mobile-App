@@ -126,7 +126,6 @@
             ]
         },
         {
-<<<<<<< HEAD
             "url": "app/application-statuses/list",
             "name": "Application Statuses",
             "icon": "send",
@@ -134,7 +133,9 @@
             "permission": [
                 "application-statuses-list",
                 "application-statuses-create"
-=======
+            ]
+        },
+        {
             "url": "app/internal-program-statuses/list",
             "name": "internal Program Status",
             "icon": "send",
@@ -142,7 +143,6 @@
             "permission": [
                 "internal-program-statuses-list",
                 "internal-program-statuses-create"
->>>>>>> a0dde50857294212eea7c0f8c690801afa47f6b0
             ]
         }
     ]
