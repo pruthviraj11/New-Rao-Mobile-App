@@ -53,7 +53,7 @@
         {
             "url": "app/success-stories/list",
             "name": "Success Stories",
-            "icon": "book-open",
+            "icon": "flag",
             "slug": "app-success-stories-list",
             "permission": [
                 "success-stories-list",
@@ -63,7 +63,7 @@
         {
             "url": "app/news/list",
             "name": "news",
-            "icon": "book-open",
+            "icon": "book",
             "slug": "app-news-list",
             "permission": [
                 "news-list",
