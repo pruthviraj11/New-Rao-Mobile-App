@@ -69,6 +69,16 @@
                 "news-list",
                 "news-create"
             ]
+        },
+        {
+            "url": "app/events/list",
+            "name": "Events",
+            "icon": "flag",
+            "slug": "app-events-list",
+            "permission": [
+                "events-list",
+                "events-create"
+            ]
         }
     ]
 }

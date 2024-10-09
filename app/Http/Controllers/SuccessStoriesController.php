@@ -79,11 +79,23 @@ class SuccessStoriesController extends Controller
                 $imagePath = $request->file('file')->storeAs('successStories', $filename, 'public');
                 $successStoriesData['file'] = $imagePath;
             }
-            $successStoriesData['candidate_image'] = $request->get('candidate_image');
+
+            if ($request->hasFile('candidate_image')) {
+                $originalName = $request->file('candidate_image')->getClientOriginalName();
+                $filename = str_replace(' ', '_', $originalName);
+                $imagePath = $request->file('candidate_image')->storeAs('successStories', $filename, 'public');
+                $successStoriesData['candidate_image'] = $imagePath;
+            }
             $successStoriesData['candidate_type'] = $request->get('candidate_type');
             $successStoriesData['for_home'] = $request->get('for_home') === 'on' ? 1 : 0;
             $successStoriesData['ratings'] = $request->get('ratings');
-            $successStoriesData['video_thumbnail'] = $request->get('video_thumbnail');
+
+            if ($request->hasFile('video_thumbnail')) {
+                $originalName = $request->file('video_thumbnail')->getClientOriginalName();
+                $filename = str_replace(' ', '_', $originalName);
+                $imagePath = $request->file('video_thumbnail')->storeAs('successStories', $filename, 'public');
+                $successStoriesData['video_thumbnail'] = $imagePath;
+            }
             $successStoriesData['status'] = $request->get('status') === 'on' ? 1 : 0;
 
             $successStories = $this->successStoriesService->create($successStoriesData);
@@ -137,11 +149,35 @@ class SuccessStoriesController extends Controller
 
                 $successStoriesData['file'] = $imagePath;
             }
-            $successStoriesData['candidate_image'] = $request->get('candidate_image');
+
+            if ($request->hasFile('candidate_image')) {
+                if ($successStories->candidate_image) {
+                    Storage::disk('public')->delete($successStories->candidate_image);
+                }
+
+                $originalName = $request->file('candidate_image')->getClientOriginalName();
+                $filename = str_replace(' ', '_', $originalName);
+                $imagePath = $request->file('candidate_image')->storeAs('successStories', $filename, 'public');
+
+                $successStoriesData['candidate_image'] = $imagePath;
+            }
             $successStoriesData['candidate_type'] = $request->get('candidate_type');
             $successStoriesData['for_home'] = $request->get('for_home') === 'on' ? 1 : 0;
             $successStoriesData['ratings'] = $request->get('ratings');
-            $successStoriesData['video_thumbnail'] = $request->get('video_thumbnail');
+            // $successStoriesData['video_thumbnail'] = $request->get('video_thumbnail');
+
+
+            if ($request->hasFile('video_thumbnail')) {
+                if ($successStories->video_thumbnail) {
+                    Storage::disk('public')->delete($successStories->video_thumbnail);
+                }
+
+                $originalName = $request->file('video_thumbnail')->getClientOriginalName();
+                $filename = str_replace(' ', '_', $originalName);
+                $imagePath = $request->file('video_thumbnail')->storeAs('successStories', $filename, 'public');
+
+                $successStoriesData['video_thumbnail'] = $imagePath;
+            }
 
             $successStoriesData['status'] = $request->get('status') === 'on' ? 1 : 0;
 

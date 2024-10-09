@@ -81,7 +81,7 @@
 
                             <!-- File Upload Field -->
                             <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="file">File</label>
+                                <label class="form-label" for="file">Client Photo</label>
                                 <input type="file" id="file" class="form-control" name="file">
                                 <span class="text-danger">
                                     @error('file')
@@ -116,8 +116,8 @@
 
                             <!-- Candidate Image Field -->
                             <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="candidate_image">Candidate Image URL</label>
-                                <input type="text" id="candidate_image" class="form-control" placeholder="Candidate Image URL" name="candidate_image"
+                                <label class="form-label" for="candidate_image">Candidate Image </label>
+                                <input type="file" id="candidate_image" class="form-control" placeholder="Candidate Image URL" name="candidate_image"
                                     value="{{ old('candidate_image') ?? ($successStories ? $successStories->candidate_image : '') }}">
                                 <span class="text-danger">
                                     @error('candidate_image')
@@ -125,6 +125,8 @@
                                     @enderror
                                 </span>
                             </div>
+
+
 
                             <!-- Candidate Type Field -->
                             <div class="col-md-6 col-sm-12 mb-1">
@@ -185,8 +187,8 @@
 
                             <!-- Video Thumbnail Field -->
                             <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="video_thumbnail">Video Thumbnail URL</label>
-                                <input type="text" id="video_thumbnail" class="form-control" placeholder="Video Thumbnail URL" name="video_thumbnail"
+                                <label class="form-label" for="video_thumbnail">Video Thumbnail</label>
+                                <input type="file" id="video_thumbnail" class="form-control" placeholder="Video Thumbnail URL" name="video_thumbnail"
                                     value="{{ old('video_thumbnail') ?? ($successStories ? $successStories->video_thumbnail : '') }}">
                                 <span class="text-danger">
                                     @error('video_thumbnail')

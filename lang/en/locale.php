@@ -36,6 +36,7 @@ return [
     "Follow Up Type"=>"Follow Up Type",
     "Follow Up Status"=>"Follow Up Status",
     "Branches"=>"Branches",
+    "Events" => "Events",
     "Visa type" => "Visa type",
     "Success Stories" => "Success Stories",
     "Inquiry Visible Status" => "Inquiry Visible Status",

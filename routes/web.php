@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuccessStoriesController;
@@ -133,15 +134,25 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('news-categories/destroy/{id}', [NewsCategoryController::class, 'destroy'])->name('app-news-categories-delete');
     //news-categories Type End
 
-     //success-stories Type End
-     Route::get('success-stories/list', [SuccessStoriesController::class, 'index'])->name('app-success-stories-list');
-     Route::get('success-stories/getAll', [SuccessStoriesController::class, 'getAll'])->name('app-success-stories-get-all');
-     Route::post('success-stories/store', [SuccessStoriesController::class, 'store'])->name('app-success-stories-store');
-     Route::get('success-stories/add', [SuccessStoriesController::class, 'create'])->name('app-success-stories-add');
-     Route::get('success-stories/edit/{encrypted_id}', [SuccessStoriesController::class, 'edit'])->name('app-success-stories-edit');
-     Route::put('success-stories/update/{encrypted_id}', [SuccessStoriesController::class, 'update'])->name('app-success-stories-update');
-     Route::get('success-stories/destroy/{encrypted_id}', [SuccessStoriesController::class, 'destroy'])->name('app-success-stories-delete');
-     //success-stories Type End
+    //success-stories Type End
+    Route::get('success-stories/list', [SuccessStoriesController::class, 'index'])->name('app-success-stories-list');
+    Route::get('success-stories/getAll', [SuccessStoriesController::class, 'getAll'])->name('app-success-stories-get-all');
+    Route::post('success-stories/store', [SuccessStoriesController::class, 'store'])->name('app-success-stories-store');
+    Route::get('success-stories/add', [SuccessStoriesController::class, 'create'])->name('app-success-stories-add');
+    Route::get('success-stories/edit/{encrypted_id}', [SuccessStoriesController::class, 'edit'])->name('app-success-stories-edit');
+    Route::put('success-stories/update/{encrypted_id}', [SuccessStoriesController::class, 'update'])->name('app-success-stories-update');
+    Route::get('success-stories/destroy/{encrypted_id}', [SuccessStoriesController::class, 'destroy'])->name('app-success-stories-delete');
+    //success-stories Type End
+
+     //events Type End
+     Route::get('events/list', [EventsController::class, 'index'])->name('app-events-list');
+     Route::get('events/getAll', [EventsController::class, 'getAll'])->name('app-events-get-all');
+     Route::post('events/store', [EventsController::class, 'store'])->name('app-events-store');
+     Route::get('events/add', [EventsController::class, 'create'])->name('app-events-add');
+     Route::get('events/edit/{encrypted_id}', [EventsController::class, 'edit'])->name('app-events-edit');
+     Route::put('events/update/{encrypted_id}', [EventsController::class, 'update'])->name('app-events-update');
+     Route::get('events/destroy/{encrypted_id}', [EventsController::class, 'destroy'])->name('app-events-delete');
+     //events Type End
 
     //news Type End
     Route::get('news/list', [NewsController::class, 'index'])->name('app-news-list');
