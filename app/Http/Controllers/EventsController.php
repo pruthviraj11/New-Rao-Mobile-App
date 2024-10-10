@@ -41,7 +41,7 @@ class EventsController extends Controller
     {
         $events = "";
         $page_data['page_title'] = "Events Add";
-        $page_data['form_title'] = "Add New Events";
+        $page_data['form_title'] = "Add New Event";
         $ClientType = ClientType::where('status', '1')->get();
         return view('/content/apps/Events/create-edit', compact('page_data', 'events', 'ClientType'));
     }

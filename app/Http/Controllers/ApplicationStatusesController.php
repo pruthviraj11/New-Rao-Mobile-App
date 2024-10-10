@@ -39,7 +39,7 @@ class ApplicationStatusesController extends Controller
     {
         $applicationStatuses = "";
         $page_data['page_title'] = "Application Statuses Add";
-        $page_data['form_title'] = "Add New application statuses";
+        $page_data['form_title'] = "Add New Application Statuses";
         $ClientType = ClientType::where('status', '1')->get();
         return view('/content/apps/ApplicationStatuses/create-edit', compact('page_data', 'applicationStatuses', 'ClientType'));
     }

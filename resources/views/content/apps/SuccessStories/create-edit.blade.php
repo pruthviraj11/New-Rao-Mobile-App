@@ -140,8 +140,35 @@
                                 </span>
                             </div>
 
-                            <!-- Status Field -->
+
+
+
+                            <!-- Ratings Field -->
                             <div class="col-md-6 col-sm-12 mb-1">
+                                <label class="form-label" for="ratings">Ratings</label>
+                                <input type="text" id="ratings" class="form-control" placeholder="Ratings" name="ratings"
+                                    value="{{ old('ratings') ?? ($successStories ? $successStories->ratings : '') }}">
+                                <span class="text-danger">
+                                    @error('ratings')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+
+                            <!-- Video Thumbnail Field -->
+                            <div class="col-md-6 col-sm-12 mb-1">
+                                <label class="form-label" for="video_thumbnail">Video Thumbnail</label>
+                                <input type="file" id="video_thumbnail" class="form-control" placeholder="Video Thumbnail URL" name="video_thumbnail"
+                                    value="{{ old('video_thumbnail') ?? ($successStories ? $successStories->video_thumbnail : '') }}">
+                                <span class="text-danger">
+                                    @error('video_thumbnail')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+
+                              <!-- Status Field -->
+                              <div class="col-md-6 col-sm-12 mb-1">
                                 <label class="form-label" for="status">
                                     Status</label>
                                 <div class="form-check form-check-success form-switch">
@@ -167,31 +194,6 @@
                                 </div>
                                 <span class="text-danger">
                                     @error('for_home')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-
-
-                            <!-- Ratings Field -->
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="ratings">Ratings</label>
-                                <input type="text" id="ratings" class="form-control" placeholder="Ratings" name="ratings"
-                                    value="{{ old('ratings') ?? ($successStories ? $successStories->ratings : '') }}">
-                                <span class="text-danger">
-                                    @error('ratings')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-
-                            <!-- Video Thumbnail Field -->
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="video_thumbnail">Video Thumbnail</label>
-                                <input type="file" id="video_thumbnail" class="form-control" placeholder="Video Thumbnail URL" name="video_thumbnail"
-                                    value="{{ old('video_thumbnail') ?? ($successStories ? $successStories->video_thumbnail : '') }}">
-                                <span class="text-danger">
-                                    @error('video_thumbnail')
                                         {{ $message }}
                                     @enderror
                                 </span>
