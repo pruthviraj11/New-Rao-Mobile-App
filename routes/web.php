@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DrawsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\OurServicesController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuccessStoriesController;
 use App\Http\Controllers\UsersController;
@@ -178,6 +179,16 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('application-statuses/update/{encrypted_id}', [ApplicationStatusesController::class, 'update'])->name('app-application-statuses-update');
     Route::get('application-statuses/destroy/{encrypted_id}', [ApplicationStatusesController::class, 'destroy'])->name('app-application-statuses-delete');
     //success-stories Type End
+
+    //our-services Type End
+    Route::get('our-services/list', [OurServicesController::class, 'index'])->name('app-our-services-list');
+    Route::get('our-services/getAll', [OurServicesController::class, 'getAll'])->name('app-our-services-get-all');
+    Route::post('our-services/store', [OurServicesController::class, 'store'])->name('app-our-services-store');
+    Route::get('our-services/add', [OurServicesController::class, 'create'])->name('app-our-services-add');
+    Route::get('our-services/edit/{encrypted_id}', [OurServicesController::class, 'edit'])->name('app-our-services-edit');
+    Route::put('our-services/update/{encrypted_id}', [OurServicesController::class, 'update'])->name('app-our-services-update');
+    Route::get('our-services/destroy/{encrypted_id}', [OurServicesController::class, 'destroy'])->name('app-our-services-delete');
+    //our-services Type End
 
     //news Type End
     Route::get('news/list', [NewsController::class, 'index'])->name('app-news-list');

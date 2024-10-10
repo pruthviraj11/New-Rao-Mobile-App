@@ -136,6 +136,16 @@
             ]
         },
         {
+            "url": "app/our-services/list",
+            "name": "Our Services",
+            "icon": "pen-tool",
+            "slug": "app-our-services-list",
+            "permission": [
+                "our-services-list",
+                "our-services-create"
+            ]
+        },
+        {
             "url": "app/draws/list",
             "name": "Draws",
             "icon": "pen-tool",
