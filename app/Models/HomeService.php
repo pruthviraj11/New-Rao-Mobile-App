@@ -6,19 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Draws extends Model
+class HomeService extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'draws_new';
+    protected $table = 'home_services';
     protected $fillable = [
-        'date',
-        'crs_cutoff',
-        'type',
-        'ita_issue',
+        'title',
+        'description',
+        'file',
         'status',
+        'service_image',
     ];
-    public function clientType()
-    {
-        return $this->belongsTo(ClientType::class, 'client_type');
-    }
 }

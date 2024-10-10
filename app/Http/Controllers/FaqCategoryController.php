@@ -159,5 +159,18 @@ class FaqCategoryController extends Controller
         }
     }
 
+    public function destroyimage($id)
+    {
+        $slider = FaqCategory::findOrFail($id);
+
+        if ($slider->image) {
+
+            // Storage::delete($slider->image);
+            $slider->update(['image' => null]);
+        }
+
+        return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
+
 
 }

@@ -164,6 +164,16 @@
                 "internal-program-statuses-list",
                 "internal-program-statuses-create"
             ]
+        },
+        {
+            "url": "app/home-services/list",
+            "name": "Home service",
+            "icon": "home",
+            "slug": "app-home-services-list",
+            "permission": [
+                "home-services-list",
+                "home-services-create"
+            ]
         }
     ]
 }

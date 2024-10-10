@@ -20,6 +20,7 @@ use App\Http\Controllers\InternalProgramStatusController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\HomeServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -234,6 +235,19 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('internal-program-statuses/update/{encrypted_id}', [InternalProgramStatusController::class, 'update'])->name('app-internal-program-statuses-update');
     Route::get('internal-program-statuses/destroy/{encrypted_id}', [InternalProgramStatusController::class, 'destroy'])->name('app-internal-program-statuses-delete');
     //internal-program-statuses Type End
+
+    //home-services Type End
+    Route::get('home-services/list', [HomeServiceController::class, 'index'])->name('app-home-services-list');
+    Route::get('home-services/getAll', [HomeServiceController::class, 'getAll'])->name('app-home-services-get-all');
+    Route::post('home-services/store', [HomeServiceController::class, 'store'])->name('app-home-services-store');
+    Route::get('home-services/add', [HomeServiceController::class, 'create'])->name('app-home-services-add');
+    Route::get('home-services/edit/{encrypted_id}', [HomeServiceController::class, 'edit'])->name('app-home-services-edit');
+    Route::put('home-services/update/{encrypted_id}', [HomeServiceController::class, 'update'])->name('app-home-services-update');
+    Route::get('home-services/destroy/{encrypted_id}', [HomeServiceController::class, 'destroy'])->name('app-home-services-delete');
+    Route::get('home-services-icon/{encrypted_id}', [HomeServiceController::class, 'destroyimageServiceIcon'])->name('faq.destroyimageServiceIcon');
+    Route::get('home-services-image/{encrypted_id}', [HomeServiceController::class, 'destroyimageServiceImage'])->name('faq.destroyimageServiceImage');
+
+    //home-services Type End
 
 });
 /* Route Apps */
