@@ -40,7 +40,7 @@ class DrawsController extends Controller
     {
         $draws = "";
         $page_data['page_title'] = "Draws Add";
-        $page_data['form_title'] = "Add New Draws";
+        $page_data['form_title'] = "Add New Draw";
         $ClientType = ClientType::where('status', '1')->get();
         return view('/content/apps/Draws/create-edit', compact('page_data', 'draws', 'ClientType'));
     }
@@ -95,7 +95,7 @@ class DrawsController extends Controller
             $id = decrypt($encrypted_id);
             $draws = $this->drawsService->getDraws($id);
             $page_data['page_title'] = "Draws Edit";
-            $page_data['form_title'] = "Edit Draws";
+            $page_data['form_title'] = "Edit Draw";
             $ClientType = ClientType::where('status', '1')->get();
             return view('content/apps/Draws/create-edit', compact('page_data', 'draws', 'ClientType'));
         } catch (\Exception $error) {
