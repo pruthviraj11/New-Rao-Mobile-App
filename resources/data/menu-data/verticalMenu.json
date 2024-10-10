@@ -146,6 +146,26 @@
             ]
         },
         {
+            "url": "app/our-services/list",
+            "name": "Our Services",
+            "icon": "pen-tool",
+            "slug": "app-our-services-list",
+            "permission": [
+                "our-services-list",
+                "our-services-create"
+            ]
+        },
+        {
+            "url": "app/other-stakeholders/list",
+            "name": "Other Stakeholder",
+            "icon": "star",
+            "slug": "app-other-stakeholders-list",
+            "permission": [
+                "our-services-list",
+                "our-services-create"
+            ]
+        },
+        {
             "url": "app/draws/list",
             "name": "Draws",
             "icon": "pen-tool",
@@ -153,6 +173,16 @@
             "permission": [
                 "events-list",
                 "events-create"
+            ]
+        },
+        {
+            "url": "app/notifications/list",
+            "name": "Notifications",
+            "icon": "pen-tool",
+            "slug": "app-notifications-list",
+            "permission": [
+                "notifications-list",
+                "notifications-create"
             ]
         },
         {

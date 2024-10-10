@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'internal Program Status')
+@section('title', 'Notifications')
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -27,20 +27,17 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Internal Program Status List</h4>
-                <a href="{{ route('app-internal-program-statuses-add') }}" class="col-md-2 btn btn-primary">Add internal Program Status Add</a>
+                <h4 class="card-title">Notifications List</h4>
+                <a href="{{ route('app-notifications-add') }}" class="col-md-2 btn btn-primary">Add Notifications</a>
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="internal-program-statuses-table">
+                    <table class="user-list-table table dt-responsive" id="notifications-table">
                         <thead>
                             <tr>
-                                <th>Actions</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>order</th>
-                                <th>Category</th>
-                                <th>Status</th>
+                                <th>Title</th>
+                                <th>Message</th>
+                                <th>Created At</th>
                             </tr>
                         </thead>
                     </table>
@@ -61,61 +58,49 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
-            $('#internal-program-statuses-table').DataTable({
+            $('#notifications-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('app-internal-program-statuses-get-all') }}",
-                columns: [{
-                        data: 'actions',
-                        name: 'actions',
-                        orderable: false,
-                        searchable: false,
+                ajax: "{{ route('app-notifications-get-all') }}",
+                columns: [
+                    {
+                        data: 'title',
+                        name: 'title',
                         className: 'text-left',
+
                     },
                     {
-                        data: 'name',
-                        name: 'name',
-                        className: 'text-left',
-                        render: function(data) {
-                            return data ? data : '-';
-                        }
-                    },
-                     {
-                        data: 'description',
-                        name: 'description',
-                        className: 'text-left',
-                        render: function(data) {
-                            return data ? data : '-';
-                        }
-                    },
-                     {
-                        data: 'order',
-                        name: 'order',
+                        data: 'message',
+                        name: 'message',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
                     {
-                        data: 'client_type',
-                        name: 'client_type',
+                        data: 'created_at',
+                        name: 'created_at',
                         className: 'text-left',
                         render: function(data) {
-                            return data ? data : '-';
+                            if (data) {
+                                // Create a new Date object
+                                var date = new Date(data);
+
+                                // Format the date as "Month day, year hours:minutes"
+                                var formattedDate = date.toLocaleString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                });
+
+                                return formattedDate;
+                            }
+                            return '-';
                         }
                     },
 
-                    {
-                        data: 'status',
-                        name: 'status',
-                        render: function(data) {
-                            if (data == '1') {
-                                return '<span class="badge bg-success">Active</span>';
-                            } else {
-                                return '<span class="badge bg-danger">Inactive</span>';
-                            }
-                        }
-                    },
 
                 ],
                 order: [
@@ -144,7 +129,7 @@
                 buttonsStyling: false
             }).then(function(result) {
                 if (result.value) {
-                    window.location.href = '/app/internal-program-statuses/destroy/' + id;
+                    window.location.href = '/app/draws/destroy/' + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Deleted!',
