@@ -17,6 +17,7 @@ return [
     "internal Program Status" => "Internal Program Status",
     "Product" => "Product",
     "Sales Report" => "Sales Report",
+    "Other Stakeholder" => "Other Stakeholder",
     "Operations" => "Operations",
     "news" => "News",
     "Faqs" => "Faqs",

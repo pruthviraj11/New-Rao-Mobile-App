@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DrawsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\OtherStakeholdersController;
 use App\Http\Controllers\OurServicesController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuccessStoriesController;
@@ -181,6 +183,16 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('application-statuses/destroy/{encrypted_id}', [ApplicationStatusesController::class, 'destroy'])->name('app-application-statuses-delete');
     //success-stories Type End
 
+    //Notification Type End
+    Route::get('notifications/list', [NotificationsController::class, 'index'])->name('app-notifications-list');
+    Route::get('notifications/getAll', [NotificationsController::class, 'getAll'])->name('app-notifications-get-all');
+    Route::post('notifications/store', [NotificationsController::class, 'store'])->name('app-notifications-store');
+    Route::get('notifications/add', [NotificationsController::class, 'create'])->name('app-notifications-add');
+    Route::get('notifications/edit/{encrypted_id}', [NotificationsController::class, 'edit'])->name('app-notifications-edit');
+    Route::put('notifications/update/{encrypted_id}', [NotificationsController::class, 'update'])->name('app-notifications-update');
+    Route::get('notifications/destroy/{encrypted_id}', [NotificationsController::class, 'destroy'])->name('app-notifications-delete');
+    //Notification Type End
+
     //our-services Type End
     Route::get('our-services/list', [OurServicesController::class, 'index'])->name('app-our-services-list');
     Route::get('our-services/getAll', [OurServicesController::class, 'getAll'])->name('app-our-services-get-all');
@@ -190,6 +202,18 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('our-services/update/{encrypted_id}', [OurServicesController::class, 'update'])->name('app-our-services-update');
     Route::get('our-services/destroy/{encrypted_id}', [OurServicesController::class, 'destroy'])->name('app-our-services-delete');
     //our-services Type End
+
+    //other-stakeholders Type End
+    Route::get('other-stakeholders/list', [OtherStakeholdersController::class, 'index'])->name('app-other-stakeholders-list');
+    Route::get('other-stakeholders/getAll', [OtherStakeholdersController::class, 'getAll'])->name('app-other-stakeholders-get-all');
+    Route::post('other-stakeholders/store', [OtherStakeholdersController::class, 'store'])->name('app-other-stakeholders-store');
+    Route::get('other-stakeholders/add', [OtherStakeholdersController::class, 'create'])->name('app-other-stakeholders-add');
+    Route::get('other-stakeholders/edit/{encrypted_id}', [OtherStakeholdersController::class, 'edit'])->name('app-other-stakeholders-edit');
+    Route::put('other-stakeholders/update/{encrypted_id}', [OtherStakeholdersController::class, 'update'])->name('app-other-stakeholders-update');
+    Route::get('other-stakeholders/destroy/{encrypted_id}', [OtherStakeholdersController::class, 'destroy'])->name('app-other-stakeholders-delete');
+    Route::get('/get-users', [OtherStakeholdersController::class, 'getUsers'])->name('get.users');
+
+    //other-stakeholders Type End
 
     //news Type End
     Route::get('news/list', [NewsController::class, 'index'])->name('app-news-list');
