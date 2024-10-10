@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Draws extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'draws';
+    protected $table = 'draws_new';
     protected $fillable = [
         'date',
         'crs_cutoff',
