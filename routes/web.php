@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationStatusesController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\DrawsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RoleController;
@@ -149,17 +150,27 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('success-stories/destroy/{encrypted_id}', [SuccessStoriesController::class, 'destroy'])->name('app-success-stories-delete');
     //success-stories Type End
 
-     //events Type End
-     Route::get('events/list', [EventsController::class, 'index'])->name('app-events-list');
-     Route::get('events/getAll', [EventsController::class, 'getAll'])->name('app-events-get-all');
-     Route::post('events/store', [EventsController::class, 'store'])->name('app-events-store');
-     Route::get('events/add', [EventsController::class, 'create'])->name('app-events-add');
-     Route::get('events/edit/{encrypted_id}', [EventsController::class, 'edit'])->name('app-events-edit');
-     Route::put('events/update/{encrypted_id}', [EventsController::class, 'update'])->name('app-events-update');
-     Route::get('events/destroy/{encrypted_id}', [EventsController::class, 'destroy'])->name('app-events-delete');
-     //events Type End
+    //events Type End
+    Route::get('events/list', [EventsController::class, 'index'])->name('app-events-list');
+    Route::get('events/getAll', [EventsController::class, 'getAll'])->name('app-events-get-all');
+    Route::post('events/store', [EventsController::class, 'store'])->name('app-events-store');
+    Route::get('events/add', [EventsController::class, 'create'])->name('app-events-add');
+    Route::get('events/edit/{encrypted_id}', [EventsController::class, 'edit'])->name('app-events-edit');
+    Route::put('events/update/{encrypted_id}', [EventsController::class, 'update'])->name('app-events-update');
+    Route::get('events/destroy/{encrypted_id}', [EventsController::class, 'destroy'])->name('app-events-delete');
+    //events Type End
 
-      //application-statuses Type End
+    //draws Type End
+    Route::get('draws/list', [DrawsController::class, 'index'])->name('app-draws-list');
+    Route::get('draws/getAll', [DrawsController::class, 'getAll'])->name('app-draws-get-all');
+    Route::post('draws/store', [DrawsController::class, 'store'])->name('app-draws-store');
+    Route::get('draws/add', [DrawsController::class, 'create'])->name('app-draws-add');
+    Route::get('draws/edit/{encrypted_id}', [DrawsController::class, 'edit'])->name('app-draws-edit');
+    Route::put('draws/update/{encrypted_id}', [DrawsController::class, 'update'])->name('app-draws-update');
+    Route::get('draws/destroy/{encrypted_id}', [DrawsController::class, 'destroy'])->name('app-draws-delete');
+    //events Type End
+
+    //application-statuses Type End
     Route::get('application-statuses/list', [ApplicationStatusesController::class, 'index'])->name('app-application-statuses-list');
     Route::get('application-statuses/getAll', [ApplicationStatusesController::class, 'getAll'])->name('app-application-statuses-get-all');
     Route::post('application-statuses/store', [ApplicationStatusesController::class, 'store'])->name('app-application-statuses-store');
