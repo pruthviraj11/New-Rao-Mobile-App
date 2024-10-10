@@ -11,6 +11,16 @@
             ]
         },
         {
+            "url": "app/status-chart-report",
+            "name": "Status & Chat Summary Report",
+            "icon": "user",
+            "slug": "app-status-chart-report",
+            "permission": [
+                "user-list",
+                "user-create"
+            ]
+        },
+        {
             "url": "app/users/list",
             "name": "User",
             "icon": "user",

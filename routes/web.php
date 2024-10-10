@@ -19,6 +19,7 @@ use App\Http\Controllers\InternalProgramStatusController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeServiceController;
 
 /*
@@ -237,6 +238,15 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('home-services-image/{encrypted_id}', [HomeServiceController::class, 'destroyimageServiceImage'])->name('faq.destroyimageServiceImage');
 
     //home-services Type End
+
+
+
+
+    //report End
+    Route::get('status-chart-report', [DashboardController::class, 'index'])->name('app-status-chart-report');
+    Route::get('/get-application-statuses/{categoryId}', [DashboardController::class, 'getApplicationStatuses'])->name('voyager.getApplicationStatuses');
+    Route::get('/get-users/{categoryId}', [DashboardController::class, 'getUsers_data'])->name('getUsers.list');
+    //report End
 
 });
 /* Route Apps */

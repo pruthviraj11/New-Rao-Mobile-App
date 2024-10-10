@@ -782,3 +782,11 @@ function getAppDoneCount($user, $type)
 
     return true;
 }
+
+function roleName($value)
+{
+    $role_id = Setting::where('role_config->role_name', $value)->select('role_config->role_id')->first();
+    $role_name = role::where('id', $role_id)->pluck('name')->first();
+    // dd($);
+    return $role_name;
+}
