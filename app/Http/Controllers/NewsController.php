@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\News\CreateNewsRequest;
 use App\Http\Requests\News\UpdateNewsRequest;
 use App\Models\ClientType;
+use App\Models\News;
 use \Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
@@ -76,7 +77,7 @@ class NewsController extends Controller
             $newsData['title'] = $request->get('title');
             $newsData['long_description'] = $request->get('long_description');
             $newsData['date'] = $request->get('date');
-            $newsData['news_button_text'] = $request->get('news_button_text');
+            // $newsData['news_button_text'] = $request->get('news_button_text');
             $newsData['category_id'] = $request->get('category_id');
             $newsData['status'] = $request->get('status') === 'on' ? 1 : 0;
             if ($request->hasFile('file')) {
@@ -134,7 +135,7 @@ class NewsController extends Controller
             $newsData['title'] = $request->get('title');
             $newsData['long_description'] = $request->get('long_description');
             $newsData['date'] = $request->get('date');
-            $newsData['news_button_text'] = $request->get('news_button_text');
+            // $newsData['news_button_text'] = $request->get('news_button_text');
             $newsData['category_id'] = $request->get('category_id');
             $newsData['status'] = $request->get('status') === 'on' ? 1 : 0;
             if ($request->hasFile('file')) {
@@ -156,6 +157,7 @@ class NewsController extends Controller
                 return redirect()->back()->with('error', 'Error while Updating News');
             }
         } catch (\Exception $error) {
+            dd($error->getMessage());
             return redirect()->route("app-news-list")->with('error', 'Error while editing News');
         }
     }
@@ -179,8 +181,18 @@ class NewsController extends Controller
         } catch (\Exception $error) {
             return redirect()->route("app-news-list")->with('error', 'Error while editing News');
         }
-    }
 
+    }
+    public function destroyimage($id)
+    {
+        $news = News::findOrFail($id);
+        // dd($news);
+        if ($news->file) {
+            $news->update(['file' => '']);
+        }
+
+        return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
 
 
 

@@ -174,7 +174,7 @@ class SlideController extends Controller
         if ($slider->image) {
 
             // Storage::delete($slider->image);
-            $slider->update(['image' => null]);
+            $slider->update(['image' => '']);
         }
 
         return redirect()->back()->with('success', 'Image deleted successfully.');

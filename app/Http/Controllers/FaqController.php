@@ -136,6 +136,7 @@ class FaqController extends Controller
                 return redirect()->back()->with('error', 'Error while Updating Faq');
             }
         } catch (\Exception $error) {
+           
             return redirect()->route("app-faq-list")->with('error', 'Error while editing Faq');
         }
     }
@@ -160,6 +161,5 @@ class FaqController extends Controller
             return redirect()->route("app-faq-list")->with('error', 'Error while editing Faq');
         }
     }
-
 
 }
