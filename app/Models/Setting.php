@@ -8,9 +8,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Setting extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'settings';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'full_access',
+        'partial_access',
+        'restriction_access',
+        'dymanager_manager',
+        'pearo',
+        'adviser',
+        'client',
+    ];
 }

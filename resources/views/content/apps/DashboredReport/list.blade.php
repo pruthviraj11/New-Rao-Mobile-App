@@ -154,8 +154,11 @@
                 if (categoryId) {
                     // Fetch users
                     $.ajax({
-                        url: '/get-users/' + categoryId,
+                        url: '{{ route('getUsers.list') }}', // Use named route
                         type: 'GET',
+                        data: {
+                            categoryId: categoryId
+                        }, // Pass category ID here
                         success: function(data) {
                             if (data.message) {
                                 alert(data.message);
@@ -166,15 +169,16 @@
                                 });
                             }
                         },
-                        error: function() {
-                            alert('Error fetching users.');
-                        }
+
                     });
 
                     // Fetch application statuses
                     $.ajax({
-                        url: '/get-application-statuses/' + categoryId,
+                        url: '{{ route('getApplicationStatuses.list') }}', // Use named route
                         type: 'GET',
+                        data: {
+                            categoryId: categoryId
+                        }, // Pass category ID here
                         success: function(data) {
                             if (data.message) {
                                 alert(data.message);
@@ -182,13 +186,11 @@
                                 $.each(data, function(index, status) {
                                     $('#application_status').append('<option value="' +
                                         status.id + '">' + status.name + '</option>'
-                                        );
+                                    );
                                 });
                             }
                         },
-                        error: function() {
-                            alert('Error fetching application statuses.');
-                        }
+
                     });
                 }
             });
