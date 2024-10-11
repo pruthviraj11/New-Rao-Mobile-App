@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Application Statuses')
+@section('title', 'Admin User')
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -27,18 +27,18 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Application Statuses List</h4>
-                <a href="{{ route('app-application-statuses-add') }}" class="col-md-2 btn btn-primary">Add Application Statuses</a>
+                <h4 class="card-title">Admin User List</h4>
+                <a href="{{ route('app-admin-user-add') }}" class="col-md-2 btn btn-primary">Add Admin User</a>
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="application-statuses-table">
+                    <table class="user-list-table table dt-responsive" id="admin-user-table">
                         <thead>
                             <tr>
                                 <th>Actions</th>
                                 <th>Name</th>
-                                <th>Description</th>
-                                <th>Category</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -60,10 +60,10 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
-            $('#application-statuses-table').DataTable({
+            $('#admin-user-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('app-application-statuses-get-all') }}",
+                ajax: "{{ route('app-admin-user-get-all') }}",
                 columns: [{
                         data: 'actions',
                         name: 'actions',
@@ -79,17 +79,31 @@
                             return data ? data : '-';
                         }
                     },
+                    // {
+                    //     data: 'image',
+                    //     name: 'image',
+                    //     className: 'text-left',
+                    //     render: function(data) {
+                    //         // Construct the image source path
+                    //         const imgSrc = data ? '{{ asset('storage/') }}/' + data :
+                    //             '{{ asset('default/default.jpg') }}';
+
+                    //         // Create an image element with an onerror handler to fall back to the default image
+                    //         return '<img src="' + imgSrc +
+                    //             '" alt="Slider Image" style="width: auto; height: 75px;" onerror="this.onerror=null; this.src=\'{{ asset('default/default.jpg') }}\';">';
+                    //     }
+                    // },
                     {
-                        data: 'description',
-                        name: 'description',
+                        data: 'email',
+                        name: 'email',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
                     {
-                        data: 'category_id',
-                        name: 'category_id',
+                        data: 'phone_number',
+                        name: 'phone_number',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
@@ -134,7 +148,7 @@
                 buttonsStyling: false
             }).then(function(result) {
                 if (result.value) {
-                    window.location.href = '/app/application-statuses/destroy/' + id;
+                    window.location.href = '/app/admin-user/destroy/' + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Deleted!',

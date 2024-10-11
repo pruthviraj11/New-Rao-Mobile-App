@@ -166,7 +166,18 @@ function reportToListAccessRoles()
 }
 
 
+function getDescendants($userId)
+{
+    $descendants = User::where('reporting_to', $userId)->where('role_id', "!=", 2)->pluck('id');
 
+    $allDescendants = collect($descendants);
+
+    foreach ($descendants as $descendant) {
+        $allDescendants = $allDescendants->merge(getDescendants($descendant));
+    }
+
+    return $allDescendants;
+}
 
 
 

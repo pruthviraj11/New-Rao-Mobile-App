@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Application Statuses')
+@section('title', 'Default Documents')
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -27,19 +27,21 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Application Statuses List</h4>
-                <a href="{{ route('app-application-statuses-add') }}" class="col-md-2 btn btn-primary">Add Application Statuses</a>
+                <h4 class="card-title">Default Documents List</h4>
+                {{-- <a href="{{ route('app-advisor-add') }}" class="col-md-2 btn btn-primary">Add Advisor</a> --}}
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="application-statuses-table">
+                    <table class="user-list-table table dt-responsive" id="default-documents-table">
                         <thead>
                             <tr>
-                                <th>Actions</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                                <th>Status</th>
+                                <th>Doc User Category Id</th>
+                                <th>Doc Id</th>
+                                <th>Doc Type Id</th>
+                                <th>Doc Category Name</th>
+                                <th>Is Active</th>
+                                <th>Created At</th>
+                                {{-- <th>Status</th> --}}
                             </tr>
                         </thead>
                     </table>
@@ -60,52 +62,74 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
-            $('#application-statuses-table').DataTable({
+            $('#default-documents-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('app-application-statuses-get-all') }}",
-                columns: [{
-                        data: 'actions',
-                        name: 'actions',
-                        orderable: false,
-                        searchable: false,
-                        className: 'text-left',
-                    },
+                ajax: "{{ route('app-default-documents-get-all') }}",
+                columns: [
                     {
-                        data: 'name',
-                        name: 'name',
+                        data: 'doc_user_category_id',
+                        name: 'doc_user_category_id',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
                     {
-                        data: 'description',
-                        name: 'description',
+                        data: 'doc_id',
+                        name: 'doc_id',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
                     {
-                        data: 'category_id',
-                        name: 'category_id',
+                        data: 'doc_type_id',
+                        name: 'doc_type_id',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
                     {
-                        data: 'status',
-                        name: 'status',
+                        data: 'doc_category_name',
+                        name: 'doc_category_name',
+                        className: 'text-left',
                         render: function(data) {
-                            if (data == '1') {
-                                return '<span class="badge bg-success">Active</span>';
-                            } else {
-                                return '<span class="badge bg-danger">Inactive</span>';
+                            return data ? data : '-';
+                        }
+                    },
+                    {
+                        data: 'is_active',
+                        name: 'is_active',
+                        className: 'text-left',
+                        render: function(data) {
+                            return data ? data : '-';
+                        }
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
+                        className: 'text-left',
+                        render: function(data) {
+                            if (data) {
+                                // Create a new Date object
+                                var date = new Date(data);
+
+                                // Format the date as "Month day, year hours:minutes"
+                                var formattedDate = date.toLocaleString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                });
+
+                                return formattedDate;
                             }
+                            return '-';
                         }
-                    },
+                    }
 
                 ],
                 order: [
@@ -134,7 +158,7 @@
                 buttonsStyling: false
             }).then(function(result) {
                 if (result.value) {
-                    window.location.href = '/app/application-statuses/destroy/' + id;
+                    window.location.href = '/app/advisor/destroy/' + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Deleted!',

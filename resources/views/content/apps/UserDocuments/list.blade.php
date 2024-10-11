@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Application Statuses')
+@section('title', 'User Documents')
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -27,18 +27,23 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Application Statuses List</h4>
-                <a href="{{ route('app-application-statuses-add') }}" class="col-md-2 btn btn-primary">Add Application Statuses</a>
+                <h4 class="card-title">User Documents List</h4>
+                {{-- <a href="{{ route('app-advisor-add') }}" class="col-md-2 btn btn-primary">Add Advisor</a> --}}
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="application-statuses-table">
+                    <table class="user-list-table table dt-responsive" id="user-documents-table">
                         <thead>
                             <tr>
-                                <th>Actions</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Category</th>
+                                <th>User Id</th>
+                                <th>Imm No</th>
+                                <th>App No</th>
+                                <th>Doc Id</th>
+                                <th>Doc Name</th>
+                                <th>Upload Date</th>
+                                <th>Created At</th>
+                                <th>Doc File Name</th>
+                                <th>Comments</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -60,36 +65,93 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
-            $('#application-statuses-table').DataTable({
+            $('#user-documents-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('app-application-statuses-get-all') }}",
-                columns: [{
-                        data: 'actions',
-                        name: 'actions',
-                        orderable: false,
-                        searchable: false,
-                        className: 'text-left',
-                    },
+                ajax: "{{ route('app-user-documents-get-all') }}",
+                columns: [
                     {
-                        data: 'name',
-                        name: 'name',
+                        data: 'user_id',
+                        name: 'user_id',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
                     {
-                        data: 'description',
-                        name: 'description',
+                        data: 'imm_no',
+                        name: 'imm_no',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
                         }
                     },
                     {
-                        data: 'category_id',
-                        name: 'category_id',
+                        data: 'app_no',
+                        name: 'app_no',
+                        className: 'text-left',
+                        render: function(data) {
+                            return data ? data : '-';
+                        }
+                    },
+                    {
+                        data: 'doc_id',
+                        name: 'doc_id',
+                        className: 'text-left',
+                        render: function(data) {
+                            return data ? data : '-';
+                        }
+                    },
+                    {
+                        data: 'doc_name',
+                        name: 'doc_name',
+                        className: 'text-left',
+                        render: function(data) {
+                            return data ? data : '-';
+                        }
+                    },
+                    {
+                        data: 'upload_date',
+                        name: 'upload_date',
+                        className: 'text-left',
+                        render: function(data) {
+                            return data ? data : '-';
+                        }
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
+                        className: 'text-left',
+                        render: function(data) {
+                            if (data) {
+                                // Create a new Date object
+                                var date = new Date(data);
+
+                                // Format the date as "Month day, year hours:minutes"
+                                var formattedDate = date.toLocaleString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                });
+
+                                return formattedDate;
+                            }
+                            return '-';
+                        }
+                    },
+                    {
+                        data: 'doc_file_name',
+                        name: 'doc_file_name',
+                        className: 'text-left',
+                        render: function(data) {
+                            return data ? data : '-';
+                        }
+                    },
+                    {
+                        data: 'comments',
+                        name: 'comments',
                         className: 'text-left',
                         render: function(data) {
                             return data ? data : '-';
@@ -98,12 +160,9 @@
                     {
                         data: 'status',
                         name: 'status',
+                        className: 'text-left',
                         render: function(data) {
-                            if (data == '1') {
-                                return '<span class="badge bg-success">Active</span>';
-                            } else {
-                                return '<span class="badge bg-danger">Inactive</span>';
-                            }
+                            return data ? data : '-';
                         }
                     },
 
@@ -134,7 +193,7 @@
                 buttonsStyling: false
             }).then(function(result) {
                 if (result.value) {
-                    window.location.href = '/app/application-statuses/destroy/' + id;
+                    window.location.href = '/app/advisor/destroy/' + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Deleted!',

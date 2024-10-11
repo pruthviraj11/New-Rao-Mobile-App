@@ -46,7 +46,7 @@ class OtherStakeholdersController extends Controller
         $page_data['form_title'] = "Add New Other Stakeholders";
         $ClientType = ClientType::where('status', '1')->get();
         $users = User::get();
-        $advisors = User::where('role_id', '=', 23)->get();
+        $advisors = User::where('role_id', '=', 4)->get();
         return view('/content/apps/OtherStakeholders/create-edit', compact('page_data', 'otherStakeholders', 'ClientType', 'users', 'advisors'));
     }
 
@@ -100,7 +100,7 @@ class OtherStakeholdersController extends Controller
             $page_data['form_title'] = "Edit Other Stakeholders";
             $ClientType = ClientType::where('status', '1')->get();
             $users = User::get();
-            $advisors = User::where('role_id', '=', 23)->get();
+            $advisors = User::where('role_id', '=', 4)->get();
             return view('content/apps/OtherStakeholders/create-edit', compact('page_data', 'otherStakeholders', 'ClientType', 'users', 'advisors'));
         } catch (\Exception $error) {
             return redirect()->route("app/OtherStakeholders/list")->with('error', 'Error while editing Our Services');

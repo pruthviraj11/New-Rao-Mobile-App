@@ -135,6 +135,27 @@
                 "events-create"
             ]
         },
+
+        {
+            "url": "app/advisor/list",
+            "name": "Advisor",
+            "icon": "star",
+            "slug": "app-advisor-list",
+            "permission": [
+                "advisor-list",
+                "advisor-create"
+            ]
+        },
+        {
+            "url": "app/admin-user/list",
+            "name": "Admin User",
+            "icon": "star",
+            "slug": "app-admin-user-list",
+            "permission": [
+                "advisor-list",
+                "advisor-create"
+            ]
+        },
         {
             "url": "app/application-statuses/list",
             "name": "Application Statuses",
@@ -183,6 +204,46 @@
             "permission": [
                 "notifications-list",
                 "notifications-create"
+            ]
+        },
+        {
+            "url": "app/fcm-tokens/list",
+            "name": "FCM Tokens",
+            "icon": "home",
+            "slug": "app-fcm-tokens-list",
+            "permission": [
+                "events-list",
+                "events-create"
+            ]
+        },
+        {
+            "url": "app/default-documents/list",
+            "name": "Default Documents",
+            "icon": "home",
+            "slug": "app-default-documents-list",
+            "permission": [
+                "default-documents-list",
+                "default-documents-create"
+            ]
+        },
+        {
+            "url": "app/user-documents/list",
+            "name": "User Documents",
+            "icon": "home",
+            "slug": "app-user-documents-list",
+            "permission": [
+                "user-documents-list",
+                "user-documents-create"
+            ]
+        },
+        {
+            "url": "app/uploaded-documents/list",
+            "name": "Uploaded Documents",
+            "icon": "home",
+            "slug": "app-uploaded-documents-list",
+            "permission": [
+                "events-list",
+                "events-create"
             ]
         },
         {

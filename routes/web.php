@@ -1,17 +1,23 @@
 <?php
 
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdvisorController;
 use App\Http\Controllers\ApplicationStatusesController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\DefaultDocumentsController;
 use App\Http\Controllers\DrawsController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\FCMTokensController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\OtherStakeholdersController;
 use App\Http\Controllers\OurServicesController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuccessStoriesController;
+use App\Http\Controllers\UploadedDocumentsController;
+use App\Http\Controllers\UserDocumentsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
@@ -164,6 +170,29 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('events/destroy/{encrypted_id}', [EventsController::class, 'destroy'])->name('app-events-delete');
     //events Type End
 
+    //advisor Type End
+    Route::get('advisor/list', [AdvisorController::class, 'index'])->name('app-advisor-list');
+    Route::get('advisor/getAll', [AdvisorController::class, 'getAll'])->name('app-advisor-get-all');
+    Route::post('advisor/store', [AdvisorController::class, 'store'])->name('app-advisor-store');
+    Route::get('advisor/add', [AdvisorController::class, 'create'])->name('app-advisor-add');
+    Route::get('advisor/edit/{encrypted_id}', [AdvisorController::class, 'edit'])->name('app-advisor-edit');
+    Route::put('advisor/update/{encrypted_id}', [AdvisorController::class, 'update'])->name('app-advisor-update');
+    Route::get('advisor/destroy/{encrypted_id}', [AdvisorController::class, 'destroy'])->name('app-advisor-delete');
+    Route::get('advisor/{id}', [AdvisorController::class, 'destroyimage'])->name('sliders.destroyimage');
+
+    //advisor Type End
+
+    //admin-user Type End
+    Route::get('admin-user/list', [AdminUserController::class, 'index'])->name('app-admin-user-list');
+    Route::get('admin-user/getAll', [AdminUserController::class, 'getAll'])->name('app-admin-user-get-all');
+    Route::post('admin-user/store', [AdminUserController::class, 'store'])->name('app-admin-user-store');
+    Route::get('admin-user/add', [AdminUserController::class, 'create'])->name('app-admin-user-add');
+    Route::get('admin-user/edit/{encrypted_id}', [AdminUserController::class, 'edit'])->name('app-admin-user-edit');
+    Route::put('admin-user/update/{encrypted_id}', [AdminUserController::class, 'update'])->name('app-admin-user-update');
+    Route::get('admin-user/destroy/{encrypted_id}', [AdminUserController::class, 'destroy'])->name('app-admin-user-delete');
+    Route::get('admin-user/{id}', [AdminUserController::class, 'destroyimage'])->name('sliders.destroyimage');
+
+    //admin-user Type End
     //draws Type End
     Route::get('draws/list', [DrawsController::class, 'index'])->name('app-draws-list');
     Route::get('draws/getAll', [DrawsController::class, 'getAll'])->name('app-draws-get-all');
@@ -183,6 +212,46 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('application-statuses/update/{encrypted_id}', [ApplicationStatusesController::class, 'update'])->name('app-application-statuses-update');
     Route::get('application-statuses/destroy/{encrypted_id}', [ApplicationStatusesController::class, 'destroy'])->name('app-application-statuses-delete');
     //success-stories Type End
+
+    //fcm-tokens Type End
+    Route::get('fcm-tokens/list', [FCMTokensController::class, 'index'])->name('app-fcm-tokens-list');
+    Route::get('fcm-tokens/getAll', [FCMTokensController::class, 'getAll'])->name('app-fcm-tokens-get-all');
+    Route::post('fcm-tokens/store', [FCMTokensController::class, 'store'])->name('app-fcm-tokens-store');
+    Route::get('fcm-tokens/add', [FCMTokensController::class, 'create'])->name('app-fcm-tokens-add');
+    Route::get('fcm-tokens/edit/{encrypted_id}', [FCMTokensController::class, 'edit'])->name('app-fcm-tokens-edit');
+    Route::put('fcm-tokens/update/{encrypted_id}', [FCMTokensController::class, 'update'])->name('app-fcm-tokens-update');
+    Route::get('fcm-tokens/destroy/{encrypted_id}', [FCMTokensController::class, 'destroy'])->name('app-fcm-tokens-delete');
+    //fcm-tokens Type End
+
+      //default-documents Type End
+      Route::get('default-documents/list', [DefaultDocumentsController::class, 'index'])->name('app-default-documents-list');
+      Route::get('default-documents/getAll', [DefaultDocumentsController::class, 'getAll'])->name('app-default-documents-get-all');
+      Route::post('default-documents/store', [DefaultDocumentsController::class, 'store'])->name('app-default-documents-store');
+      Route::get('default-documents/add', [DefaultDocumentsController::class, 'create'])->name('app-default-documents-add');
+      Route::get('default-documents/edit/{encrypted_id}', [DefaultDocumentsController::class, 'edit'])->name('app-default-documents-edit');
+      Route::put('default-documents/update/{encrypted_id}', [DefaultDocumentsController::class, 'update'])->name('app-default-documents-update');
+      Route::get('default-documents/destroy/{encrypted_id}', [DefaultDocumentsController::class, 'destroy'])->name('app-default-documents-delete');
+      //default-documents Type End
+
+       //user-documents Type End
+       Route::get('user-documents/list', [UserDocumentsController::class, 'index'])->name('app-user-documents-list');
+       Route::get('user-documents/getAll', [UserDocumentsController::class, 'getAll'])->name('app-user-documents-get-all');
+       Route::post('user-documents/store', [UserDocumentsController::class, 'store'])->name('app-user-documents-store');
+       Route::get('user-documents/add', [UserDocumentsController::class, 'create'])->name('app-user-documents-add');
+       Route::get('user-documents/edit/{encrypted_id}', [UserDocumentsController::class, 'edit'])->name('app-user-documents-edit');
+       Route::put('user-documents/update/{encrypted_id}', [UserDocumentsController::class, 'update'])->name('app-user-documents-update');
+       Route::get('user-documents/destroy/{encrypted_id}', [UserDocumentsController::class, 'destroy'])->name('app-user-documents-delete');
+       //user-documents Type End
+
+        //uploaded-documents Type End
+        Route::get('uploaded-documents/list', [UploadedDocumentsController::class, 'index'])->name('app-uploaded-documents-list');
+        Route::get('uploaded-documents/getAll', [UploadedDocumentsController::class, 'getAll'])->name('app-uploaded-documents-get-all');
+        Route::post('uploaded-documents/store', [UploadedDocumentsController::class, 'store'])->name('app-uploaded-documents-store');
+        Route::get('uploaded-documents/add', [UploadedDocumentsController::class, 'create'])->name('app-uploaded-documents-add');
+        Route::get('uploaded-documents/edit/{encrypted_id}', [UploadedDocumentsController::class, 'edit'])->name('app-uploaded-documents-edit');
+        Route::put('uploaded-documents/update/{encrypted_id}', [UploadedDocumentsController::class, 'update'])->name('app-uploaded-documents-update');
+        Route::get('uploaded-documents/destroy/{encrypted_id}', [UploadedDocumentsController::class, 'destroy'])->name('app-uploaded-documents-delete');
+        //user-documents Type End
 
     //Notification Type End
     Route::get('notifications/list', [NotificationsController::class, 'index'])->name('app-notifications-list');
