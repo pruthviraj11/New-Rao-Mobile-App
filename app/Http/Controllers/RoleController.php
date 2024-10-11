@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Models\User;
 use App\Services\RoleService;
 use Spatie\Permission\Models\Permission;
 use DataTables;

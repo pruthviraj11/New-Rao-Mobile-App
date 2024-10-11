@@ -90,4 +90,9 @@ class NotificationsController extends Controller
         }
 
     }
+    public function getUsersByClientType($clientTypeId)
+    {
+        $users = User::where('user_category', $clientTypeId)->get(['id', 'name']);
+        return response()->json($users);
+    }
 }

@@ -192,6 +192,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('notifications/edit/{encrypted_id}', [NotificationsController::class, 'edit'])->name('app-notifications-edit');
     Route::put('notifications/update/{encrypted_id}', [NotificationsController::class, 'update'])->name('app-notifications-update');
     Route::get('notifications/destroy/{encrypted_id}', [NotificationsController::class, 'destroy'])->name('app-notifications-delete');
+    Route::get('/users-by-client/{clientTypeId}', [NotificationsController::class, 'getUsersByClientType'])
+        ->name('users.by.client');
     //Notification Type End
 
     //our-services Type End
@@ -279,8 +281,9 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
 
     //report End
     Route::get('status-chart-report', [DashboardController::class, 'index'])->name('app-status-chart-report');
-    Route::get('/get-application-statuses/{categoryId}', [DashboardController::class, 'getApplicationStatuses'])->name('voyager.getApplicationStatuses');
-    Route::get('/get-users/{categoryId}', [DashboardController::class, 'getUsers_data'])->name('getUsers.list');
+    Route::get('/get-users', [DashboardController::class, 'getUsers_data'])->name('getUsers.list');
+    Route::get('/get-application-statuses', [DashboardController::class, 'getApplicationStatuses'])->name('getApplicationStatuses.list');
+
     //report End
 
 });
