@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
-                            <h3 class="fw-bolder mb-75">{{ $data['total_user'] }}</h3>
+                            <h3 class="fw-bolder mb-75">{{ $data['filtered_user_count'] }}</h3>
                             <span>Total Users</span>
                         </div>
                         <div class="avatar bg-light-primary p-50">
