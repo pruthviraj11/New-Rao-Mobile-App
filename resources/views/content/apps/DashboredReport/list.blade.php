@@ -24,7 +24,7 @@
         <h6 class="alert alert-warning">{{ session('status') }}</h6>
     @endif
     <section class="app-user-list">
-        <!-- list and filter start -->
+        <!--User List Report-->
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Dashbored Reports</h4>
@@ -126,7 +126,84 @@
                 </div>
             </div>
         </div>
-        <!-- list and filter end -->
+        <!--User List Report-->
+
+
+        <!--User List Report-->
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Summary Reports</h4>
+            </div>
+            <div class="card-body border-bottom">
+                <div class="card-datatable table-responsive pt-0">
+                    <div class="row panel-body">
+                        <div class="col-md-12 ">
+                            <div class="panel panel-bordered ">
+                                <div class="panel-body">
+                                    <div class="row">
+
+                                        <!--Summary Report-->
+                                        <div class="card">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="financial_year" class="form-label">Financial Year</label>
+                                                    <select name="financial_year" id="financial_year" class="form-control">
+                                                        @foreach ($financialYears as $key => $financial_year)
+                                                            <option value="{{ $key }}"
+                                                                {{ $key == now()->year ? 'selected' : '' }}>
+                                                                {{ $financial_year }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mt-3">
+                                                    <table id="dynamicTable" class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Description</th>
+                                                                <th colspan="2">Today</th>
+                                                                <th colspan="2">Current Week</th>
+                                                                <th colspan="2">Current Month</th>
+                                                                <th colspan="2">Financial Year</th>
+                                                                <th colspan="2">Overall</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>FE</th>
+                                                                <th>IV</th>
+                                                                <th>FE</th>
+                                                                <th>IV</th>
+                                                                <th>FE</th>
+                                                                <th>IV</th>
+                                                                <th>FE</th>
+                                                                <th>IV</th>
+                                                                <th>FE</th>
+                                                                <th>IV</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- Data will be dynamically populated here -->
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Summary Report-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--User List Report-->
+
+
+
+
     </section>
     <!-- users list ends -->
 @endsection
@@ -135,7 +212,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#category, #user, #application_status').select2({
+            $('#category, #user, #application_status','#financial_year').select2({
                 placeholder: 'Select an option',
                 allowClear: true
             });
@@ -196,7 +273,119 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#user-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{{ route('get-data-users') }}',
+                    data: function(d) {
+                        d.start_date = $('#start_date').val(); // Add start date filter
+                        d.end_date = $('#end_date').val(); // Add end date filter
+                        d.category_id = $('#category').val(); // Add category filter
+                        d.user_id = $('#user').val(); // Add user filter
+                        d.application_status = $('#application_status')
+                            .val(); // Existing application status filter
+                        d.status_value = $('#status_value').val(); // Existing status value filter
+                    },
 
+                },
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'done_count',
+                        name: 'done_count'
+                    },
+                    {
+                        data: 'pending_count',
+                        name: 'pending_count'
+                    },
+                    {
+                        data: 'na_count',
+                        name: 'na_count'
+                    },
+                    {
+                        data: 'total_count',
+                        name: 'total_count'
+                    },
+                    // Add more columns as needed
+                ],
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'excel',
+                    text: '<i data-feather="download"></i> Export',
+                    className: 'btn btn-success btn-sm'
+                }],
+                drawCallback: function() {
+                    feather.replace();
+                }
+            });
+
+
+            // Re-draw the table when the filter form is submitted
+            $('#filter-form').on('submit', function(e) {
+                e.preventDefault(); // Prevent form submission
+                table.draw(); // Redraw the DataTable with new filters
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            fetchData();
+
+            function fetchData() {
+                let year = $('#financial_year').val();
+                console.log(year);
+
+                $.ajax({
+                    url: 'admin/get-summry', // Replace with your route
+                    method: 'GET',
+                    data: {
+                        year: year
+                    },
+                    success: function(response) {
+                        let tbody = '';
+
+                        // Loop through each data row
+                        response.data.forEach(function(row) {
+                            tbody += `
+                        <tr>
+                            <td>${row.description}</td>
+                            <td>${row.today_fe}</td>
+                            <td>${row.today_iv}</td>
+                            <td>${row.week_fe}</td>
+                            <td>${row.week_iv}</td>
+                            <td>${row.month_fe}</td>
+                            <td>${row.month_iv}</td>
+                            <td>${row.fiscal_fe}</td>
+                            <td>${row.fiscal_iv}</td>
+                            <td>${row.overall_fe}</td>
+                            <td>${row.overall_iv}</td>
+                        </tr>
+                    `;
+                        });
+
+                        $('#dynamicTable tbody').html(tbody);
+                    },
+                    error: function(error) {
+                        console.error("There was an error fetching the data:", error);
+                    }
+                });
+            }
+
+            $('#financial_year').on('change', function() {
+                fetchData();
+            });
+        });
+    </script>
 
 @endsection
 

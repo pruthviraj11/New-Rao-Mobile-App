@@ -21,6 +21,23 @@ class User extends Authenticatable
      */
     protected $table = 'users';
     protected $guarded = [];
+    public function advisorUser()
+    {
+        return $this->hasOne(User::class, 'advisor_user_id', 'advisor_id');
+    }
+    public function userCategory()
+    {
+        return $this->hasOne(Category::class, 'id', 'user_category');
+    }
+    public function userRole()
+    {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+    public function reportingTo()
+    {
+        return $this->hasOne(User::class, 'id', 'reporting_to');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

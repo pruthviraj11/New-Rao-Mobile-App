@@ -13,12 +13,12 @@ class Setting extends Model
     protected $table = 'settings';
 
     protected $fillable = [
-        'full_access',
-        'partial_access',
-        'restriction_access',
-        'dymanager_manager',
-        'pearo',
-        'adviser',
-        'client',
+        'key',
+        'display_name',
+        'value',
+        'details',
+        'type',
+        'order',
+        'group'
     ];
 }

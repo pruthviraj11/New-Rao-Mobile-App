@@ -352,6 +352,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('status-chart-report', [DashboardController::class, 'index'])->name('app-status-chart-report');
     Route::get('/get-users', [DashboardController::class, 'getUsers_data'])->name('getUsers.list');
     Route::get('/get-application-statuses', [DashboardController::class, 'getApplicationStatuses'])->name('getApplicationStatuses.list');
+    Route::get('/get-data-users', [DashboardController::class, 'getUsersData'])->name('get-data-users');
+    Route::get('/admin/get-summry', [DashboardController::class, 'getSummry'])->name('admin/get-summry');
 
     //report End
 

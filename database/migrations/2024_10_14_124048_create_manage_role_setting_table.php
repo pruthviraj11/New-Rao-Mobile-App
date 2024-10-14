@@ -12,17 +12,17 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('manage_role_setting', function (Blueprint $table) {
             $table->id();
-            $table->boolean('full_access')->nullable();
-            $table->boolean('partial_access')->nullable();
-            $table->boolean('restriction_access')->nullable();
+            $table->string('full_access')->nullable();
+            $table->string('partial_access')->nullable();
+            $table->string('restriction_access')->nullable();
             $table->string('dymanager_manager')->nullable();
             $table->string('pearo')->nullable();
             $table->string('adviser')->nullable();
             $table->string('client')->nullable();
-            $table->timestamps(); // This adds created_at and updated_at
-            $table->softDeletes(); // This adds deleted_at
+            $table->timestamps(); // Adds created_at and updated_at
+            $table->softDeletes(); // Adds deleted_at
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('manage_role_setting');
     }
 };

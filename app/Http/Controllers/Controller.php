@@ -18,10 +18,10 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function gst(){
-        return Setting::pluck('gst')->first();
+        return ManageRoleSettings::pluck('gst')->first();
     }
     public function tds(){
-        return Setting::pluck('tds')->first();
+        return ManageRoleSettings::pluck('tds')->first();
     }
 
     public function sendDynamicEmail($type = '', $inquiry_ids = [],  $other = [] ){
@@ -40,7 +40,7 @@ class Controller extends BaseController
             $amount_paid = $receiptData->amount_paid;
             $file = storage_path('app/public/'.$receiptData->receipt_name);
         }
-            $setting = Setting::pluck($type)->first();
+        $setting = ManageRoleSettings::pluck($type)->first();
         if ($setting){
             foreach ($inquiry_ids as $inquiry_id){
                 $inquiry = Inquiry::where('id', $inquiry_id)->first();
@@ -69,7 +69,7 @@ class Controller extends BaseController
                 $receiptData = $other['paymentReceipt'];
                 $amount_paid = $receiptData->amount_paid;
             }
-            $setting = Setting::pluck($type)->first();
+            $setting = ManageRoleSettings::pluck($type)->first();
 
             if ($setting){
 

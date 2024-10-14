@@ -199,7 +199,7 @@
         {
             "url": "app/notifications/list",
             "name": "Notifications",
-            "icon": "pen-tool",
+            "icon": "bell",
             "slug": "app-notifications-list",
             "permission": [
                 "notifications-list",
@@ -209,7 +209,7 @@
         {
             "url": "app/fcm-tokens/list",
             "name": "FCM Tokens",
-            "icon": "home",
+            "icon": "user",
             "slug": "app-fcm-tokens-list",
             "permission": [
                 "events-list",
@@ -219,7 +219,7 @@
         {
             "url": "app/default-documents/list",
             "name": "Default Documents",
-            "icon": "home",
+            "icon": "book",
             "slug": "app-default-documents-list",
             "permission": [
                 "default-documents-list",
@@ -229,7 +229,7 @@
         {
             "url": "app/user-documents/list",
             "name": "User Documents",
-            "icon": "home",
+            "icon": "book",
             "slug": "app-user-documents-list",
             "permission": [
                 "user-documents-list",
@@ -239,7 +239,7 @@
         {
             "url": "app/uploaded-documents/list",
             "name": "Uploaded Documents",
-            "icon": "home",
+            "icon": "upload-cloud",
             "slug": "app-uploaded-documents-list",
             "permission": [
                 "events-list",

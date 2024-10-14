@@ -12,7 +12,7 @@ use App\Models\User;
 function roleName($value)
 {
 
-    $role_id = Setting::where('role_config->role_name', $value)->select('role_config->role_id')->first();
+    $role_id = ManageRoleSettings::where('role_config->role_name', $value)->select('role_config->role_id')->first();
     $role_name = role::where('id', $role_id)->pluck('name')->first();
 
     return $role_name;
@@ -46,10 +46,13 @@ function assignRoleToUsers()
         }
     }
     // dd("All Roles Assigned");
-
+    function getSettings()
+    {
+        return ManageRoleSettings::first();
+    }
     function fullAccessRoles()
     {
-        $roles_id = json_decode(Setting::pluck('full_access')->first());
+        $roles_id = json_decode(ManageRoleSettings::pluck('full_access')->first());
 
         $roleArray = array();
 
@@ -61,14 +64,16 @@ function assignRoleToUsers()
         return $roleArray;
     }
 
-    // function pearoRole()
-    // {
-    //     $roleName = Role::where('id', getSettings()->account_role)->pluck('name')->first();
-    //     return $roleName;
-    // }
+
+    function accountRole()
+    {
+        $roleName = Role::where('id', getSettings()->account_role)->pluck('name')->first();
+        return $roleName;
+    }
 
 
-function getDescendants($userId)
+
+    function getDescendants($userId)
 {
     $descendants = User::where('reporting_to', $userId)->where('role_id', "!=", 2)->pluck('id');
 
@@ -80,5 +85,22 @@ function getDescendants($userId)
 
     return $allDescendants;
 }
+
+    function getFinancialYears()
+    {
+        $firstCreatedDate = \DB::table('chat_sessions')->orderBy('created_at', 'asc')->value('created_at');
+        $lastCreatedDate = \DB::table('chat_sessions')->orderBy('created_at', 'desc')->value('created_at');
+
+        $startYear = \Carbon\Carbon::parse($firstCreatedDate)->format('Y');
+        $endYear = \Carbon\Carbon::parse($lastCreatedDate)->format('Y');
+
+        $yearRanges = [];
+
+        for ($year = $startYear; $year <= $endYear; $year++) {
+            $yearRanges[$year] = $year . '-' . ($year + 1);
+        }
+
+        return $yearRanges;
+    }
 
 }
