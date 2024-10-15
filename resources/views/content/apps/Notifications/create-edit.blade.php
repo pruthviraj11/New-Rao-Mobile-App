@@ -90,8 +90,9 @@
                                 <!-- User ID Dropdown -->
                                 <div class="col-md-6 col-sm-12 mb-1">
                                     <label class="form-label" for="user_id">User</label>
-                                    <select id="user_id" class="form-control select2" name="user_id">
+                                    <select id="user_id" class="form-control select2" name="user_id[]" multiple>
                                         <option value="">Select User</option>
+                                        <option value="select_all">Select All</option>
                                         <!-- Initially empty; users will be populated based on client type selection -->
                                     </select>
                                     <span class="text-danger">
@@ -126,6 +127,14 @@
 
     <script>
         $(document).ready(function() {
+            $('#user_id').select2({
+                placeholder: "Select Users",
+                allowClear: true
+            });
+        });
+
+
+        $(document).ready(function() {
             $('.select2').select2({
                 placeholder: "Select Client Type",
                 allowClear: true
@@ -137,31 +146,47 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $('#client-type').change(function() {
-                var clientTypeId = $(this).val();
-                if (clientTypeId) {
-                    $.ajax({
-                        url: '{{ route('users.by.client', '') }}/' + clientTypeId,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#user_id').empty();
-                            $('#user_id').append('<option value="">Select User</option>');
-                            $.each(data, function(key, user) {
-                                $('#user_id').append('<option value="' + user.id +
-                                    '">' + user.name + '</option>');
-                            });
-                        },
-                        error: function() {
-                            alert('Error fetching users');
-                        }
-                    });
-                } else {
-                    $('#user_id').empty();
-                    $('#user_id').append('<option value="">Select User</option>');
-                }
-            });
+    $(document).ready(function() {
+        $('#client-type').change(function() {
+            var clientTypeId = $(this).val();
+            if (clientTypeId) {
+                $.ajax({
+                    url: '{{ route('users.by.client', '') }}/' + clientTypeId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#user_id').empty();
+                        $('#user_id').append('<option value="">Select User</option>');
+                        $('#user_id').append('<option value="all">Select All</option>'); // Add Select All option
+                        $.each(data, function(key, user) {
+                            $('#user_id').append('<option value="' + user.id + '">' + user.name + '</option>');
+                        });
+                    },
+                    error: function() {
+                        alert('Error fetching users');
+                    }
+                });
+            } else {
+                $('#user_id').empty();
+                $('#user_id').append('<option value="">Select User</option>');
+            }
         });
-    </script>
+
+        // Handle user selection
+        $('#user_id').change(function() {
+            if ($(this).find('option[value="all"]').is(':selected')) {
+                // Confirm action before selecting all
+                if (confirm('Are you sure you want to select all users? This may take a while.')) {
+                    // If "Select All" is checked, select all users
+                    $('#user_id option').prop('selected', true);
+                    $(this).trigger('change'); // Trigger change event to refresh select2
+                } else {
+                    // If the user cancels, unselect "Select All"
+                    $(this).find('option[value="all"]').prop('selected', false);
+                }
+            }
+        });
+    });
+</script>
+
 @endsection
