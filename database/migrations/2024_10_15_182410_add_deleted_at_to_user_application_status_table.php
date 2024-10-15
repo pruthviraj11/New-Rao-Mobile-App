@@ -12,8 +12,8 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('roles', function (Blueprint $table) {
-            $table->softDeletes(); // Add the deleted_at column for soft deletes
+        Schema::table('user_application_status', function (Blueprint $table) {
+            $table->softDeletes(); // This will add the deleted_at column
         });
     }
 
@@ -24,8 +24,8 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('roles', function (Blueprint $table) {
-            $table->dropSoftDeletes();
+        Schema::table('user_application_status', function (Blueprint $table) {
+            $table->dropSoftDeletes(); // This will drop the deleted_at column
         });
     }
 };

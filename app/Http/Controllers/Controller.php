@@ -108,5 +108,70 @@ class Controller extends BaseController
             dd($error->getMessage());
         }
     }
-    
+    public function sendPushNotification($fcm_token, $title, $message, $data)
+    {
+        $url = 'https://fcm.googleapis.com/fcm/send';
+
+
+        $serverKey = env("SERVER_API_KEY");
+
+
+        $data = [
+            "message" => [
+                "token" => $fcm_token,
+                "notification" => [
+                    "title" => $title,
+                    "body" => $message,
+                ],
+                "data" => $data,
+                "apns" => [
+                    "payload" => [
+                        "aps" => [
+                            "sound" => "default"
+                        ]
+                    ]
+                ],
+                "android" => [
+                    "priority" => "high",
+                ]
+            ]
+        ];
+
+        $encodedData = json_encode($data);
+
+        $headers = [
+            'Authorization:key=' . $serverKey,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        // Disabling SSL Certificate support temporarly
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $encodedData);
+
+        \Log::info(json_encode($ch));
+        // Execute post
+        $result = curl_exec($ch);
+        \Log::info("In Pusher");
+
+        \Log::info($result);
+
+        if ($result === FALSE) {
+            \Log::info(curl_error($ch));
+            //        die('Curl failed: ' . curl_error($ch));
+            \Log::info('Curl failed: ' . curl_error($ch));
+        }
+
+        // Close connection
+        curl_close($ch);
+
+        return $result;
+    }
 }

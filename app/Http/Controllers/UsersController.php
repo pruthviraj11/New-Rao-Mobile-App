@@ -6,9 +6,12 @@ use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Requests\User\UpdateUserProfileRequest;
 use Spatie\Permission\Models\Permission;
-
+use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\UserApplicationStatus;
+use App\Models\ApplicationStatuses;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use App\Services\RoleService;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Hash;
@@ -135,13 +138,9 @@ class UsersController extends Controller
         $currentUser = auth()->user();
         $type = 1;
 
-
         $hierarchyData = $this->getHierarchyWiseUser($currentUser, $type);
-
         $reportingUserIds = $hierarchyData['reportingTo']->pluck('id')->toArray();
-
         $descendantUserIds = $this->getDescendants($currentUser->id)->toArray();
-
         $allUserIds = array_merge($reportingUserIds, $descendantUserIds);
 
         $users = User::whereIn('id', $allUserIds)->get();
@@ -156,11 +155,114 @@ class UsersController extends Controller
                 // Delete Button
                 $deleteButton = "<a data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='" . $encryptedId . "' id='confirm-color' href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></a>";
 
-                return $updateButton . " " . $deleteButton;
+                // Start Chat Button
+                $chatButton = "<a data-bs-toggle='tooltip' title='Application Journey' data-bs-delay='400' class='btn btn-info' href='" . route('users.application_journey', $encryptedId) . "'><i data-feather='send'></i></a>";
+
+                return $updateButton . " " . $deleteButton . " " . $chatButton;
             })
             ->rawColumns(['actions'])
             ->make(true);
     }
+
+
+    public function applicationJourney($id)
+    {
+        $decrypt = decrypt($id);
+        $user = User::find($decrypt);
+
+        if (!$user || $user->role_id != 2) {
+            return redirect()->back()->with('error', 'User not found or unauthorized.');
+        }
+
+        $status_value = ApplicationStatuses::pluck('name')->toArray();
+
+        // Fetch application statuses based on user category
+        $application_statuses = ApplicationStatuses::where('category_id', $user->user_category)
+            ->orderBy("order")
+            ->get();
+
+        foreach ($application_statuses as $application_status) {
+            $userApplication = UserApplicationStatus::where('user_id', $decrypt)
+                ->where('application_status', $application_status->id)
+                ->first();
+
+            if ($userApplication) {
+                $application_status->status_value = $userApplication->status_value;
+                $application_status->status_date = $userApplication->status_date;
+                $application_status->status_order = $userApplication->status_order;
+            }
+        }
+
+        return view('content.apps.user.application-journey', compact('user', 'status_value', 'application_statuses'));
+    }
+
+
+    public function storeStatus(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'application_status_id' => 'required|exists:application_statuses,id',
+            'status_value' => 'required|string',
+            'status_date' => 'nullable|date',
+            'status_order' => 'nullable|integer',
+        ]);
+
+        try {
+            // Retrieve user
+            $user = User::findOrFail($request->get('user_id'));
+
+            // Retrieve or create application user status
+            $applicationUserStatus = UserApplicationStatus::updateOrCreate(
+                [
+                    'application_status' => $request->get('application_status_id'),
+                    'user_id' => $user->id,
+                ],
+                [
+                    'status_value' => $request->get('status_value'),
+                    'status_date' => $request->get('status_date'),
+                    'status_order' => $request->get('status_order'),
+                ]
+            );
+
+            // Prepare notification data if necessary
+            $shouldSendNotification = $request->get('status_value') === "Done" &&
+                ($applicationUserStatus->wasRecentlyCreated || $applicationUserStatus->status_value !== "Done");
+
+            if ($shouldSendNotification) {
+                // Fetch notification message from settings
+                $settingMessage = DB::table('settings')->where('key', 'admin.admin_application_journey_status_message')->value('value');
+
+                // Prepare notification data
+                $notificationData = [
+                    'type' => 2,
+                    'title' => $applicationUserStatus->applicationStatus->name ?? '',
+                    'message' => "Your status has been changed.",
+                ];
+
+                // Send push notification
+                $this->sendPushNotification($user->device_token, "Application Journey", $settingMessage, $notificationData);
+
+                // Store notification
+                $this->storeNotification([
+                    'title' => $notificationData['title'],
+                    'message' => $settingMessage,
+                    'is_sent' => 1,
+                    'type' => 2,
+                    'user_id' => $user->id,
+                ]);
+            }
+
+            return response()->json(['status' => true, 'message' => 'Status stored successfully.']);
+
+        } catch (\Exception $e) {
+            // Log the error message for debugging
+            \Log::error('Error storing status: ' . $e->getMessage());
+
+            return response()->json(['status' => false, 'message' => 'An error occurred while storing the status. Please try again.'], 500);
+        }
+    }
+
 
 
 
