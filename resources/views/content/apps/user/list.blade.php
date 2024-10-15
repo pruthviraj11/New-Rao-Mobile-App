@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body d-flex align-items-center justify-content-between">
                         <div>
-                            <h3 class="fw-bolder mb-75">{{ $data['total_user'] }}</h3>
+                            <h3 class="fw-bolder mb-75">{{ $data['filtered_user_count'] }}</h3>
                             <span>Total Users</span>
                         </div>
                         <div class="avatar bg-light-primary p-50">
@@ -38,36 +38,7 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-lg-3 col-sm-6">
-                <div class="card">
-                    <div class="card-body d-flex align-items-center justify-content-between">
-                        <div>
-                            <h3 class="fw-bolder mb-75">{{ $data['agents_count'] }}</h3>
-                            <span>Total Agents</span>
-                        </div>
-                        <div class="avatar bg-light-success p-50">
-                            <span class="avatar-content">
-                                <i data-feather="user-check" class="font-medium-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="card">
-                    <div class="card-body d-flex align-items-center justify-content-between">
-                        <div>
-                            <h3 class="fw-bolder mb-75">{{ $data['total_inquiries'] }}</h3>
-                            <span>Total Inquiries</span>
-                        </div>
-                        <div class="avatar bg-light-warning p-50">
-                            <span class="avatar-content">
-                                <i data-feather="user-x" class="font-medium-4"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+
         </div>
         <!-- list and filter start -->
         <div class="card">
@@ -75,9 +46,12 @@
                 <h4 class="card-title">Users list</h4>
                 <a href="{{ route('app-users-add') }}" class="col-md-2 btn btn-primary">Add Users
                 </a>
+
             </div>
+           
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
+
                     <table class="user-list-table table dt-responsive" id="users-table">
                         <thead>
                             <tr>
@@ -116,6 +90,14 @@
 @endsection
 
 @section('page-script')
+    <script>
+        $(document).ready(function() {
+            $('#advisor_assign_to').select2({
+                placeholder: 'Select Advisor',
+                allowClear: true
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#users-table').DataTable({

@@ -47,25 +47,106 @@ class UsersController extends Controller
      */
     public function index()
     {
-        // $user = User::find(2);
+
+        $currentUser = auth()->user();
+        $type = 1;
+
+        $hierarchyData = $this->getHierarchyWiseUser($currentUser, $type);
 
 
-        // $role = Role::find(1);
-        // // dd($user, $role);
+        $reportingUserIds = $hierarchyData['reportingTo']->pluck('id')->toArray();
 
-        // $user->assignRole($role);
-        $data['total_user'] = User::count();
+
+        $descendantUserIds = $this->getDescendants($currentUser->id)->toArray();
+
+
+        $allUserIds = array_merge($reportingUserIds, $descendantUserIds);
+
+
+        $filteredUserCount = User::whereIn('id', $allUserIds)->count();
+
+
+        $totalUserCount = User::count();
+
+        $data['total_user'] = $totalUserCount;
+        $data['filtered_user_count'] = $filteredUserCount;
         // dd($data);
         return view('content.apps.user.list', compact('data'));
     }
 
 
+    public function getDescendants($userId)
+    {
+        $descendants = User::where('reporting_to', $userId)->where('role_id', "!=", 2)->pluck('id');
+
+        $allDescendants = collect($descendants);
+
+        foreach ($descendants as $descendant) {
+            $allDescendants = $allDescendants->merge($this->getDescendants($descendant));
+        }
+
+        return $allDescendants;
+    }
+    public function getHierarchyWiseUser($user, $type)
+    {
+        if ($user->role_id == 1) {
+            $reportingQuery = User::whereIn('id', function ($query) {
+                $query->select('id')->from('users')
+                    ->where(function ($query) {
+                        $query->where('role_id', '!=', 25)
+                            ->where('role_id', '!=', 1);
+                    });
+            })->orderBy('name', 'asc')->get();
+
+        } else if ($user->role_id == 3) {
+            $reportingQuery = User::whereIn('id', function ($query) {
+                $query->select('id')->from('users')
+                    ->where('role_id', '!=', 25);
+            })->orderBy('name', 'asc')->get();
+
+        } else {
+            $reportingQuery = User::whereIn('id', function ($query) use ($user) {
+                $query->select('id')
+                    ->from('users')
+                    ->where('user_category', $user->user_category)
+                    ->whereIn('id', $this->getDescendants($user->id))
+                    ->orWhere('id', $user->id);
+            })->orderBy('name', 'asc')->get();
+        }
+
+        if ($type == 1) {
+            if (!empty($reportingQuery)) {
+                $adviaorUsersId = collect($reportingQuery)->pluck('id')->toArray();
+            } else {
+                $adviaorUsersId = [];
+            }
+        } else {
+            if (!empty($reportingQuery)) {
+                $adviaorUsersId = collect($reportingQuery)->pluck('advisor_user_id')->toArray();
+            } else {
+                $adviaorUsersId = [];
+            }
+        }
+
+        return ['reportingTo' => $reportingQuery, 'adviaorUsersId' => $adviaorUsersId];
+    }
     public function getAll()
     {
-        $users = $this->userService->getAllUser();
+        $currentUser = auth()->user();
+        $type = 1;
+
+
+        $hierarchyData = $this->getHierarchyWiseUser($currentUser, $type);
+
+        $reportingUserIds = $hierarchyData['reportingTo']->pluck('id')->toArray();
+
+        $descendantUserIds = $this->getDescendants($currentUser->id)->toArray();
+
+        $allUserIds = array_merge($reportingUserIds, $descendantUserIds);
+
+        $users = User::whereIn('id', $allUserIds)->get();
 
         return DataTables::of($users)
-
             ->addColumn('actions', function ($row) {
                 $encryptedId = encrypt($row->id);
 
@@ -80,6 +161,7 @@ class UsersController extends Controller
             ->rawColumns(['actions'])
             ->make(true);
     }
+
 
 
     /**

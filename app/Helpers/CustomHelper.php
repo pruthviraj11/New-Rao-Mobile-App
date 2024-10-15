@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 use App\Models\Role;
+use App\Models\ManageRoleSettings;
 use App\Models\Setting;
 use App\Models\User;
 

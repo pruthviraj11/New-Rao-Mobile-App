@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Mail\DynamicEmail;
 use App\Models\EmailTemplate;
+use App\Models\Role;
+use App\Models\ManageRoleSettings;
 use App\Models\Inquiry;
 use App\Models\Setting;
 use App\Models\SMSTemplate;
@@ -23,7 +25,22 @@ class Controller extends BaseController
     public function tds(){
         return ManageRoleSettings::pluck('tds')->first();
     }
+    public function getSettings()
+    {
+        return ManageRoleSettings::first();
+    }
+    public function advisorRole()
+    {
+        $roles_id = json_decode(ManageRoleSettings::pluck('adviser')->first());
 
+        $roleArray = array();
+
+        foreach ($roles_id as $id) {
+            $roleName = Role::where('id', $id)->pluck('name')->first();
+            array_push($roleArray, $roleName);
+        }
+        return $roleArray;
+    }
     public function sendDynamicEmail($type = '', $inquiry_ids = [],  $other = [] ){
         $documentList = '';
         if ($type == 'document_reminder' || $type == 'document_list'){
@@ -91,4 +108,5 @@ class Controller extends BaseController
             dd($error->getMessage());
         }
     }
+    
 }
