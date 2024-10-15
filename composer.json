@@ -14,6 +14,8 @@
     "doctrine/dbal": "^3.6",
     "fruitcake/laravel-cors": "^3.0",
     "guzzlehttp/guzzle": "^7.2",
+    "kreait/firebase-php": "^6.9",
+    "kreait/laravel-firebase": "^4.1",
     "laravel/framework": "^9.0",
     "laravel/sanctum": "^2.14",
     "laravel/telescope": "^5.2",

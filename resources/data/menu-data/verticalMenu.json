@@ -1,16 +1,6 @@
 {
     "menu": [
         {
-            "url": "app/roles/list",
-            "name": "Roles",
-            "icon": "lock",
-            "slug": "app-roles-list",
-            "permission": [
-                "role-list",
-                "role-create"
-            ]
-        },
-        {
             "url": "app/status-chart-report",
             "name": "Status & Chat Summary Report",
             "icon": "user",
@@ -21,13 +11,13 @@
             ]
         },
         {
-            "url": "app/users/list",
-            "name": "User",
-            "icon": "user",
-            "slug": "app-users-list",
+            "url": "app/roles/list",
+            "name": "Roles",
+            "icon": "lock",
+            "slug": "app-roles-list",
             "permission": [
-                "user-list",
-                "user-create"
+                "role-list",
+                "role-create"
             ]
         },
         {
@@ -38,16 +28,6 @@
             "permission": [
                 "sliders-list",
                 "sliders-create"
-            ]
-        },
-        {
-            "url": "app/client-types/list",
-            "name": "client-types",
-            "icon": "users",
-            "slug": "app-client-types-list",
-            "permission": [
-                "client-types-list",
-                "client-types-create"
             ]
         },
         {
@@ -80,6 +60,56 @@
                         "news-create"
                     ]
                 }
+            ]
+        },
+        {
+            "url": "app/users/list",
+            "name": "User",
+            "icon": "user",
+            "slug": "app-users-list",
+            "permission": [
+                "user-list",
+                "user-create"
+            ]
+        },
+        {
+            "url": "app/other-stakeholders/list",
+            "name": "Other Stakeholder",
+            "icon": "star",
+            "slug": "app-other-stakeholders-list",
+            "permission": [
+                "our-services-list",
+                "our-services-create"
+            ]
+        },
+        {
+            "url": "app/advisor/list",
+            "name": "Advisor",
+            "icon": "star",
+            "slug": "app-advisor-list",
+            "permission": [
+                "advisor-list",
+                "advisor-create"
+            ]
+        },
+        {
+            "url": "app/admin-user/list",
+            "name": "Admin User",
+            "icon": "star",
+            "slug": "app-admin-user-list",
+            "permission": [
+                "advisor-list",
+                "advisor-create"
+            ]
+        },
+        {
+            "url": "app/our-services/list",
+            "name": "Our Services",
+            "icon": "pen-tool",
+            "slug": "app-our-services-list",
+            "permission": [
+                "our-services-list",
+                "our-services-create"
             ]
         },
         {
@@ -125,6 +155,7 @@
 
             ]
         },
+
         {
             "url": "app/events/list",
             "name": "Events",
@@ -247,6 +278,26 @@
             ]
         },
         {
+            "url": "app/client-types/list",
+            "name": "client-types",
+            "icon": "users",
+            "slug": "app-client-types-list",
+            "permission": [
+                "client-types-list",
+                "client-types-create"
+            ]
+        },
+        {
+            "url": "app/application-statuses/list",
+            "name": "Application Statuses",
+            "icon": "send",
+            "slug": "app-application-statuses-list",
+            "permission": [
+                "application-statuses-list",
+                "application-statuses-create"
+            ]
+        },
+        {
             "url": "app/internal-program-statuses/list",
             "name": "internal Program Status",
             "icon": "send",
@@ -254,6 +305,26 @@
             "permission": [
                 "internal-program-statuses-list",
                 "internal-program-statuses-create"
+            ]
+        },
+        {
+            "url": "app/notifications/list",
+            "name": "Notifications",
+            "icon": "bell",
+            "slug": "app-notifications-list",
+            "permission": [
+                "notifications-list",
+                "notifications-create"
+            ]
+        },
+        {
+            "url": "app/draws/list",
+            "name": "Draws",
+            "icon": "pen-tool",
+            "slug": "app-draws-list",
+            "permission": [
+                "events-list",
+                "events-create"
             ]
         },
         {
@@ -265,6 +336,19 @@
                 "home-services-list",
                 "home-services-create"
             ]
+        },
+        {
+            "url": "app/fcm-tokens/list",
+            "name": "FCM Tokens",
+            "icon": "home",
+            "slug": "app-fcm-tokens-list",
+            "permission": [
+                "events-list",
+                "events-create"
+            ]
         }
+
+
+
     ]
 }
