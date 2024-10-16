@@ -194,7 +194,7 @@
             placeholder: "Select User",
             allowClear: true,
             ajax: {
-                url: '{{ route("get.users") }}', // URL for the AJAX request
+                url: '{{ route('get.users') }}', // URL for the AJAX request
                 dataType: 'json',
                 delay: 250, // Delay to wait before triggering AJAX call
                 data: function (params) {

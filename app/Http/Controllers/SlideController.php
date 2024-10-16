@@ -167,6 +167,13 @@ class SlideController extends Controller
         }
     }
 
+    public function bulkDelete(Request $request)
+    {
+        Slide::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'Slider deleted successfully.']);
+    }
+
     public function destroyimage($id)
     {
         $slider = Slide::findOrFail($id);

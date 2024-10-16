@@ -85,6 +85,8 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('permissions', [RoleController::class, 'permissions_list'])->name('app-permissions-list');
     Route::get('roles/list', [RoleController::class, 'index'])->name('app-roles-list');
+    Route::post('app-role-bulk-delete', [RoleController::class, 'bulkDelete'])->name('app-roles-destroy');
+
     Route::get('send/mail', [MailController::class, 'sendMail'])->name('send-mail');
 
 
@@ -122,10 +124,14 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('users/update/{encrypted_id}', [UsersController::class, 'update'])->name('app-users-update');
     Route::get('users/destroy/{encrypted_id}', [UsersController::class, 'destroy'])->name('app-users-destroy');
     Route::get('users/getAll', [UsersController::class, 'getAll'])->name('app-users-get-all');
+    Route::post('app-users-bulk-delete', [UsersController::class, 'bulkDelete'])->name('app-users-bulk-destroy');
+
     //User End
 
 
     //Sliders Start
+    Route::post('app-slide-bulk-delete', [SlideController::class, 'bulkDelete'])->name('app-sliders-bluk-destroy');
+
     Route::get('sliders/list', [SlideController::class, 'index'])->name('app-sliders-list');
     Route::get('sliders/getAll', [SlideController::class, 'getAll'])->name('app-sliders-get-all');
     Route::post('sliders/store', [SlideController::class, 'store'])->name('app-sliders-store');
@@ -134,6 +140,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('sliders/update/{encrypted_id}', [SlideController::class, 'update'])->name('app-sliders-update');
     Route::get('sliders/destroy/{encrypted_id}', [SlideController::class, 'destroy'])->name('app-sliders-delete');
     Route::get('sliders/{id}', [SlideController::class, 'destroyimage'])->name('sliders.destroyimage');
+
     //Slider End
 
 
@@ -155,6 +162,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('news-categories/edit/{id}', [NewsCategoryController::class, 'edit'])->name('app-news-categories-edit');
     Route::put('news-categories/update/{id}', [NewsCategoryController::class, 'update'])->name('app-news-categories-update');
     Route::get('news-categories/destroy/{id}', [NewsCategoryController::class, 'destroy'])->name('app-news-categories-delete');
+    Route::post('app-news-categories-bulk-delete', [NewsCategoryController::class, 'bulkDelete'])->name('app-news-categories-bluk-destroy');
     //news-categories Type End
 
     //success-stories Type End
@@ -165,6 +173,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('success-stories/edit/{encrypted_id}', [SuccessStoriesController::class, 'edit'])->name('app-success-stories-edit');
     Route::put('success-stories/update/{encrypted_id}', [SuccessStoriesController::class, 'update'])->name('app-success-stories-update');
     Route::get('success-stories/destroy/{encrypted_id}', [SuccessStoriesController::class, 'destroy'])->name('app-success-stories-delete');
+    Route::post('app-success-stories-bulk-delete', [SuccessStoriesController::class, 'bulkDelete'])->name('app-success-stories-bluk-destroy');
+
     //success-stories Type End
 
     //events Type End
@@ -280,6 +290,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('our-services/edit/{encrypted_id}', [OurServicesController::class, 'edit'])->name('app-our-services-edit');
     Route::put('our-services/update/{encrypted_id}', [OurServicesController::class, 'update'])->name('app-our-services-update');
     Route::get('our-services/destroy/{encrypted_id}', [OurServicesController::class, 'destroy'])->name('app-our-services-delete');
+    Route::post('app-our-services-bulk-delete', [OurServicesController::class, 'bulkDelete'])->name('app-our-services-bluk-destroy');
     //our-services Type End
 
     //other-stakeholders Type End
@@ -291,6 +302,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('other-stakeholders/update/{encrypted_id}', [OtherStakeholdersController::class, 'update'])->name('app-other-stakeholders-update');
     Route::get('other-stakeholders/destroy/{encrypted_id}', [OtherStakeholdersController::class, 'destroy'])->name('app-other-stakeholders-delete');
     Route::get('/get-users', [OtherStakeholdersController::class, 'getUsers'])->name('get.users');
+    Route::post('app-other-stakeholders-bulk-delete', [OtherStakeholdersController::class, 'bulkDelete'])->name('app-other-stakeholders-bluk-destroy');
+
 
     //other-stakeholders Type End
 
@@ -303,6 +316,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('news/update/{encrypted_id}', [NewsController::class, 'update'])->name('app-news-update');
     Route::get('news/destroy/{encrypted_id}', [NewsController::class, 'destroy'])->name('app-news-delete');
     Route::get('news/{encrypted_id}', [NewsController::class, 'destroyimage'])->name('news.destroyimage');
+    Route::post('app-news-bulk-delete', [NewsController::class, 'bulkDelete'])->name('app-news-bluk-destroy');
+
     //news Type End
 
     //faq-category Type End
@@ -314,6 +329,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('faq-categories/update/{encrypted_id}', [FaqCategoryController::class, 'update'])->name('app-faq-categories-update');
     Route::get('faq-categories/destroy/{encrypted_id}', [FaqCategoryController::class, 'destroy'])->name('app-faq-categories-delete');
     Route::get('faq-categories/{encrypted_id}', [FaqCategoryController::class, 'destroyimage'])->name('faq-categories.destroyimage');
+    Route::post('app-faq-categories-bulk-delete', [FaqCategoryController::class, 'bulkDelete'])->name('app-faq-categories-bluk-destroy');
+
     //faq-category Type End
 
 
@@ -326,6 +343,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('faq/update/{encrypted_id}', [FaqController::class, 'update'])->name('app-faq-update');
     Route::get('faq/destroy/{encrypted_id}', [FaqController::class, 'destroy'])->name('app-faq-delete');
     Route::get('faq/{encrypted_id}', [FaqController::class, 'destroyimage'])->name('faq.destroyimage');
+    Route::post('app-faq-bulk-delete', [FaqController::class, 'bulkDelete'])->name('app-faq-bluk-destroy');
+
     //faq Type End
 
 

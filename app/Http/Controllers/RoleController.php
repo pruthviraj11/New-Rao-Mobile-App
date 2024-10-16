@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Models\Role;
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\RoleService;
 use Spatie\Permission\Models\Permission;
@@ -35,6 +37,22 @@ class RoleController extends Controller
     {
         return view('/content/apps/roles/list');
     }
+
+
+    public function bulkDelete(Request $request)
+    {
+
+        $this->validate($request, [
+            'ids' => 'required|array',
+            'ids.*' => 'exists:roles,id', // Ensure this is pointing to the correct table
+        ]);
+
+        // Soft delete roles
+        Role::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'Roles deleted successfully.']);
+    }
+
 
     public function permissions_list()
     {

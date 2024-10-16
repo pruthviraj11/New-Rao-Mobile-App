@@ -183,6 +183,12 @@ class NewsController extends Controller
         }
 
     }
+    public function bulkDelete(Request $request)
+    {
+        News::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'News Categories deleted successfully.']);
+    }
     public function destroyimage($id)
     {
         $news = News::findOrFail($id);

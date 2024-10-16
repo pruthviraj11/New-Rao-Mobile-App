@@ -33,7 +33,12 @@ class FaqController extends Controller
     {
         return view('content/apps/Faq/list');
     }
+    public function bulkDelete(Request $request)
+    {
+        Faq::whereIn('id', $request->ids)->delete();
 
+        return response()->json(['message' => 'Slider deleted successfully.']);
+    }
     public function create()
     {
         $faq = "";

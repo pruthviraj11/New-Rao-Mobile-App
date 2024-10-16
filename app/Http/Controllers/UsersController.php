@@ -171,6 +171,18 @@ class UsersController extends Controller
             ->rawColumns(['actions'])
             ->make(true);
     }
+    public function bulkDelete(Request $request)
+    {
+        $this->validate($request, [
+            'ids' => 'required|array',
+            'ids.*' => 'exists:users,id',
+        ]);
+
+        // Soft delete users
+        User::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'Users deleted successfully.']);
+    }
 
     public function restrictScreens($id)
     {

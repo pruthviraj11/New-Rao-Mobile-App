@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\NewsCategory;
+use App\Models\OtherStakeholders;
 use App\Models\User;
 use App\Services\OtherStakeholdersService;
 use Illuminate\Http\Request;
@@ -32,7 +33,12 @@ class OtherStakeholdersController extends Controller
     }
 
 
+    public function bulkDelete(Request $request)
+    {
+        OtherStakeholders::whereIn('id', $request->ids)->delete();
 
+        return response()->json(['message' => 'News Categories deleted successfully.']);
+    }
     public function index()
     {
         return view('content/apps/OtherStakeholders/list');

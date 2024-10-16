@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\OurServices\CreateOurServicesRequest;
 use App\Http\Requests\OurServices\UpdateOurServicesRequest;
 use App\Models\ClientType;
+use App\Models\OurServices;
 use \Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
@@ -44,7 +45,12 @@ class OurServicesController extends Controller
         $ClientType = ClientType::where('status', '1')->get();
         return view('/content/apps/OurServices/create-edit', compact('page_data', 'ourServices', 'ClientType'));
     }
+    public function bulkDelete(Request $request)
+    {
+        OurServices::whereIn('id', $request->ids)->delete();
 
+        return response()->json(['message' => 'Slider deleted successfully.']);
+    }
     public function getAll()
     {
         $ourServices = $this->ourServicesService->getAllOurServices();

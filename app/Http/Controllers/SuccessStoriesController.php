@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\NewsCategory;
+use App\Models\SuccessStories;
 use App\Services\SuccessStoriesService;
 use Illuminate\Http\Request;
 use App\Http\Requests\SuccessStories\CreateSuccessStoriesRequest;
@@ -34,6 +35,12 @@ class SuccessStoriesController extends Controller
     public function index()
     {
         return view('content/apps/SuccessStories/list');
+    }
+    public function bulkDelete(Request $request)
+    {
+        SuccessStories::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'Slider deleted successfully.']);
     }
 
     public function create()

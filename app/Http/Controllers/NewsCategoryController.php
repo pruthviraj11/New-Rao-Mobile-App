@@ -33,7 +33,12 @@ class NewsCategoryController extends Controller
     {
         return view('content/apps/NewsCategorie/list');
     }
+    public function bulkDelete(Request $request)
+    {
+        NewsCategory::whereIn('id', $request->ids)->delete();
 
+        return response()->json(['message' => 'News Categories deleted successfully.']);
+    }
     public function create()
     {
         $newsCategories = "";
