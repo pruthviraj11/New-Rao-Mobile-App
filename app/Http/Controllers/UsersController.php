@@ -158,10 +158,79 @@ class UsersController extends Controller
                 // Start Chat Button
                 $chatButton = "<a data-bs-toggle='tooltip' title='Application Journey' data-bs-delay='400' class='btn btn-info' href='" . route('users.application_journey', $encryptedId) . "'><i data-feather='send'></i></a>";
 
-                return $updateButton . " " . $deleteButton . " " . $chatButton;
+                // Block Button
+                $blockButton = "<button class='BlockButton btn btn-danger btn-sm' data-id='{$encryptedId}' data-is-blocked='{$row->is_block_user}' title='Toggle Block'>
+                <i class='ficon' data-feather='x'></i> " . ($row->is_block_user == 1 ? 'Unblock' : 'Block') . "
+            </button>";
+
+                $restrictedButton = "<a data-bs-toggle='tooltip' title='Restricted Screens' data-bs-delay='400' class='btn btn-primary' href='" . route('users.restricted.screen', $encryptedId) . "'> <i data-feather='smartphone'></i></a>";
+
+
+                return $updateButton . " " . $deleteButton . " " . $chatButton . " " . $blockButton . " " . $restrictedButton;
             })
             ->rawColumns(['actions'])
             ->make(true);
+    }
+
+    public function restrictScreens($id)
+    {
+        $decryptId = decrypt($id);
+        $user = User::find($decryptId);
+
+        return view('content.apps.user.user-restrictScreen', compact('user'));
+
+    }
+    public function restrictScreensStore(Request $request)
+    {
+        try {
+            $input = $request->all();
+            $user = User::findOrFail($input['user_id']);
+
+            if (!is_null($user)) {
+                $user->home_screen = isset($input['home_screen']) ? 1 : 0;
+                $user->profile_screen = isset($input['profile_screen']) ? 1 : 0;
+                $user->consultant_screen = isset($input['consultant_screen']) ? 1 : 0;
+                $user->consulting_journy_screen = isset($input['consulting_journy_screen']) ? 1 : 0;
+                $user->our_services_screen = isset($input['our_services_screen']) ? 1 : 0;
+                $user->need_help_screen = isset($input['need_help_screen']) ? 1 : 0;
+                $user->success_stories_screen = isset($input['success_stories_screen']) ? 1 : 0;
+                $user->faq_screen = isset($input['faq_screen']) ? 1 : 0;
+                $user->privacy_policy_screen = isset($input['privacy_policy_screen']) ? 1 : 0;
+                $user->save();
+
+                return redirect()->route('app-users-list')->with('success', 'Screen restrictions updated successfully!');
+            }
+
+            return redirect()->back()->with('error', 'User not found.');
+        } catch (\Exception $e) {
+            // Log the exception message for debugging
+            dd($e->getMessage());
+
+            return redirect()->back()->with('error', 'An error occurred while updating the screen restrictions. Please try again.');
+        }
+    }
+
+
+    public function blockUser(Request $request)
+    {
+        $decryptId = decrypt($request->blockId);
+
+        $user = User::find($decryptId);
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+
+        if ($user->is_block_user == 1) {
+            $user->is_block_user = 0; // Unblock the user
+        } else {
+            $user->is_block_user = 1; // Block the user
+        }
+
+        $user->save(); // Save the changes
+
+        return response()->json(['message' => 'User status changed successfully.']);
     }
 
 

@@ -48,7 +48,7 @@
                 </a>
 
             </div>
-           
+
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
 
@@ -66,6 +66,27 @@
         </div>
         <!-- list and filter end -->
     </section>
+    <div class="modal fade" id="blockModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalTitle"></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmBlockButton" data-id="">
+                        <!-- Text will be set dynamically -->
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- users list ends -->
 @endsection
 
@@ -229,5 +250,72 @@
             });
         });
     </script>
+    <script>
+        $(document).on('click', '.BlockButton', function(event) {
+            event.preventDefault();
+            var blockId = $(this).data("id");
+            var isBlocked = $(this).data("is-blocked");
+
+            // Set the modal title and button text based on block status
+            if (isBlocked) {
+                $('#modalTitle').text('Are you sure you want to Unblock this user?');
+                $('#confirmBlockButton').text('Unblock').removeClass('btn-danger').addClass('btn-warning');
+            } else {
+                $('#modalTitle').text('Are you sure you want to Block this user?');
+                $('#confirmBlockButton').text('Block').removeClass('btn-warning').addClass('btn-danger');
+            }
+
+            // Set the ID in the modal button
+            $('#confirmBlockButton').data("id", blockId);
+
+            // Show the modal
+            $('#blockModal').modal('show');
+        });
+
+        // Confirm block/unblock action
+        $(document).on('click', '#confirmBlockButton', function() {
+            var blockId = $(this).data("id");
+            var action = $(this).text() === 'Unblock' ? 'unblock' : 'block';
+
+            $.ajax({
+                url: '{{ route('block.users') }}', // Use the route helper
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}', // Add CSRF token
+                    action: action,
+                    blockId: blockId
+                },
+                success: function(response) {
+                    $('#blockModal').modal('hide');
+                    toastr.success(response.message); // Show success message
+                    location.reload(); // Refresh the page to reflect changes
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    var errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON
+                        .error : 'An error occurred. Please try again.';
+                    toastr.error(errorMessage); // Show error message
+                }
+            });
+
+
+
+        });
+
+        // Explicitly hide modal on close button click
+        $(document).on('click', '.close, .btn-default', function() {
+            $('#blockModal').modal('hide');
+        });
+    </script>
+    <script>
+        @if (session('message'))
+            toastr.success("{{ session('message') }}");
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    </script>
+
     {{-- Page js files --}}
 @endsection

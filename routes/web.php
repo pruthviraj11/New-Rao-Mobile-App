@@ -91,7 +91,10 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('/profile/{encrypted_id}', [UsersController::class, 'profile'])->name('profile.show');
     Route::get('users/application_journey/{encrypted_id}', [UsersController::class, 'applicationJourney'])->name('users.application_journey');
     Route::get('users/program_journey/{id}/{programId?}', [UsersController::class, 'programJourney'])->name('users.program_journey');
+    Route::post('block/users', [UsersController::class, 'blockUser'])->name('block.users');
     Route::post('users/store_status', [UsersController::class, 'storeStatus'])->name('users.store_status');
+    Route::get('restrict/users/screen/{id}', [UsersController::class, 'restrictScreens'])->name('users.restricted.screen');
+    Route::post('restrict/users/screen/store', [UsersController::class, 'restrictScreensStore'])->name('users.restricted.screen.store');
 
     Route::post('/profile/update/{encrypted_id}', [UsersController::class, 'updateProfile'])->name('profile-update');
 
