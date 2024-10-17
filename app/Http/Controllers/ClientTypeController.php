@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Slide;
+use App\Models\ClientType;
 use App\Services\ClientTypeService;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClientType\CreateClientTypeRequest;
@@ -31,6 +32,13 @@ class ClientTypeController extends Controller
     public function index()
     {
         return view('content/apps/client-types/list');
+    }
+
+    public function bulkDelete(Request $request)
+    {
+        ClientType::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'News Categories deleted successfully.']);
     }
 
     public function create()

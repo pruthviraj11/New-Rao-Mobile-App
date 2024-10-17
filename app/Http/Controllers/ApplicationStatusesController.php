@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ApplicationStatuses\CreateApplicationStatusesRequest;
 use App\Http\Requests\ApplicationStatuses\UpdateApplicationStatusesRequest;
 use App\Models\ClientType;
+use App\Models\ApplicationStatuses;
 use \Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
@@ -33,6 +34,13 @@ class ApplicationStatusesController extends Controller
     public function index()
     {
         return view('content/apps/ApplicationStatuses/list');
+    }
+
+    public function bulkDelete(Request $request)
+    {
+        ApplicationStatuses::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'News Categories deleted successfully.']);
     }
 
     public function create()

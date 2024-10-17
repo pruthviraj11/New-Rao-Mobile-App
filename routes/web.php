@@ -152,6 +152,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('client-types/edit/{encrypted_id}', [ClientTypeController::class, 'edit'])->name('app-client-types-edit');
     Route::put('client-types/update/{encrypted_id}', [ClientTypeController::class, 'update'])->name('app-client-types-update');
     Route::get('client-types/destroy/{encrypted_id}', [ClientTypeController::class, 'destroy'])->name('app-client-types-delete');
+    Route::post('app-client-types-bulk-delete', [ClientTypeController::class, 'bulkDelete'])->name('app-client-types-destroy');
+
     //Client Type End
 
     //news-categories Type End
@@ -185,6 +187,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('events/edit/{encrypted_id}', [EventsController::class, 'edit'])->name('app-events-edit');
     Route::put('events/update/{encrypted_id}', [EventsController::class, 'update'])->name('app-events-update');
     Route::get('events/destroy/{encrypted_id}', [EventsController::class, 'destroy'])->name('app-events-delete');
+    Route::post('app-events-bulk-delete', [EventsController::class, 'bulkDelete'])->name('app-events-bluk-destroy');
     //events Type End
 
     //advisor Type End
@@ -218,6 +221,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('draws/edit/{encrypted_id}', [DrawsController::class, 'edit'])->name('app-draws-edit');
     Route::put('draws/update/{encrypted_id}', [DrawsController::class, 'update'])->name('app-draws-update');
     Route::get('draws/destroy/{encrypted_id}', [DrawsController::class, 'destroy'])->name('app-draws-delete');
+    Route::post('app-draws-bulk-delete', [DrawsController::class, 'bulkDelete'])->name('app-draws-bluk-destroy');
+
     //events Type End
 
     //application-statuses Type End
@@ -228,6 +233,8 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('application-statuses/edit/{encrypted_id}', [ApplicationStatusesController::class, 'edit'])->name('app-application-statuses-edit');
     Route::put('application-statuses/update/{encrypted_id}', [ApplicationStatusesController::class, 'update'])->name('app-application-statuses-update');
     Route::get('application-statuses/destroy/{encrypted_id}', [ApplicationStatusesController::class, 'destroy'])->name('app-application-statuses-delete');
+    Route::post('app-application-statuses-bulk-delete', [ApplicationStatusesController::class, 'bulkDelete'])->name('app-application-statuses-destroy');
+
     //success-stories Type End
 
     //fcm-tokens Type End
@@ -280,6 +287,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('notifications/destroy/{encrypted_id}', [NotificationsController::class, 'destroy'])->name('app-notifications-delete');
     Route::get('/users-by-client/{clientTypeId}', [NotificationsController::class, 'getUsersByClientType'])
         ->name('users.by.client');
+        
     //Notification Type End
 
     //our-services Type End

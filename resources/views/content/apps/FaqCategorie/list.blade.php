@@ -26,7 +26,7 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Faq Categorie List</h4>
                 <div>
                     <a href="{{ route('app-faq-categories-add') }}" class="btn-sm btn btn-primary">Add Faq Categories</a>
@@ -34,18 +34,22 @@
                 </div>
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="faq-categories-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="select-all" /></th>
-                                <th>Actions</th>
-                                <th>Name</th>
-                                <th>Client Type</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card">
+                    <div class="card-body border mt-1">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="faq-categories-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all" /></th>
+                                        <th>Actions</th>
+                                        <th>Name</th>
+                                        <th>Client Type</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -176,7 +180,7 @@
                                     text: 'Selected records have been deleted.',
                                 });
                                 $('#faq-categories-table').DataTable().ajax
-                            .reload(); // Reload the table
+                                    .reload(); // Reload the table
                             },
                             error: function(error) {
                                 Swal.fire({

@@ -38,57 +38,63 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header rounded-3 border">
                         <h4>{{ $page_data['form_title'] }}</h4>
-                        <a href="{{ route('app-news-categories-list') }}" class="col-md-2 btn btn-primary float-end">Slider
+                        <a href="{{ route('app-news-categories-list') }}" class="btn-sm btn btn-primary float-end">Slider
                             List</a>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="name-column">
-                                    Title</label>
-                                <input type="text" id="title" class="form-control" placeholder="title" name="title"
-                                    value="{{ old('title') ?? ($newsCategories ? $newsCategories->title : '') }}">
-                                <span class="text-danger">
-                                    @error('title')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="client_type">
-                                    Client Type</label>
-                                <select id="client_type" class="form-control select2" name="client_type">
-                                    <option value="">Select Client Type</option>
-                                    @foreach ($ClientType as $client)
-                                        <option value="{{ $client->id }}"
-                                            {{ old('client_type') == $client->id ? 'selected' : ($newsCategories && $newsCategories->client_type == $client->id ? 'selected' : '') }}>
-                                            {{ $client->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <span class="text-danger">
-                                    @error('client_type')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
+                        <div class="card border mt-1">
+                            <div class="card-header border"><h6>{{ $page_data['form_title'] }}</h6></div>
+                            <div class="card-body mt-1">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="name-column">
+                                            Title</label>
+                                        <input type="text" id="title" class="form-control" placeholder="title"
+                                            name="title"
+                                            value="{{ old('title') ?? ($newsCategories ? $newsCategories->title : '') }}">
+                                        <span class="text-danger">
+                                            @error('title')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="client_type">
+                                            Client Type</label>
+                                        <select id="client_type" class="form-control select2" name="client_type">
+                                            <option value="">Select Client Type</option>
+                                            @foreach ($ClientType as $client)
+                                                <option value="{{ $client->id }}"
+                                                    {{ old('client_type') == $client->id ? 'selected' : ($newsCategories && $newsCategories->client_type == $client->id ? 'selected' : '') }}>
+                                                    {{ $client->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger">
+                                            @error('client_type')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
 
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="status">
-                                    Status</label>
-                                <div class="form-check form-check-success form-switch">
-                                    <input type="checkbox" name="status"
-                                        {{ $newsCategories != '' && $newsCategories->status ? 'checked' : '' }}
-                                        class="form-check-input" id="customSwitch4"
-                                        @if (empty($newsCategories)) checked @endif />
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="status">
+                                            Status</label>
+                                        <div class="form-check form-check-success form-switch">
+                                            <input type="checkbox" name="status"
+                                                {{ $newsCategories != '' && $newsCategories->status ? 'checked' : '' }}
+                                                class="form-check-input" id="customSwitch4"
+                                                @if (empty($newsCategories)) checked @endif />
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('status')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
                                 </div>
-                                <span class="text-danger">
-                                    @error('status')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
                             </div>
                         </div>
 
@@ -112,7 +118,7 @@
 @endsection
 
 @section('page-script')
-   
+
     <script>
         $(document).ready(function() {
             $('.select2').select2({

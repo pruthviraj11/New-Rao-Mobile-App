@@ -28,13 +28,18 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Application Statuses List</h4>
-                <a href="{{ route('app-application-statuses-add') }}" class="col-md-2 btn btn-primary">Add Application Statuses</a>
+                <div>
+                    <a href="{{ route('app-application-statuses-add') }}" class="btn-sm btn btn-primary">Add Application
+                        Statuses</a>
+                    <button id="delete-selected" class="btn btn-danger btn-sm">Bulk Delete</button>
+                </div>
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
                     <table class="user-list-table table dt-responsive" id="application-statuses-table">
                         <thead>
                             <tr>
+                                <th><input type="checkbox" id="select-all" /></th>
                                 <th>Actions</th>
                                 <th>Name</th>
                                 <th>Description</th>
@@ -60,11 +65,19 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
+            let selectedIds = [];
             $('#application-statuses-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('app-application-statuses-get-all') }}",
                 columns: [{
+                        data: null,
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, row) {
+                            return `<input type="checkbox" class="record-checkbox" data-id="${row.id}" />`;
+                        }
+                    }, {
                         data: 'actions',
                         name: 'actions',
                         orderable: false,
@@ -114,6 +127,75 @@
                 drawCallback: function() {
                     feather.replace();
                 }
+            });
+            // Select all checkboxes
+            $('#select-all').on('change', function() {
+                const isChecked = $(this).is(':checked');
+                $('.record-checkbox').prop('checked', isChecked);
+                updateSelectedIds();
+            });
+
+            // Update selected IDs
+            $(document).on('change', '.record-checkbox', function() {
+                updateSelectedIds();
+            });
+
+            function updateSelectedIds() {
+                selectedIds = $('.record-checkbox:checked').map(function() {
+                    return $(this).data('id');
+                }).get();
+            }
+
+            // Delete selected records
+            $('#delete-selected').on('click', function() {
+                if (selectedIds.length === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'No records selected',
+                        text: 'Please select at least one record to delete.'
+                    });
+                    return;
+                }
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete them!',
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-outline-danger ms-1'
+                    },
+                    buttonsStyling: false
+                }).then(function(result) {
+                    if (result.value) {
+                        $.ajax({
+                            url: '{{ route('app-application-statuses-destroy') }}', // Update to your delete endpoint
+                            method: 'POST',
+                            data: {
+                                ids: selectedIds,
+                                _token: '{{ csrf_token() }}' // Include CSRF token if necessary
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Deleted!',
+                                    text: 'Selected records have been deleted.',
+                                });
+                                $('#application-statuses-table').DataTable().ajax
+                                    .reload(); // Reload the table
+                            },
+                            error: function(error) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: 'Something went wrong while deleting records.',
+                                });
+                            }
+                        });
+                    }
+                });
             });
         });
 

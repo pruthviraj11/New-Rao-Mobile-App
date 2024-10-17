@@ -42,7 +42,7 @@
         </div>
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Users list</h4>
                 <div>
                     <a href="{{ route('app-users-add') }}" class="btn-sm btn btn-primary">Add Users
@@ -54,18 +54,22 @@
             </div>
 
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
+                <div class="card border mt-1">
+                    <div class="card-body ">
+                        <div class="card-datatable table-responsive pt-0">
 
-                    <table class="user-list-table table dt-responsive" id="users-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="select-all" /></th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                    </table>
+                            <table class="user-list-table table dt-responsive" id="users-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all" /></th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

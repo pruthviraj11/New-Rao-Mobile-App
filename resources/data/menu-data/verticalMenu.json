@@ -263,16 +263,6 @@
         },
       
         {
-            "url": "app/draws/list",
-            "name": "Draws",
-            "icon": "pen-tool",
-            "slug": "app-draws-list",
-            "permission": [
-                "events-list",
-                "events-create"
-            ]
-        },
-        {
             "url": "app/home-services/list",
             "name": "Home service",
             "icon": "home",

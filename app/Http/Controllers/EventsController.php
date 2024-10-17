@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Events\CreateEventsRequest;
 use App\Http\Requests\Events\UpdateEventsRequest;
 use App\Models\ClientType;
+use App\Models\Events;
 use \Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
@@ -45,7 +46,12 @@ class EventsController extends Controller
         $ClientType = ClientType::where('status', '1')->get();
         return view('/content/apps/Events/create-edit', compact('page_data', 'events', 'ClientType'));
     }
+    public function bulkDelete(Request $request)
+    {
+        Events::whereIn('id', $request->ids)->delete();
 
+        return response()->json(['message' => 'Events deleted successfully.']);
+    }
     public function getAll()
     {
         $events = $this->eventsService->getAllEvents();

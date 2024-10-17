@@ -223,4 +223,5 @@ class NotificationsController extends Controller
             Log::error('Error sending push notification: ' . $e->getMessage());
         }
     }
+    
 }

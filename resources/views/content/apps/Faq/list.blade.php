@@ -26,25 +26,30 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header rounded-3 border">
                 <h4 class="card-title">Faq List</h4>
-               <div> <a href="{{ route('app-faq-add') }}" class="btn-sm btn btn-primary">Add Faq</a>
-             
-                <button id="delete-selected" class="btn btn-danger btn-sm">Bulk Delete</button></div>
+                <div> <a href="{{ route('app-faq-add') }}" class="btn-sm btn btn-primary">Add Faq</a>
+
+                    <button id="delete-selected" class="btn btn-danger btn-sm">Bulk Delete</button>
+                </div>
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="faq-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="select-all" /></th>
-                                <th>Actions</th>
-                                <th>Title</th>
-                                <th>Faq Category</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card border rounded-3 mt-1">
+                   <div class="card-body">
+                     <div class="card-datatable table-responsive pt-0">
+                        <table class="user-list-table table dt-responsive" id="faq-table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="select-all" /></th>
+                                    <th>Actions</th>
+                                    <th>Title</th>
+                                    <th>Faq Category</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                   </div>
                 </div>
             </div>
         </div>

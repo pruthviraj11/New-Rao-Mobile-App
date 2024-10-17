@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Draws\CreateDrawsRequest;
 use App\Http\Requests\Draws\UpdateDrawsRequest;
 use App\Models\ClientType;
+use App\Models\Draws;
 use \Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
@@ -139,5 +140,12 @@ class DrawsController extends Controller
         } catch (\Exception $error) {
             return redirect()->route("app-draws-list")->with('error', 'Error while Deleting Draws');
         }
+    }
+
+    public function bulkDelete(Request $request)
+    {
+        Draws::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'Draws deleted successfully.']);
     }
 }

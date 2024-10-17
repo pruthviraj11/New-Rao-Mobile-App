@@ -26,7 +26,7 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">News List</h4>
                 <div>
                     <a href="{{ route('app-news-add') }}" class="btn-sm btn btn-primary">Add News</a>
@@ -34,20 +34,24 @@
                 </div>
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="news-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="select-all" /></th>
-                                <th>Actions</th>
-                                <th>Title</th>
-                                <th>News Photo</th>
-                                <th>Categories</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card border mt-1">
+                    <div class="card-body">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="news-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all" /></th>
+                                        <th>Actions</th>
+                                        <th>Title</th>
+                                        <th>News Photo</th>
+                                        <th>Categories</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,19 +69,19 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
-              let selectedIds = [];
+            let selectedIds = [];
             $('#news-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('app-news-get-all') }}",
-                columns: [  {
+                columns: [{
                         data: null,
                         orderable: false,
                         searchable: false,
                         render: function(data, type, row) {
                             return `<input type="checkbox" class="record-checkbox" data-id="${row.id}" />`;
                         }
-                    },{
+                    }, {
                         data: 'actions',
                         name: 'actions',
                         orderable: false,
@@ -144,7 +148,7 @@
                 }
             });
 
-            		 // Select all checkboxes
+            // Select all checkboxes
             $('#select-all').on('change', function() {
                 const isChecked = $(this).is(':checked');
                 $('.record-checkbox').prop('checked', isChecked);
@@ -199,7 +203,8 @@
                                     title: 'Deleted!',
                                     text: 'Selected records have been deleted.',
                                 });
-                                $('#news-table').DataTable().ajax.reload(); // Reload the table
+                                $('#news-table').DataTable().ajax
+                            .reload(); // Reload the table
                             },
                             error: function(error) {
                                 Swal.fire({

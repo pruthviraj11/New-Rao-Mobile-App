@@ -26,23 +26,27 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Home Service List</h4>
-                <a href="{{ route('app-home-services-add') }}" class="col-md-2 btn btn-primary">Add Home Service</a>
+                <a href="{{ route('app-home-services-add') }}" class="btn-sm btn btn-primary">Add Home Service</a>
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="home-services-table">
-                        <thead>
-                            <tr>
-                                <th>Actions</th>
-                                <th>Title</th>
-                                <th>Logo</th>
-                                <th>Image</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card mt-1">
+                    <div class="card-body border">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="home-services-table">
+                                <thead>
+                                    <tr>
+                                        <th>Actions</th>
+                                        <th>Title</th>
+                                        <th>Logo</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,7 +111,7 @@
                                 '" alt="service_image Image" style="width: auto; height: 75px;" onerror="this.onerror=null; this.src=\'{{ asset('default/default.jpg') }}\';">';
                         }
                     },
-                    
+
                     {
                         data: 'status',
                         name: 'status',

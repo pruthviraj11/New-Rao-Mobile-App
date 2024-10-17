@@ -2,7 +2,7 @@
   <div class="content-header-left col-md-9 col-12">
     <div class="row breadcrumbs-top">
       <div class="col-12">
-        <h3 class="content-header-title float-start text-capitalize mb-2">@yield('title')</h3>
+        {{-- <h3 class="content-header-title float-start text-capitalize mb-2">@yield('title')</h3> --}}
         <div class="breadcrumb-wrapper">
           @if(@isset($breadcrumbs))
           <ol class="breadcrumb">
