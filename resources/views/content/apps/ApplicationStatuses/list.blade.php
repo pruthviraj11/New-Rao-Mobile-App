@@ -26,7 +26,7 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Application Statuses List</h4>
                 <div>
                     <a href="{{ route('app-application-statuses-add') }}" class="btn-sm btn btn-primary">Add Application
@@ -35,19 +35,23 @@
                 </div>
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="application-statuses-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="select-all" /></th>
-                                <th>Actions</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card border rounded-3 mt-1">
+                    <div class="card-body">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="application-statuses-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all" /></th>
+                                        <th>Actions</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

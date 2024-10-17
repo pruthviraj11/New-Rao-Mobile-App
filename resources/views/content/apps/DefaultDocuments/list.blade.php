@@ -26,25 +26,29 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Default Documents List</h4>
                 {{-- <a href="{{ route('app-advisor-add') }}" class="col-md-2 btn btn-primary">Add Advisor</a> --}}
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="default-documents-table">
-                        <thead>
-                            <tr>
-                                <th>Doc User Category Id</th>
-                                <th>Doc Id</th>
-                                <th>Doc Type Id</th>
-                                <th>Doc Category Name</th>
-                                <th>Is Active</th>
-                                <th>Created At</th>
-                                {{-- <th>Status</th> --}}
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card  mt-1 border rounded-3">
+                    <div class="card-body">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="default-documents-table">
+                                <thead>
+                                    <tr>
+                                        <th>Doc User Category Id</th>
+                                        <th>Doc Id</th>
+                                        <th>Doc Type Id</th>
+                                        <th>Doc Category Name</th>
+                                        <th>Is Active</th>
+                                        <th>Created At</th>
+                                        {{-- <th>Status</th> --}}
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,8 +70,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('app-default-documents-get-all') }}",
-                columns: [
-                    {
+                columns: [{
                         data: 'doc_user_category_id',
                         name: 'doc_user_category_id',
                         className: 'text-left',

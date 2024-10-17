@@ -26,23 +26,27 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">FCM Tokens List</h4>
                 {{-- <a href="{{ route('app-advisor-add') }}" class="col-md-2 btn btn-primary">Add Advisor</a> --}}
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="fcmTokens-table">
-                        <thead>
-                            <tr>
-                                {{-- <th>Actions</th> --}}
-                                {{-- <th>Token</th> --}}
-                                <th>Device Id</th>
-                                <th>Created At</th>
-                                {{-- <th>Status</th> --}}
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card  mt-1 border rounded-3">
+                    <div class="card-body">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="fcmTokens-table">
+                                <thead>
+                                    <tr>
+                                        {{-- <th>Actions</th> --}}
+                                        {{-- <th>Token</th> --}}
+                                        <th>Device Id</th>
+                                        <th>Created At</th>
+                                        {{-- <th>Status</th> --}}
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

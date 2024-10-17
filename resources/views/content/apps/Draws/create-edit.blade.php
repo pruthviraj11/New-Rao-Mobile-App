@@ -28,8 +28,7 @@
         <form action="{{ route('app-draws-store') }}" method="POST" enctype="multipart/form-data">
             @csrf
         @else
-            <form action="{{ route('app-draws-update', encrypt($draws->id)) }}" method="POST"
-                enctype="multipart/form-data">
+            <form action="{{ route('app-draws-update', encrypt($draws->id)) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
     @endif
@@ -38,71 +37,78 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header border rounded-3">
                         <h4>{{ $page_data['form_title'] }}</h4>
-                        <a href="{{ route('app-draws-list') }}" class="col-md-2 btn btn-primary float-end">Draws
+                        <a href="{{ route('app-draws-list') }}" class="btn-sm btn btn-primary float-end">Draws
                             List</a>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="date-column">Date</label>
-                                <input type="date" id="date" class="form-control" name="date"
-                                       value="{{ old('date') ?? ($draws ? $draws->date : '') }}">
-                                <span class="text-danger">
-                                    @error('date')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+                        <div class="card border mt-1">
+                            <div class="card-header border">
+                                <h6>{{ $page_data['form_title'] }}</h6>
                             </div>
+                            <div class="card-body mt-1">
+                                <div class="row">
 
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="crs_cutoff-column">CRS Cutoff</label>
-                                <input type="number" id="crs_cutoff" class="form-control" name="crs_cutoff"
-                                       value="{{ old('crs_cutoff') ?? ($draws ? $draws->crs_cutoff : '') }}">
-                                <span class="text-danger">
-                                    @error('crs_cutoff')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="type-column">Type</label>
-                                <textarea id="type" class="form-control" name="type" rows="3">{{ old('type') ?? ($draws ? $draws->type : '') }}</textarea>
-                                <span class="text-danger">
-                                    @error('type')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="date-column">Date</label>
+                                        <input type="date" id="date" class="form-control" name="date"
+                                            value="{{ old('date') ?? ($draws ? $draws->date : '') }}">
+                                        <span class="text-danger">
+                                            @error('date')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
 
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="ita_issue-column">ITA Issue</label>
-                                <input type="number" id="ita_issue" class="form-control" name="ita_issue"
-                                       value="{{ old('ita_issue') ?? ($draws ? $draws->ita_issue : '') }}">
-                                <span class="text-danger">
-                                    @error('ita_issue')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="crs_cutoff-column">CRS Cutoff</label>
+                                        <input type="number" id="crs_cutoff" class="form-control" name="crs_cutoff"
+                                            value="{{ old('crs_cutoff') ?? ($draws ? $draws->crs_cutoff : '') }}">
+                                        <span class="text-danger">
+                                            @error('crs_cutoff')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="type-column">Type</label>
+                                        <textarea id="type" class="form-control" name="type" rows="3">{{ old('type') ?? ($draws ? $draws->type : '') }}</textarea>
+                                        <span class="text-danger">
+                                            @error('type')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="ita_issue-column">ITA Issue</label>
+                                        <input type="number" id="ita_issue" class="form-control" name="ita_issue"
+                                            value="{{ old('ita_issue') ?? ($draws ? $draws->ita_issue : '') }}">
+                                        <span class="text-danger">
+                                            @error('ita_issue')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
 
 
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="status">
-                                    Status</label>
-                                <div class="form-check form-check-success form-switch">
-                                    <input type="checkbox" name="status"
-                                        {{ $draws != '' && $draws->status ? 'checked' : '' }}
-                                        class="form-check-input" id="customSwitch4"
-                                        @if (empty($draws)) checked @endif />
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="status">
+                                            Status</label>
+                                        <div class="form-check form-check-success form-switch">
+                                            <input type="checkbox" name="status"
+                                                {{ $draws != '' && $draws->status ? 'checked' : '' }}
+                                                class="form-check-input" id="customSwitch4"
+                                                @if (empty($draws)) checked @endif />
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('status')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
                                 </div>
-                                <span class="text-danger">
-                                    @error('status')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
                             </div>
                         </div>
 

@@ -26,7 +26,7 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Slider List</h4>
                 <div>
                     <a href="{{ route('app-sliders-add') }}" class="btn-sm btn btn-primary">Add Slider</a>
@@ -34,20 +34,24 @@
                 </div>
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="sliders-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="select-all" /></th>
-                                <th>Actions</th>
-                                <th>Name</th>
-                                <th>Sequence</th>
-                                <th>Slider Image</th>
-                                <th>Status</th>
+                <div class="card border mt-1">
+                    <div class="card-body">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="sliders-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all" /></th>
+                                        <th>Actions</th>
+                                        <th>Name</th>
+                                        <th>Sequence</th>
+                                        <th>Slider Image</th>
+                                        <th>Status</th>
 
-                            </tr>
-                        </thead>
-                    </table>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -192,7 +196,8 @@
                                     title: 'Deleted!',
                                     text: 'Selected records have been deleted.',
                                 });
-                                $('#sliders-table').DataTable().ajax.reload(); // Reload the table
+                                $('#sliders-table').DataTable().ajax
+                            .reload(); // Reload the table
                             },
                             error: function(error) {
                                 Swal.fire({

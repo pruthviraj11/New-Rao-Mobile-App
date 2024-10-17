@@ -38,52 +38,63 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header border rounded-3">
                         <h4>{{ $page_data['form_title'] }}</h4>
-                        <a href="{{ route('app-client-types-list') }}" class="col-md-2 btn btn-primary float-end">client types
+                        <a href="{{ route('app-client-types-list') }}" class="col-md-2 btn btn-primary float-end">Client
+                            types
                             List</a>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="name-column">
-                                    Name</label>
-                                <input type="text" id="name" class="form-control" placeholder="Name Of Of Client Type"
-                                    name="name" value="{{ old('name') ?? ($clientType ? $clientType->name : '') }}">
-                                <span class="text-danger">
-                                    @error('name')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+                        <div class="card border  mt-1">
+                            <div class="card-header border rounded-3">
+                                <h6>{{ $page_data['form_title'] }}</h6>
                             </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="name-column">
+                                            Name</label>
+                                        <input type="text" id="name" class="form-control"
+                                            placeholder="Name Of Of Client Type" name="name"
+                                            value="{{ old('name') ?? ($clientType ? $clientType->name : '') }}">
+                                        <span class="text-danger">
+                                            @error('name')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
 
-                          <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="name-column">
-                                    Display Name</label>
-                                <input type="text" id="displayname" class="form-control" placeholder="Display Name Of Client Type"
-                                    name="displayname" value="{{ old('displayname') ?? ($clientType ? $clientType->displayname : '') }}">
-                                <span class="text-danger">
-                                    @error('displayname')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="name-column">
+                                            Display Name</label>
+                                        <input type="text" id="displayname" class="form-control"
+                                            placeholder="Display Name Of Client Type" name="displayname"
+                                            value="{{ old('displayname') ?? ($clientType ? $clientType->displayname : '') }}">
+                                        <span class="text-danger">
+                                            @error('displayname')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
 
 
 
-                            <div class="col-md-6 col-sm-12 mb-1">
-                                <label class="form-label" for="status">
-                                    Status</label>
-                                <div class="form-check form-check-success form-switch">
-                                    <input type="checkbox" name="status"
-                                        {{ $clientType != '' && $clientType->status ? 'checked' : '' }} class="form-check-input"
-                                        id="customSwitch4" @if (empty($clientType)) checked @endif />
+                                    <div class="col-md-12 col-sm-12 mb-1">
+                                        <label class="form-label" for="status">
+                                            Status</label>
+                                        <div class="form-check form-check-success form-switch">
+                                            <input type="checkbox" name="status"
+                                                {{ $clientType != '' && $clientType->status ? 'checked' : '' }}
+                                                class="form-check-input" id="customSwitch4"
+                                                @if (empty($clientType)) checked @endif />
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('status')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
                                 </div>
-                                <span class="text-danger">
-                                    @error('status')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
                             </div>
                         </div>
 

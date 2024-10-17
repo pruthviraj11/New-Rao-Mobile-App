@@ -26,7 +26,7 @@
     <section class="app-user-list">
         <!--User List Report-->
         <div class="card">
-            <div class="card-header">
+           <div class="card-header border rounded-3">
                 <h4 class="card-title">Dashbored Reports</h4>
             </div>
             <div class="card-body border-bottom">
@@ -131,7 +131,7 @@
 
         <!--User List Report-->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Summary Reports</h4>
             </div>
             <div class="card-body border-bottom">

@@ -18,26 +18,30 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Roles List</h4>
                 <div>
-                    <a href="{{ route('app-roles-add') }}" class=" btn btn-primary btn-sm">Add Role</a>
+                    <a href="{{ route('app-roles-add') }}" class="btn btn-primary btn-sm">Add Role</a>
                     <button id="delete-selected" class="btn btn-danger btn-sm">Bulk Delete</button>
                 </div>
 
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="role-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="select-all" /></th>
-                                <th>Name</th>
-                                <th>Display Name</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="card border mt-1">
+                    <div class="card-body">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="role-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all" /></th>
+                                        <th>Name</th>
+                                        <th>Display Name</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,7 +181,7 @@
                 }).then(function(result) {
                     if (result.value) {
                         $.ajax({
-                            url: '{{ route('app-roles-destroy') }}' ,// Update to your delete endpoint
+                            url: '{{ route('app-roles-destroy') }}', // Update to your delete endpoint
                             method: 'POST',
                             data: {
                                 ids: selectedIds,

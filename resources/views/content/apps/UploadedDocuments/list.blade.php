@@ -26,24 +26,28 @@
     <section class="app-user-list">
         <!-- list and filter start -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border rounded-3">
                 <h4 class="card-title">Uploaded Documents List</h4>
                 {{-- <a href="{{ route('app-advisor-add') }}" class="col-md-2 btn btn-primary">Add Advisor</a> --}}
             </div>
             <div class="card-body border-bottom">
-                <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="uploaded-documents-table">
-                        <thead>
-                            <tr>
-                                <th>Client Name</th>
-                                <th>Document Name</th>
-                                <th>Document Type</th>
-                                <th>Uploaded On</th>
-                                <th>Download File</th>
+                <div class="card  mt-1 border rounded-3">
+                    <div class="card-body">
+                        <div class="card-datatable table-responsive pt-0">
+                            <table class="user-list-table table dt-responsive" id="uploaded-documents-table">
+                                <thead>
+                                    <tr>
+                                        <th>Client Name</th>
+                                        <th>Document Name</th>
+                                        <th>Document Type</th>
+                                        <th>Uploaded On</th>
+                                        <th>Download File</th>
 
-                            </tr>
-                        </thead>
-                    </table>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,4 +182,3 @@
 
     {{-- Page js files --}}
 @endsection
-
