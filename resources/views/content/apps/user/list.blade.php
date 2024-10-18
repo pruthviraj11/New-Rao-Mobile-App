@@ -49,6 +49,9 @@
                     </a>
 
                     <button id="delete-selected" class="btn btn-danger btn-sm">Bulk Delete</button>
+                    <a href="{{ url('storage/sampleExcel/MobileAppExcel.xlsx') }}" class="btn btn-success btn-sm" download>
+                        <i class="fa fa-download"></i> Download Sample File
+                    </a>
                 </div>
 
             </div>
@@ -58,16 +61,30 @@
                     <div class="card-body ">
                         <div class="card-datatable table-responsive pt-0">
 
-                            <table class="user-list-table table dt-responsive" id="users-table">
+                            <table class="user-list-table table" id="users-table">
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" id="select-all" /></th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>App No</th>
+                                        <th>is Download</th>
+                                        <th>Download Date</th>
+                                        <th>Reg Imm No</th>
+                                        <th>Advisor</th>
+                                        <th>User Categories</th> <!-- New column -->
+                                        <th>Role</th> <!-- New column -->
+                                        <th>Phone Number</th> <!-- New column -->
+                                        <th>Passport Expiry</th> <!-- New column -->
+                                        <th>Imm No</th> <!-- Existing column -->
+                                        <th>Test Expiry</th> <!-- New column -->
+                                        <th>Reporting To</th> <!-- New column -->
+                                        <th>Date of Birth</th> <!-- New column -->
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -93,7 +110,38 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importModalLabel">Import Users Sales</h5>
+                    <button type="button" onclick="closeImportModal()" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Import Form -->
+                    <form action="{{ route('users.import.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
 
+                        <div class="form-group">
+                            <label for="import_file">Import File</label>
+                            <input type="file" class="form-control" id="import_file" name="import_file" required
+                                accept=".xlsx">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary mt-2">Import</button>
+                        <button type="button" class="btn btn-danger mt-2" onclick="closeImportModal()">Close</button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- users list ends -->
@@ -129,6 +177,16 @@
         });
     </script>
     <script>
+        function showImportModal() {
+            $('#importModal').modal('show');
+        }
+    </script>
+    <script>
+        function closeImportModal() {
+            $('#importModal').modal('hide');
+        }
+    </script>
+    <script>
         $(document).ready(function() {
             let selectedIds = [];
 
@@ -150,6 +208,12 @@
                         },
                         columns: [0, 1]
                     }
+                }, {
+                    text: '<i class="ficon" data-feather="upload"></i> Import',
+                    className: 'btn btn-success btn-sm',
+                    action: function() {
+                        showImportModal();
+                    }
                 }, ],
                 "lengthMenu": [10, 25, 50, 100, 200],
                 ajax: "{{ route('app-users-get-all') }}",
@@ -163,14 +227,83 @@
                     },
                     {
                         data: 'name',
-                        name: 'name'
+                        name: 'name',
+                        defaultContent: '-',
                     },
                     {
                         data: 'email',
-                        name: 'email'
+                        name: 'email',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'app_no',
+                        name: 'app_no',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'is_download',
+                        name: 'is_download',
+                        defaultContent: '-',
+                        render: function(data, type, row) { 
+                            return data === 0 ? 'No' : 'Yes'; // Ternary operator
+                        }
                     },
 
-
+                    {
+                        data: 'download_date',
+                        name: 'download_date',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'imm_no',
+                        name: 'imm_no',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'Advisor',
+                        name: 'Advisor',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'user_categories', // New column
+                        name: 'user_categories',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'role', // New column
+                        name: 'role',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'phone_number', // New column
+                        name: 'phone_number',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'imm_no', // New column
+                        name: 'imm_no',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'passport_expiry', // New column
+                        name: 'passport_expiry',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'test_expiry', // New column
+                        name: 'test_expiry',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'reporting_to', // New column
+                        name: 'reporting_to',
+                        defaultContent: '-',
+                    },
+                    {
+                        data: 'dob', // New column
+                        name: 'dob',
+                        defaultContent: '-',
+                    },
                     {
                         data: 'actions',
                         name: 'actions',

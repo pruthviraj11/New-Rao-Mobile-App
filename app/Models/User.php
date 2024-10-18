@@ -42,6 +42,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Role::class, 'id', 'assign_to');
     }
+    public function advisor()
+    {
+        return $this->belongsTo(User::class, 'advisor_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -59,8 +59,7 @@ Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkE
 // Reset Password routes
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-
+    
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('login-basic', [AuthenticationController::class, 'login_basic'])->name('auth-login-basic');
@@ -97,7 +96,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::post('users/store_status', [UsersController::class, 'storeStatus'])->name('users.store_status');
     Route::get('restrict/users/screen/{id}', [UsersController::class, 'restrictScreens'])->name('users.restricted.screen');
     Route::post('restrict/users/screen/store', [UsersController::class, 'restrictScreensStore'])->name('users.restricted.screen.store');
-
+    Route::post('clients-import-store', [UsersController::class, 'importClientStore'])->name('users.import.store');
     Route::post('/profile/update/{encrypted_id}', [UsersController::class, 'updateProfile'])->name('profile-update');
 
     // =============================================================================================================================
@@ -125,13 +124,11 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('users/destroy/{encrypted_id}', [UsersController::class, 'destroy'])->name('app-users-destroy');
     Route::get('users/getAll', [UsersController::class, 'getAll'])->name('app-users-get-all');
     Route::post('app-users-bulk-delete', [UsersController::class, 'bulkDelete'])->name('app-users-bulk-destroy');
-
     //User End
 
 
     //Sliders Start
     Route::post('app-slide-bulk-delete', [SlideController::class, 'bulkDelete'])->name('app-sliders-bluk-destroy');
-
     Route::get('sliders/list', [SlideController::class, 'index'])->name('app-sliders-list');
     Route::get('sliders/getAll', [SlideController::class, 'getAll'])->name('app-sliders-get-all');
     Route::post('sliders/store', [SlideController::class, 'store'])->name('app-sliders-store');

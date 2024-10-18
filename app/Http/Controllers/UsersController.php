@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Requests\User\UpdateUserProfileRequest;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 use App\Models\Role;
@@ -14,6 +19,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Services\RoleService;
 use App\Services\UserService;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -146,29 +153,36 @@ class UsersController extends Controller
         $users = User::whereIn('id', $allUserIds)->get();
 
         return DataTables::of($users)
+            ->addColumn('Advisor', function ($row) {
+                return $row->advisor ? $row->advisor->name : 'N/A';
+            })
+            ->addColumn('role', function ($row) {
+                return $row->getRoleNames()->first() ?? 'N/A'; // Get the first role name
+            })
             ->addColumn('actions', function ($row) {
                 $encryptedId = encrypt($row->id);
 
                 // Update Button
-                $updateButton = "<a data-bs-toggle='tooltip' title='Edit' data-bs-delay='400' class='btn btn-warning' href='" . route('app-users-edit', $encryptedId) . "'><i data-feather='edit'></i></a>";
+                $updateButton = "<button data-bs-toggle='tooltip' title='Edit' data-bs-delay='400' class='btn btn-warning' href='" . route('app-users-edit', $encryptedId) . "'><i data-feather='edit'></i></button>";
 
                 // Delete Button
-                $deleteButton = "<a data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='" . $encryptedId . "' id='confirm-color' href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></a>";
+                $deleteButton = "<button data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='" . $encryptedId . "' id='confirm-color' href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></button>";
 
                 // Start Chat Button
-                $chatButton = "<a data-bs-toggle='tooltip' title='Application Journey' data-bs-delay='400' class='btn btn-info' href='" . route('users.application_journey', $encryptedId) . "'><i data-feather='send'></i></a>";
+                $chatButton = "<button data-bs-toggle='tooltip' title='Application Journey' data-bs-delay='400' class='btn btn-info' href='" . route('users.application_journey', $encryptedId) . "'><i data-feather='send'></i></button>";
 
                 // Block Button
                 $blockButton = "<button class='BlockButton btn btn-danger btn-sm' data-id='{$encryptedId}' data-is-blocked='{$row->is_block_user}' title='Toggle Block'>
                 <i class='ficon' data-feather='x'></i> " . ($row->is_block_user == 1 ? 'Unblock' : 'Block') . "
             </button>";
 
-                $restrictedButton = "<a data-bs-toggle='tooltip' title='Restricted Screens' data-bs-delay='400' class='btn btn-primary' href='" . route('users.restricted.screen', $encryptedId) . "'> <i data-feather='smartphone'></i></a>";
+                $restrictedButton = "<button data-bs-toggle='tooltip' title='Restricted Screens' data-bs-delay='400' class='btn btn-primary' href='" . route('users.restricted.screen', $encryptedId) . "'> <i data-feather='smartphone'></i></button>";
 
 
-                return $updateButton . " " . $deleteButton . " " . $chatButton . " " . $blockButton . " " . $restrictedButton;
+                $buttons = $updateButton . " " . $deleteButton . " " . $chatButton . " " . $blockButton . " " . $restrictedButton;
+                return "<div class='d-flex justify-content-start gap-25'>" . $buttons . "</div>";
             })
-            ->rawColumns(['actions'])
+            ->rawColumns(['actions', 'Advisor'])
             ->make(true);
     }
     public function bulkDelete(Request $request)
@@ -528,4 +542,111 @@ class UsersController extends Controller
             return redirect()->route("app-users-list")->with('error', 'Error while editing Users');
         }
     }
+
+    public function importClientStore(Request $request)
+    {
+        // Validate the uploaded file
+        $request->validate([
+            'import_file' => 'required|file|mimes:xlsx,xls,csv'
+        ]);
+
+        // Load the spreadsheet
+        if ($request->hasFile('import_file')) {
+            $the_file = $request->file('import_file');
+
+            try {
+                $spreadsheet = IOFactory::load($the_file->getRealPath());
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['import_file' => 'Unable to read the file.'])->withInput();
+            }
+
+            $sheet = $spreadsheet->getActiveSheet();
+            $row_limit = $sheet->getHighestDataRow();
+            $row_range = range(2, $row_limit); // Start from row 2 to skip headers
+
+            // Move the uploaded file
+            $the_file->move(public_path('storage/excelsheet'), $the_file->getClientOriginalName());
+
+            // Process each row in the sheet
+            foreach ($row_range as $row) {
+                // Extract data from each cell
+                $id = $sheet->getCell('A' . $row)->getValue();
+                $email = $sheet->getCell('B' . $row)->getValue();
+                $name = $sheet->getCell('C' . $row)->getValue();
+                $phone_number = $sheet->getCell('D' . $row)->getValue();
+                $user_category = $sheet->getCell('E' . $row)->getValue();
+                $app_no = $sheet->getCell('F' . $row)->getValue();
+                $imm_no = $sheet->getCell('G' . $row)->getValue();
+
+                // Ensure user category is correctly set
+                $userCategoryId = ($user_category === 'FE') ? 1 : 2;
+
+                // Create or update the user
+                $user = User::updateOrCreate(
+                    ['id' => $id],
+                    [
+                        'name' => $name,
+                        'email' => $email,
+                        'phone_number' => $phone_number,
+                        'user_category' => $userCategoryId,
+                        'app_no' => $app_no,
+                        'imm_no' => $imm_no,
+                    ]
+                );
+
+                // Process application statuses based on headers
+                foreach ($sheet->getColumnIterator() as $column) {
+                    $header = $sheet->getCell($column->getColumnIndex() . '1')->getValue(); // Assuming headers are in the first row
+                    // dd($header);
+                    $applicationStatus = ApplicationStatuses::where('slug', $header)
+                        ->where('category_id', $userCategoryId)->first();
+                    // dd($applicationStatus);
+                    if ($applicationStatus) {
+                        $value1 = $sheet->getCell($column->getColumnIndex() . $row)->getValue(); // Get the value for the specific column
+
+                        $userApplicationStatus = UserApplicationStatus::where('user_id', $user->id)
+                            ->where('application_status', $applicationStatus->id)->first();
+
+                        // Initialize status and date
+                        $status = null;
+                        $newDate = null;
+
+                        // Extract status
+                        if (preg_match('/Status:\s*(Done|Pending|N\/A)/', $value1, $matches)) {
+                            $status = $matches[1];
+                        }
+
+                        // Extract date
+                        if (preg_match('/[0-9]{2}-[0-9]{2}-[0-9]{4}/', $value1, $matches)) {
+                            $date = $matches[0];
+                            $newDate = Carbon::createFromFormat('d-m-Y', $date)->format('Y-m-d');
+                        }
+
+                        // Save user application status
+                        if ($userApplicationStatus) {
+                            $userApplicationStatus->update([
+                                'status_value' => $status,
+                                'status_date' => $newDate,
+                            ]);
+                        } else {
+                            UserApplicationStatus::create([
+                                'user_id' => $user->id,
+                                'status_value' => $status,
+                                'status_date' => $newDate,
+                                'application_status' => $applicationStatus->id,
+                                'status_order' => $applicationStatus->order,
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            return redirect()->back()->with('success', "Records imported successfully.");
+        } else {
+            return redirect()->back()->withErrors(['import_file' => 'File upload failed.'])->withInput();
+        }
+    }
+
+
+
 }

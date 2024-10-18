@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 
 class Controller extends BaseController
 {
+    private $importedCount = 0;
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function gst(){
@@ -173,5 +174,10 @@ class Controller extends BaseController
         curl_close($ch);
 
         return $result;
+    }
+
+    public function getImportedCount()
+    {
+        return $this->importedCount;
     }
 }
