@@ -10,7 +10,7 @@
                     <span class="brand-logo">
                         <img src="{{ asset('images/ico/logo_fav.png') }}" alt="">
                     </span>
-                    <h2 class="brand-text mb-0 text-white">{{ env('APP_NAME') }}</h2>
+                    <h2 class="brand-text mb-0">{{ env('APP_NAME') }}</h2>
 
                 </a>
             </li>
