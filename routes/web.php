@@ -137,7 +137,6 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::put('sliders/update/{encrypted_id}', [SlideController::class, 'update'])->name('app-sliders-update');
     Route::get('sliders/destroy/{encrypted_id}', [SlideController::class, 'destroy'])->name('app-sliders-delete');
     Route::get('sliders/{id}', [SlideController::class, 'destroyimage'])->name('sliders.destroyimage');
-
     //Slider End
 
 
@@ -195,7 +194,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('advisor/edit/{encrypted_id}', [AdvisorController::class, 'edit'])->name('app-advisor-edit');
     Route::put('advisor/update/{encrypted_id}', [AdvisorController::class, 'update'])->name('app-advisor-update');
     Route::get('advisor/destroy/{encrypted_id}', [AdvisorController::class, 'destroy'])->name('app-advisor-delete');
-    Route::get('advisor/{id}', [AdvisorController::class, 'destroyimage'])->name('sliders.destroyimage');
+    Route::get('advisor/{id}', [AdvisorController::class, 'destroyimage'])->name('advisorSliders.destroyimage');
 
     //advisor Type End
 
@@ -207,7 +206,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('admin-user/edit/{encrypted_id}', [AdminUserController::class, 'edit'])->name('app-admin-user-edit');
     Route::put('admin-user/update/{encrypted_id}', [AdminUserController::class, 'update'])->name('app-admin-user-update');
     Route::get('admin-user/destroy/{encrypted_id}', [AdminUserController::class, 'destroy'])->name('app-admin-user-delete');
-    Route::get('admin-user/{id}', [AdminUserController::class, 'destroyimage'])->name('sliders.destroyimage');
+    Route::get('admin-user/{id}', [AdminUserController::class, 'destroyimage'])->name('adminuserSliders.destroyimage');
 
     //admin-user Type End
     //draws Type End
